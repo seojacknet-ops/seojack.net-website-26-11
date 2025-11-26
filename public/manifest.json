@@ -1,0 +1,28 @@
+{
+  "name": "SEOJack - Expert Custom Websites",
+  "short_name": "SEOJack",
+  "description": "Get a professional, SEO-ready website built by experts. No contracts, unlimited revisions, 14-day money-back guarantee.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#8B5CF6",
+  "accent_color": "#FF13F0",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-GB",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

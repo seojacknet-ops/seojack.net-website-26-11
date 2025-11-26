@@ -1,0 +1,10 @@
+Contact: security@seojack.co.uk
+Expires: 2025-12-31T23:59:59.000Z
+Acknowledgments: https://seojack.co.uk/security-acknowledgments
+Preferred-Languages: en
+Canonical: https://seojack.co.uk/.well-known/security.txt
+Policy: https://seojack.co.uk/security-policy
+
+# SEOJack Security Policy
+# We appreciate responsible disclosure of security vulnerabilities
+# Please allow 90 days for us to address reported issues before public disclosure

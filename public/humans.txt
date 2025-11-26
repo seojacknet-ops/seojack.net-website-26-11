@@ -1,0 +1,21 @@
+/* TEAM */
+    Developer: SEOJack Development Team
+    Contact: hello [at] seojack.co.uk
+    From: London, UK
+
+/* SITE */
+    Last update: 2024/12/14
+    Language: English
+    Doctype: HTML5
+    IDE: Cursor, VS Code
+    Framework: Next.js 15
+    CSS Framework: Tailwind CSS
+    JavaScript: TypeScript
+    Deployment: Vercel
+
+/* THANKS */
+    Fonts: Google Fonts (Source Sans 3, Montserrat)
+    Icons: Heroicons, Lucide
+    Images: Next.js Image Optimization
+    Analytics: Plausible Analytics
+    Hosting: Vercel

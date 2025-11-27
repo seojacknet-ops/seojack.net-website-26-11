@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getFeaturedTemplates } from '@/data/templates';
 
-const featuredTemplates = getFeaturedTemplates(6);
+const featuredTemplates = getFeaturedTemplates();
 
 export default function TemplatesSection() {
     return (
@@ -15,26 +15,36 @@ export default function TemplatesSection() {
                         Website <span className="bg-gradient-to-r from-brand-purple to-accent-pink bg-clip-text text-transparent">Templates</span>
                     </h2>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto animate-fade-in-up animate-delay-200">
-                        Choose from our collection of professional website templates designed for different industries.
+                        Professional, industry-specific templates you can preview and purchase instantly.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                    {featuredTemplates.map((template, index) => (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    {featuredTemplates.map((template) => (
                         <div 
                             key={template.id} 
                             className="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                         >
-                            <div className="aspect-[4/3] bg-gray-200 overflow-hidden relative">
-                                <Image
-                                    src={template.image}
-                                    alt={`${template.name} website template`}
-                                    fill
-                                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            </div>
+                            <Link href={`/demo/${template.id}`} className="block">
+                                <div className="aspect-[4/3] bg-gray-200 overflow-hidden relative">
+                                    <Image
+                                        src={template.image}
+                                        alt={`${template.name} website template`}
+                                        fill
+                                        className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                        <span className="px-4 py-2 bg-white/90 rounded-lg text-gray-900 font-medium text-sm flex items-center gap-2">
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Live Demo
+                                        </span>
+                                    </div>
+                                </div>
+                            </Link>
 
                             <div className="p-6">
                                 <div className="flex items-center justify-between mb-3">
@@ -54,15 +64,20 @@ export default function TemplatesSection() {
                                     {template.description}
                                 </p>
 
-                                <Link
-                                    href="/templates"
-                                    className="inline-flex items-center text-sm text-brand-purple hover:text-brand-purple-dark font-medium transition-colors duration-200"
-                                >
-                                    View Details
-                                    <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                    </svg>
-                                </Link>
+                                <div className="flex items-center gap-3">
+                                    <Link
+                                        href={`/demo/${template.id}`}
+                                        className="flex-1 inline-flex items-center justify-center text-sm text-brand-purple border border-brand-purple/30 hover:bg-brand-purple/5 px-4 py-2 rounded-lg font-medium transition-colors duration-200"
+                                    >
+                                        Preview
+                                    </Link>
+                                    <Link
+                                        href="/contact"
+                                        className="flex-1 inline-flex items-center justify-center text-sm text-white bg-brand-purple hover:bg-brand-purple-dark px-4 py-2 rounded-lg font-medium transition-colors duration-200"
+                                    >
+                                        Get Template
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     ))}
@@ -73,7 +88,7 @@ export default function TemplatesSection() {
                         href="/templates" 
                         className="inline-flex items-center gap-2 px-8 py-4 bg-brand-purple text-white rounded-xl font-semibold hover:bg-brand-purple-dark transition-colors shadow-lg shadow-brand-purple/30"
                     >
-                        View All Templates
+                        View All 25+ Templates
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>

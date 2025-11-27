@@ -14,21 +14,20 @@ export default function Footer() {
       { name: 'Custom Development', href: '/contact' },
     ],
     company: [
-      { name: 'About Us', href: '/about' },
+      { name: 'How It Works', href: '/how-it-works' },
       { name: 'Templates', href: '/templates' },
       { name: 'Reviews', href: '/reviews' },
       { name: 'Contact', href: '/contact' },
     ],
     support: [
       { name: 'Help Center', href: '/faqs' },
-      { name: 'How It Works', href: '/how-it-works' },
+      { name: 'Pricing', href: '/pricing' },
       { name: 'Support', href: '/contact' },
     ],
     legal: [
       { name: 'Privacy Policy', href: '/legal/privacy' },
       { name: 'Terms of Service', href: '/legal/terms' },
       { name: 'Cookie Policy', href: '/legal/cookies' },
-      { name: 'GDPR', href: '/legal/gdpr' },
     ],
   };
 
@@ -40,7 +39,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center mb-4">
               <Image 
-                src="https://seojack.co.uk/wp-content/uploads/2025/09/cropped-SEOJack_UK_Logo-scaled-1.webp" 
+                src="/seojack-logo-dark.png" 
                 alt="SEOJack Logo" 
                 width={150}
                 height={40}
@@ -54,7 +53,7 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <Link
-                href="/signup"
+                href="/contact"
                 className="btn btn-primary"
               >
                 Get Started

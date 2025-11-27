@@ -26,11 +26,19 @@ export default function Navbar() {
   // Use different logos and styles based on the current page
   // Default to non-homepage during SSR to prevent hydration mismatch
   const isHomePage = mounted ? pathname === '/' : false;
-  // Use local logo from public folder
-  const logoSrc = "/seojack-digital-marketing-logo-1025-506d8cee.webp";
+  
+  // Pages with dark backgrounds need light logo
+  const darkBackgroundPages = ['/', '/templates'];
+  const hasDarkBackground = mounted ? darkBackgroundPages.includes(pathname) : false;
+  
+  // Use different logos based on background
+  // Light logo for dark backgrounds, dark logo (purple text) for light backgrounds
+  const logoSrc = hasDarkBackground 
+    ? "/seojack-digital-marketing-logo-1025-506d8cee.webp"  // Light logo for dark backgrounds
+    : "/seojack-logo-dark.png";  // Dark logo for white backgrounds
 
-  // Different navbar styles for home vs other pages
-  const navClasses = isHomePage 
+  // Different navbar styles for dark vs light background pages
+  const navClasses = hasDarkBackground 
     ? "fixed top-0 left-0 right-0 z-50"
     : "relative bg-white shadow-sm border-b border-gray-200";
   
@@ -47,7 +55,7 @@ export default function Navbar() {
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center">
                 <Image 
-                  src="/seojack-digital-marketing-logo-1025-506d8cee.webp"
+                  src="/seojack-logo-dark.png"
                   alt="SEOJack Logo" 
                   width={200}
                   height={50}
@@ -88,7 +96,7 @@ export default function Navbar() {
                   key={item.name}
                   href={item.href}
                   className={`px-2 py-2 text-sm font-medium transition-colors duration-200 ${
-                    isHomePage 
+                    hasDarkBackground 
                       ? "text-white hover:text-brand-purple" 
                       : "text-gray-700 hover:text-brand-purple"
                   }`}
@@ -104,7 +112,7 @@ export default function Navbar() {
             <a
               href="https://seojack-ochre.vercel.app/"
               className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                isHomePage 
+                hasDarkBackground 
                   ? "text-white hover:text-brand-purple" 
                   : "text-gray-700 hover:text-brand-purple"
               }`}
@@ -114,7 +122,7 @@ export default function Navbar() {
             <Link
               href="/contact"
               className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                isHomePage 
+                hasDarkBackground 
                   ? "text-white hover:text-brand-purple" 
                   : "text-gray-700 hover:text-brand-purple"
               }`}
@@ -124,7 +132,7 @@ export default function Navbar() {
             <a
               href="https://seojack-ochre.vercel.app/"
               className={`inline-flex items-center justify-center px-6 py-3 ${
-                isHomePage
+                hasDarkBackground
                   ? "bg-gradient-to-r from-[#DF47D8] via-[#E648B7] to-[#E847AA] text-white text-sm font-bold rounded-full shadow-2xl hover:from-[#C736C8] hover:via-[#D637A7] hover:to-[#D7369A] transition-all duration-300 hover:scale-105"
                   : "bg-gradient-to-r from-brand-purple to-brand-purple-dark text-white text-sm font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               }`}
@@ -138,7 +146,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={`inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-purple transition-colors duration-200 ${
-                isHomePage 
+                hasDarkBackground 
                   ? "text-white hover:text-brand-purple hover:bg-white/10" 
                   : "text-gray-700 hover:text-brand-purple hover:bg-gray-100"
               }`}
@@ -160,8 +168,8 @@ export default function Navbar() {
         {/* Mobile menu */}
         <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
           <div className={`px-2 pt-2 pb-3 space-y-1 sm:px-3 ${
-            isHomePage 
-              ? "bg-transparent backdrop-blur-none" 
+            hasDarkBackground 
+              ? "bg-gray-900/95 backdrop-blur-sm" 
               : "bg-white"
           }`}>
             {navigation.map((item) => (
@@ -169,7 +177,7 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 className={`block px-3 py-2 text-base font-medium transition-colors duration-200 ${
-                  isHomePage 
+                  hasDarkBackground 
                     ? "text-white hover:text-brand-purple" 
                     : "text-gray-700 hover:text-brand-purple"
                 }`}
@@ -182,7 +190,7 @@ export default function Navbar() {
               <a
                 href="https://seojack-ochre.vercel.app/"
                 className={`block px-3 py-2 text-base font-medium transition-colors duration-200 ${
-                  isHomePage 
+                  hasDarkBackground 
                     ? "text-white hover:text-brand-purple" 
                     : "text-gray-700 hover:text-brand-purple"
                 }`}
@@ -193,7 +201,7 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 className={`block px-3 py-2 text-base font-medium transition-colors duration-200 ${
-                  isHomePage 
+                  hasDarkBackground 
                     ? "text-white hover:text-brand-purple" 
                     : "text-gray-700 hover:text-brand-purple"
                 }`}
@@ -204,7 +212,7 @@ export default function Navbar() {
               <a
                 href="https://seojack-ochre.vercel.app/"
                 className={`inline-flex items-center justify-center px-6 py-3 ${
-                  isHomePage
+                  hasDarkBackground
                     ? "bg-gradient-to-r from-[#DF47D8] via-[#E648B7] to-[#E847AA] text-white text-sm font-bold rounded-full shadow-2xl hover:from-[#C736C8] hover:via-[#D637A7] hover:to-[#D7369A] transition-all duration-300 hover:scale-105 mx-3 mt-4 w-auto"
                     : "bg-gradient-to-r from-brand-purple to-brand-purple-dark text-white text-sm font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 mx-3 mt-4 w-auto"
                 }`}

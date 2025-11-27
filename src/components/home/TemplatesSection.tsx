@@ -2,7 +2,9 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { templates } from '@/data/templates';
+import { getFeaturedTemplates } from '@/data/templates';
+
+const featuredTemplates = getFeaturedTemplates(6);
 
 export default function TemplatesSection() {
     return (
@@ -18,54 +20,61 @@ export default function TemplatesSection() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                    {templates.map((project, index) => (
-                        <div key={index} className={`group relative card-enhanced card-enhanced-hover animate-fade-in-up animate-delay-${(index + 1) * 100}`}>
-                            <div className="aspect-video bg-gray-200 overflow-hidden rounded-xl mb-4 relative">
+                    {featuredTemplates.map((template, index) => (
+                        <div 
+                            key={template.id} 
+                            className="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                        >
+                            <div className="aspect-[4/3] bg-gray-200 overflow-hidden relative">
                                 <Image
-                                    src={project.image}
-                                    alt={`${project.name} website`}
+                                    src={template.image}
+                                    alt={`${template.name} website template`}
                                     fill
-                                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </div>
 
-                            <div className="p-4">
-                                <div className="flex items-center justify-between mb-2">
-                                    <span className="text-xs font-medium text-brand-purple bg-brand-purple/10 px-2 py-1 rounded-full">
-                                        {project.category}
+                            <div className="p-6">
+                                <div className="flex items-center justify-between mb-3">
+                                    <span className="text-xs font-medium text-brand-purple bg-brand-purple/10 px-3 py-1 rounded-full">
+                                        {template.category}
                                     </span>
-                                    {project.url !== '#' && (
-                                        <span className="text-xs text-gray-500">Live Site</span>
+                                    {template.price && (
+                                        <span className="text-lg font-bold text-gray-900">${template.price}</span>
                                     )}
                                 </div>
 
                                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                                    {project.name}
+                                    {template.name}
                                 </h3>
+                                
+                                <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                                    {template.description}
+                                </p>
 
-                                {project.url !== '#' && (
-                                    <a
-                                        href={project.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center text-sm text-brand-purple hover:text-brand-purple-dark font-medium transition-colors duration-200"
-                                    >
-                                        View Project
-                                        <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                        </svg>
-                                    </a>
-                                )}
+                                <Link
+                                    href="/templates"
+                                    className="inline-flex items-center text-sm text-brand-purple hover:text-brand-purple-dark font-medium transition-colors duration-200"
+                                >
+                                    View Details
+                                    <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                    </svg>
+                                </Link>
                             </div>
                         </div>
                     ))}
                 </div>
 
-                <div className="text-center animate-fade-in-up animate-delay-600">
-                    <Link href="/templates" className="btn-enhanced btn-enhanced-primary">
-                        View all templates
-                        <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="text-center">
+                    <Link 
+                        href="/templates" 
+                        className="inline-flex items-center gap-2 px-8 py-4 bg-brand-purple text-white rounded-xl font-semibold hover:bg-brand-purple-dark transition-colors shadow-lg shadow-brand-purple/30"
+                    >
+                        View All Templates
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                     </Link>

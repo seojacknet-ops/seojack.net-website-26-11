@@ -147,13 +147,14 @@ These pages show only stub text and need actual content:
 
 ## Quick Wins (Can Fix in < 30 min)
 
-1. Remove Login from navbar (5 min)
-2. Fix template count text (2 min)  
-3. Remove About Us link from footer (2 min)
-4. Remove GDPR link from footer (2 min)
-5. Use local logo in footer (5 min)
+1. ~~Remove Login from navbar~~ ✅ (kept - links to external CRM)
+2. ~~Fix template count text~~ ✅ FIXED
+3. ~~Remove About Us link from footer~~ ✅ FIXED  
+4. ~~Remove GDPR link from footer~~ ✅ FIXED
+5. ~~Use local logo in footer~~ ✅ FIXED
+6. ~~Fix "Get Started" button in footer~~ ✅ FIXED (was /signup → now /contact)
 
-**Total estimated time for quick wins: ~15-20 minutes**
+**All quick wins completed!**
 
 ---
 

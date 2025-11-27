@@ -59,7 +59,7 @@ export default function Navbar() {
                   alt="SEOJack Logo" 
                   width={200}
                   height={50}
-                  className="h-12 w-auto"
+                  className="h-8 w-auto"
                   priority
                 />
               </Link>
@@ -82,7 +82,7 @@ export default function Navbar() {
                 alt="SEOJack Logo" 
                 width={200}
                 height={50}
-                className="h-12 w-auto"
+                className="h-8 w-auto"
                 priority
               />
             </Link>

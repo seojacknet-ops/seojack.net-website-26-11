@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pro Plumbing Services | 24/7 Emergency Plumber</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #1E40AF;
+      --color-accent: #F59E0B;
+      --color-bg: #FFFFFF;
+      --color-text: #1F2937;
+      --color-light: #F3F4F6;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    header {
+      background: var(--color-primary);
+      color: white;
+      padding: 1rem 0;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 2rem;
+      transition: opacity 0.3s;
+    }
+    
+    nav a:hover {
+      opacity: 0.8;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, var(--color-primary) 0%, #3B82F6 100%);
+      color: white;
+      padding: 5rem 0;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 1rem;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background: var(--color-accent);
+      color: var(--color-text);
+      padding: 1rem 2rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    .cta-button:focus {
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+    
+    .services {
+      padding: 5rem 0;
+    }
+    
+    .services h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    
+    .service-card {
+      background: var(--color-light);
+      padding: 2rem;
+      border-radius: 1rem;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-4px);
+    }
+    
+    .service-card h3 {
+      margin: 1rem 0 0.5rem;
+    }
+    
+    .emergency {
+      background: var(--color-accent);
+      color: var(--color-text);
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .emergency h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .phone {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    
+    .testimonials {
+      padding: 5rem 0;
+      background: var(--color-light);
+    }
+    
+    .testimonials h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .testimonial {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .stars {
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+    }
+    
+    .author {
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+    
+    .contact {
+      padding: 5rem 0;
+    }
+    
+    .contact h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    input, textarea, select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #D1D5DB;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+    
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.2);
+    }
+    
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    footer {
+      background: var(--color-text);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+    }
+    
+    footer p {
+      opacity: 0.8;
+    }
+    
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      nav a {
+        margin: 0 1rem;
+      }
+      
+      .hero {
+        padding: 3rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <div class="logo">Pro Plumbing</div>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>24/7 Emergency Plumbing Services</h1>
+        <p>Licensed, insured, and ready to help. Fast response times guaranteed.</p>
+        <a href="#contact" class="cta-button">Get Your Free Quote</a>
+      </div>
+    </section>
+    
+    <section class="emergency">
+      <div class="container">
+        <h3>Plumbing Emergency? We're Here 24/7!</h3>
+        <p class="phone">Call Now: (555) 123-4567</p>
+      </div>
+    </section>
+    
+    <section id="services" class="services">
+      <div class="container">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+          <article class="service-card">
+            <h3>Drain Cleaning</h3>
+            <p>Professional drain cleaning and clog removal for all types of drains.</p>
+          </article>
+          <article class="service-card">
+            <h3>Pipe Repair</h3>
+            <p>Expert pipe repair and replacement services for residential and commercial.</p>
+          </article>
+          <article class="service-card">
+            <h3>Water Heater</h3>
+            <p>Installation, repair, and maintenance of all water heater types.</p>
+          </article>
+          <article class="service-card">
+            <h3>Leak Detection</h3>
+            <p>Advanced leak detection technology to find hidden leaks fast.</p>
+          </article>
+          <article class="service-card">
+            <h3>Bathroom Plumbing</h3>
+            <p>Complete bathroom plumbing services from fixtures to remodels.</p>
+          </article>
+          <article class="service-card">
+            <h3>Kitchen Plumbing</h3>
+            <p>Kitchen sink, garbage disposal, and dishwasher services.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonials-grid">
+          <article class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>"Fast, professional, and affordable. They fixed our emergency leak within an hour!"</p>
+            <p class="author">— Sarah M., Downtown</p>
+          </article>
+          <article class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>"Best plumber we've ever used. Fair pricing and excellent workmanship."</p>
+            <p class="author">— John D., Westside</p>
+          </article>
+          <article class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>"They were on time, clean, and the price matched the quote. Highly recommend!"</p>
+            <p class="author">— Maria L., Northend</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Request a Free Quote</h2>
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <div class="form-group">
+            <label for="service">Service Needed</label>
+            <select id="service" name="service">
+              <option value="">Select a service...</option>
+              <option value="drain">Drain Cleaning</option>
+              <option value="pipe">Pipe Repair</option>
+              <option value="heater">Water Heater</option>
+              <option value="leak">Leak Detection</option>
+              <option value="bathroom">Bathroom Plumbing</option>
+              <option value="kitchen">Kitchen Plumbing</option>
+              <option value="emergency">Emergency Service</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Describe Your Issue</label>
+            <textarea id="message" name="message" placeholder="Tell us about your plumbing issue..."></textarea>
+          </div>
+          <button type="submit" class="cta-button">Send Request</button>
+        </form>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <div class="container">
+      <p class="logo">Pro Plumbing</p>
+      <p>Licensed - Insured - Bonded</p>
+      <p>2024 Pro Plumbing Services. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

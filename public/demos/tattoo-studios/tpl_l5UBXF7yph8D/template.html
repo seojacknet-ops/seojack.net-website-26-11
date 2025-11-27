@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ink & Iron Studio - Where Art Meets Skin</title>
+  <meta name="description" content="Premium tattoo studio specializing in custom designs, blackwork, and neo-traditional art. Book your consultation today.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #18181B;
+      --color-accent: #A855F7;
+      --color-bg: #09090B;
+      --color-secondary: #27272A;
+      --color-text: #FAFAFA;
+      --color-text-muted: #A1A1AA;
+      --font-heading: 'Nosifer', cursive;
+      --font-display: 'Creepster', cursive;
+      --font-body: 'Inter', sans-serif;
+      --transition: all 0.3s ease;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      --border-radius: 8px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(9, 9, 11, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: var(--transition);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--color-accent);
+      text-decoration: none;
+      text-shadow: 0 0 10px var(--color-accent);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-accent);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--color-text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(45deg, var(--color-bg) 0%, var(--color-primary) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="tattoo-pattern" patternUnits="userSpaceOnUse" width="20" height="20"><path d="M0 0L20 20M20 0L0 20" stroke="%23A855F7" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23tattoo-pattern)"/></svg>');
+      opacity: 0.1;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      z-index: 2;
+      animation: heroFadeIn 1.5s ease-out;
+    }
+
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 8vw, 6rem);
+      margin-bottom: 1rem;
+      text-shadow: 0 0 20px var(--color-accent);
+      color: var(--color-text);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      margin-bottom: 2rem;
+      color: var(--color-text-muted);
+      font-weight: 300;
+    }
+
+    .cta-primary {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(45deg, var(--color-accent), #C084FC);
+      color: white;
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cta-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(168, 85, 247, 0.4);
+    }
+
+    /* Gallery Section */
+    .gallery {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--color-accent);
+      text-shadow: 0 0 15px var(--color-accent);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      background: var(--color-secondary);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-tag {
+      background: var(--color-accent);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      align-self: flex-start;
+      margin-bottom: 0.5rem;
+    }
+
+    .gallery-artist {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Artists Section */
+    .artists {
+      padding: 5rem 2rem;
+      background: var(--color-primary);
+    }
+
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .artist-card {
+      background: var(--color-secondary);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .artist-card:hover {
+      border-color: var(--color-accent);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .artist-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      font-weight: bold;
+    }
+
+    .artist-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--color-text);
+    }
+
+    .artist-specialty {
+      color: var(--color-accent);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .artist-status {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--color-accent);
+      color: white;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .artist-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .artist-link {
+      padding: 0.5rem 1rem;
+      border: 2px solid var(--color-accent);
+      color: var(--color-accent);
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .artist-link:hover {
+      background: var(--color-accent);
+      color: white;
+    }
+
+    /* Flash Designs Section */
+    .flash-designs {
+      padding: 5rem 2rem;
+    }
+
+    .flash-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .flash-item {
+      background: var(--color-secondary);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .flash-item:hover {
+      border-color: var(--color-accent);
+      transform: translateY(-3px);
+    }
+
+    .flash-image {
+      width: 100%;
+      height: 200px;
+      background: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--color-accent);
+    }
+
+    .flash-info {
+      padding: 1.5rem;
+    }
+
+    .flash-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .flash-status {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .flash-artist {
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    /* Booking Section */
+    .booking {
+      padding: 5rem 2rem;
+      background: var(--color-primary);
+      text-align: center;
+    }
+
+    .booking-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .booking-form {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 0.5rem;
+      text-align: left;
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      padding: 1rem;
+      border: 2px solid var(--color-secondary);
+      border-radius: var(--border-radius);
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      transition: var(--transition);
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      padding: 5rem 2rem;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .testimonial {
+      background: var(--color-secondary);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      border-left: 4px solid var(--color-accent);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--color-accent);
+    }
+
+    .testimonial-rating {
+      color: #FFD700;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--color-primary);
+      padding: 3rem 2rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--color-secondary);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .footer-section a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--color-secondary);
+      padding-top: 2rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Animations */
+    @keyframes heroFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      .artists-grid,
+      .flash-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav {
+        padding: 0 1rem;
+      }
+
+      .gallery,
+      .artists,
+      .flash-designs,
+      .booking,
+      .testimonials {
+        padding: 3rem 1rem;
+      }
+
+      .hero-content {
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <a href="#" class="logo">Ink & Iron</a>
+      <ul class="nav-links">
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#artists">Artists</a></li>
+        <li><a href="#flash">Flash</a></li>
+        <li><a href="#booking">Book Now</a></li>
+      </ul>
+      <button class="mobile-menu">☰</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Ink & Iron Studio</h1>
+      <p class="hero-tagline">Where Art Meets Skin - Custom Tattoos Crafted by Masters</p>
+      <a href="#booking" class="cta-primary">Book Your Consultation</a>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery">
+    <h2 class="section-title">Our Gallery</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=400&h=400&fit=crop" alt="Black and grey realism tattoo">
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Realism</span>
+          <span class="gallery-artist">By Marcus Steel</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1590736969955-71cc94901144?w=400&h=400&fit=crop" alt="Neo-traditional tattoo">
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Neo-Traditional</span>
+          <span class="gallery-artist">By Luna Blackwood</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=400&fit=crop" alt="Geometric tattoo design">
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Geometric</span>
+          <span class="gallery-artist">By Raven Cross</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&h=400&fit=crop" alt="Traditional American tattoo">
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Traditional</span>
+          <span class="gallery-artist">By Skull Martinez</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=400&h=400&fit=crop" alt="Blackwork tattoo">
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Blackwork</span>
+          <span class="gallery-artist">By Marcus Steel</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1590736969955-71cc94901144?w=400&h=400&fit=crop" alt="Watercolor tattoo">
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Watercolor</span>
+          <span class="gallery-artist">By Luna Blackwood</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=400&h=400&fit=crop" alt="Portrait tattoo">
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Portrait</span>
+          <span class="gallery-artist">By Raven Cross</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=400&fit=crop" alt="Japanese style tattoo">
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Japanese</span>
+          <span class="gallery-artist">By Skull Martinez</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Artists Section -->
+  <section id="artists" class="artists">
+    <h2 class="section-title">Meet Our Artists</h2>
+    <div class="artists-grid">
+      <div class="artist-card">
+        <div class="artist-avatar">MS</div>
+        <h3 class="artist-name">Marcus Steel</h3>
+        <p class="artist-specialty">Realism & Blackwork Master</p>
+        <span class="artist-status">Booking Open</span>
+        <div class="artist-links">
+          <a href="#" class="artist-link">Portfolio</a>
+          <a href="#" class="artist-link">Instagram</a>
+        </div>
+      </div>
+      <div class="artist-card">
+        <div class="artist-avatar">LB</div>
+        <h3 class="artist-name">Luna Blackwood</h3>
+        <p class="artist-specialty">Neo-Traditional & Color</p>
+        <span class="artist-status">Booking Open</span>
+        <div class="artist-links">
+          <a href="#" class="artist-link">Portfolio</a>
+          <a href="#" class="artist-link">Instagram</a>
+        </div>
+      </div>
+      <div class="artist-card">
+        <div class="artist-avatar">RC</div>
+        <h3 class="artist-name">Raven Cross</h3>
+        <p class="artist-specialty">Geometric & Minimalist</p>
+        <span class="artist-status">Wait List</span>
+        <div class="artist-links">
+          <a href="#" class="artist-link">Portfolio</a>
+          <a href="#" class="artist-link">Instagram</a>
+        </div>
+      </div>
+      <div class="artist-card">
+        <div class="artist-avatar">SM</div>
+        <h3 class="artist-name">Skull Martinez</h3>
+        <p class="artist-specialty">Traditional & Japanese</p>
+        <span class="artist-status">Booking Open</span>
+        <div class="artist-links">
+          <a href="#" class="artist-link">Portfolio</a>
+          <a href="#" class="artist-link">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flash Designs Section -->
+  <section id="flash" class="flash-designs">
+    <h2 class="section-title">Flash Designs</h2>
+    <div class="flash-grid">
+      <div class="flash-item">
+        <div class="flash-image">🗲</div>
+        <div class="flash-info">
+          <div class="flash-price">$120</div>
+          <div class="flash-status">Available</div>
+          <div class="flash-artist">Marcus Steel</div>
+        </div>
+      </div>
+      <div class="flash-item">
+        <div class="flash-image">🌙</div>
+        <div class="flash-info">
+          <div class="flash-price">$90</div>
+          <div class="flash-status">Available</div>
+          <div class="flash-artist">Luna Blackwood</div>
+        </div>
+      </div>
+      <div class="flash-item">
+        <div class="flash-image">⚡</div>
+        <div class="flash-info">
+          <div class="flash-price">$150</div>
+          <div class="flash-status">Reserved</div>
+          <div class="flash-artist">Raven Cross</div>
+        </div>
+      </div>
+      <div class="flash-item">
+        <div class="flash-image">💀</div>
+        <div class="flash-info">
+          <div class="flash-price">$200</div>
+          <div class="flash-status">Available</div>
+          <div class="flash-artist">Skull Martinez</div>
+        </div>
+      </div>
+      <div class="flash-item">
+        <div class="flash-image">🗡️</div>
+        <div class="flash-info">
+          <div class="flash-price">$180</div>
+          <div class="flash-status">Available</div>
+          <div class="flash-artist">Marcus Steel</div>
+        </div>
+      </div>
+      <div class="flash-item">
+        <div class="flash-image">🌹</div>
+        <div class="flash-info">
+          <div class="flash-price">$110</div>
+          <div class="flash-status">Available</div>
+          <div class="flash-artist">Luna Blackwood</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <h2 class="section-title">What Our Clients Say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="testimonial-rating">★★★★★</div>
+        <p class="testimonial-text">"Marcus absolutely crushed my sleeve. The attention to detail and artistry is beyond anything I expected. This place is the real deal."</p>
+        <div class="testimonial-author">- Jake Morrison</div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-rating">★★★★★</div>
+        <p class="testimonial-text">"Luna's neo-traditional work is incredible. She took my concept and made it into something truly unique and personal. Couldn't be happier!"</p>
+        <div class="testimonial-author">- Sarah Chen</div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-rating">★★★★★</div>
+        <p class="testimonial-text">"The studio atmosphere is perfect - professional but with that authentic underground vibe. Raven's geometric work is pure art."</p>
+        <div class="testimonial-author">- Alex Rivera</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Section -->
+  <section id="booking" class="booking">
+    <div class="booking-content">
+      <h2 class="section-title">Start Your Design</h2>
+      <p>Ready to get inked? Fill out our consultation form and we'll get back to you within 24 hours to discuss your custom piece.</p>
+      
+      <form class="booking-form">
+        <div class="form-group">
+          <label class="form-label" for="name">Full Name</label>
+          <input type="text" id="name" name="name" class="form-input" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-input" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" class="form-input" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="artist">Preferred Artist</label>
+          <select id="artist" name="artist" class="form-select">
+            <option value="">Any Artist</option>
+            <option value="marcus">Marcus Steel</option>
+            <option value="luna">Luna Blackwood</option>
+            <option value="raven">Raven Cross</option>
+            <option value="skull">Skull Martinez</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="design">Design Description</label>
+          <textarea id="design" name="design" class="form-textarea" placeholder="Describe your tattoo idea, size, placement, and any reference images you have..."></textarea>
+        </div>
+        
+        <button type="submit" class="cta-primary">Book Your Session</button>
+      </form>
+    </div>
+  </section>
+
+  <!--

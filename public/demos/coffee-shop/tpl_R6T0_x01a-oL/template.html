@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artisan Grounds - Where Community Meets Coffee</title>
+  <meta name="description" content="Discover handcrafted coffee, locally roasted beans, and a warm community atmosphere at Artisan Grounds. Your neighborhood specialty coffee shop.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Variables */
+    :root {
+      --color-primary: #0F172A;
+      --color-accent: #F59E0B;
+      --color-bg: #FFFFFF;
+      --color-secondary: #334155;
+      --color-text: #1E293B;
+      --color-light: #F8FAFC;
+      --color-warm: #FEF3E2;
+      --font-heading: 'Crimson Text', serif;
+      --font-body: 'Inter', sans-serif;
+      --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --border-radius: 0.75rem;
+      --transition: all 0.3s ease;
+    }
+
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      line-height: 1.6;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    /* Layout Components */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .section {
+      padding: 4rem 0;
+    }
+
+    .section-alt {
+      background-color: var(--color-light);
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--color-text);
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-accent);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.4)),
+                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%238B4513" width="1200" height="800"/><circle fill="%23D2691E" cx="300" cy="200" r="100" opacity="0.3"/><circle fill="%23CD853F" cx="900" cy="400" r="150" opacity="0.2"/><rect fill="%23A0522D" x="0" y="600" width="1200" height="200" opacity="0.4"/></svg>');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      position: relative;
+      color: white;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      color: white;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+
+    .hero-hours {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      border-radius: var(--border-radius);
+      margin: 2rem 0;
+      display: inline-block;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: var(--color-accent);
+      color: var(--color-primary);
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn:hover {
+      background: #E59400;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: var(--color-primary);
+    }
+
+    /* Menu Section */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .menu-category {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+    }
+
+    .menu-category:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .menu-category h3 {
+      color: var(--color-primary);
+      border-bottom: 2px solid var(--color-accent);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .menu-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .menu-item-info h4 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 0.25rem;
+    }
+
+    .menu-item-description {
+      font-size: 0.9rem;
+      color: var(--color-secondary);
+      margin-bottom: 0.25rem;
+    }
+
+    .menu-item-badges {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 1rem;
+      background: var(--color-warm);
+      color: var(--color-accent);
+      font-weight: 500;
+    }
+
+    .menu-item-price {
+      font-weight: 600;
+      color: var(--color-accent);
+      font-size: 1.1rem;
+    }
+
+    /* Location Section */
+    .location-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .location-info {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .location-info h3 {
+      color: var(--color-primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .info-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .info-item h4 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .map-container {
+      background: var(--color-light);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      text-align: center;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .map-placeholder {
+      color: var(--color-secondary);
+      font-style: italic;
+    }
+
+    /* Hours Section */
+    .hours-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .hours-card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+    }
+
+    .hours-table {
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .hours-table td {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .hours-table td:first-child {
+      font-weight: 500;
+      text-align: left;
+    }
+
+    .hours-table td:last-child {
+      text-align: right;
+      color: var(--color-accent);
+      font-weight: 600;
+    }
+
+    /* Loyalty Section */
+    .loyalty-content {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .loyalty-benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .benefit-card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .benefit-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--color-warm);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.5rem;
+    }
+
+    /* Merchandise Section */
+    .merch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .merch-item {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+    }
+
+    .merch-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .merch-image {
+      height: 200px;
+      background: var(--color-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-secondary);
+      font-style: italic;
+    }
+
+    .merch-info {
+      padding: 1.5rem;
+    }
+
+    .merch-info h4 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .merch-price {
+      color: var(--color-accent);
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--color-primary);
+      color: white;
+      padding: 3rem 0 2rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h4 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--color-accent);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .footer-section a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      .location-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 3rem 0;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Focus styles */
+    .btn:focus,
+    .nav-links a:focus {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-container">
+        <a href="#" class="logo">Artisan Grounds</a>
+        <ul class="nav-links">
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#hours">Hours</a></li>
+          <li><a href="#loyalty">Loyalty</a></li>
+          <li><a href="#merch">Shop</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Artisan Grounds</h1>
+        <p class="hero-tagline">Where Community Meets Coffee</p>
+        <div class="hero-hours">
+          <strong>Open Daily:</strong> 6:00 AM - 9:00 PM
+        </div>
+        <a href="#menu" class="btn">View Our Menu</a>
+        <a href="#location" class="btn btn-secondary">Visit Us Today</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="section">
+    <div class="container">
+      <h2>Handcrafted Menu</h2>
+      <p>Every cup is crafted with passion using locally roasted, organic beans and the finest ingredients.</p>
+      
+      <div class="menu-grid">
+        <div class="menu-category">
+          <h3>Specialty Coffee</h3>
+          
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Artisan Espresso</h4>
+              <p class="menu-item-description">Rich, full-bodied shot from our signature blend</p>
+              <div class="menu-item-badges">
+                <span class="badge">Organic</span>
+              </div>
+            </div>
+            <div class="menu-item-price">$3.50</div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Vanilla Bourbon Latte</h4>
+              <p class="menu-item-description">Smooth espresso with house-made vanilla bourbon syrup</p>
+              <div class="menu-item-badges">
+                <span class="badge">Popular</span>
+              </div>
+            </div>
+            <div class="menu-item-price">$5.75</div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Cold Brew Float</h4>
+              <p class="menu-item-description">Nitro cold brew with vanilla bean ice cream</p>
+              <div class="menu-item-badges">
+                <span class="badge">Seasonal</span>
+              </div>
+            </div>
+            <div class="menu-item-price">$6.25</div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Maple Cortado</h4>
+              <p class="menu-item-description">Equal parts espresso and steamed milk with local maple syrup</p>
+            </div>
+            <div class="menu-item-price">$4.95</div>
+          </div>
+        </div>
+
+        <div class="menu-category">
+          <h3>Artisan Teas & More</h3>
+          
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Chamomile Honey Latte</h4>
+              <p class="menu-item-description">Calming chamomile with steamed oat milk and wildflower honey</p>
+              <div class="menu-item-badges">
+                <span class="badge">Caffeine-Free</span>
+                <span class="badge">Vegan</span>
+              </div>
+            </div>
+            <div class="menu-item-price">$4.50</div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Golden Turmeric Chai</h4>
+              <p class="menu-item-description">House-blend chai with turmeric, ginger, and coconut milk</p>
+              <div class="menu-item-badges">
+                <span class="badge">Anti-inflammatory</span>
+              </div>
+            </div>
+            <div class="menu-item-price">$5.25</div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Matcha Coconut Latte</h4>
+              <p class="menu-item-description">Ceremonial grade matcha with coconut milk and agave</p>
+              <div class="menu-item-badges">
+                <span class="badge">Antioxidant-Rich</span>
+              </div>
+            </div>
+            <div class="menu-item-price">$5.95</div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Hot Chocolate Deluxe</h4>
+              <p class="menu-item-description">Belgian chocolate with whipped cream and cinnamon</p>
+            </div>
+            <div class="menu-item-price">$4.25</div>
+          </div>
+        </div>
+
+        <div class="menu-category">
+          <h3>Fresh Pastries & Bites</h3>
+          
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Almond Croissant</h4>
+              <p class="menu-item-description">Buttery croissant filled with almond cream, baked daily</p>
+              <div class="menu-item-badges">
+                <span class="badge">Fresh Daily</span>
+              </div>
+            </div>
+            <div class="menu-item-price">$4.50</div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Avocado Toast</h4>
+              <p class="menu-item-description">Multigrain bread, smashed avocado, hemp seeds, sea salt</p>
+              <div class="menu-item-badges">
+                <span class="badge">Vegan</span>
+                <span class="badge">Gluten-Free Option</span>
+              </div>
+            </div>
+            <div class="menu-item-price">$7.95</div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Blueberry Scone</h4>
+              <p class="menu-item-description">House-made with local blueberries and lemon glaze</p>
+            </div>
+            <div class="menu-item-price">$3.75</div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Breakfast Wrap</h4>
+              <p class="menu-item-description">Scrambled eggs, cheese, spinach, and roasted peppers</p>
+              <div class="menu-item-badges">
+                <span class="badge">Protein-Rich</span>
+              </div>
+            </div>
+            <div class="menu-item-price">$8.50</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Section -->
+  <section id="location" class="section section-alt">
+    <div class="container">
+      <h2>Find Your New Favorite Spot</h2>
+      
+      <div class="location-container">
+        <div class="location-info">
+          <h3>Visit Us</h3>
+          
+          <div class="info-item">
+            <h4>Address</h4>
+            <p>425 Maple Street<br>
+            Downtown Arts District<br>
+            Portland, OR 97205</p>
+          </div>
+
+          <div class="info-item">
+            <h4>Parking</h4>
+            <p>Free street parking available. Paid parking garage located one block east on Oak Street.</p>
+          </div>
+
+          <div class="info-item">
+            <h4>Public Transit</h4>
+            <p>MAX Blue Line: Pioneer Square (2 blocks)<br>
+            Bus Lines: 4, 14, 20 (Maple & 4th stop)</p>
+          </div>
+
+          <div class="info-item">
+            <h4>Contact</h4>
+            <p>Phone: (503) 555-BREW<br>
+            Email: hello@artisangrounds.com</p>
+          </div>
+        </div>
+
+        <div class="map-container">
+          <div class="map-placeholder">
+            [Interactive Map Embed]<br>
+            <small>Google Maps integration would be placed here</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hours Section -->
+  <section id="hours" class="section">
+    <div class="container">
+      <h2>When We're Brewing</h2>
+      
+      <div class="hours-grid">
+        <div class="hours-card">
+          <h3>Regular Hours</h3>
+          <table class="hours-table">
+            <tr>
+              <td>Monday - Friday</td>
+              <td>6:00 AM - 9:00 PM</td>
+            </tr>
+            <tr>
+              <td>Saturday</td>
+              <td>7:00 AM - 10:00 PM</td>
+            </tr>
+            <tr>
+              <td>Sunday</td>
+              <td>7:00 AM - 8:00 PM</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="hours-card">
+          <h3>Holiday Notice</h3>
+          <p>We're closed on major holidays but open with modified hours during holiday seasons.</p>
+          <p><strong>Next Holiday:</strong><br>
+          Thanksgiving Day - Closed<br>
+          Black Friday - Open 8 AM - 6 PM</p>
+        </div>
+
+        <div class="hours-card">
+          <h3>Early Bird Special</h3>
+          <p>Join us for our Early Bird hours Monday through Friday from 6:00-8:00 AM for:</p>
+          <ul style="text-align: left; margin-top: 1rem;">
+            <li>20% off all coffee drinks</li>
+            <li>Fresh pastry selection</li>
+            <li>Quiet atmosphere perfect for reading</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Loyalty Section -->
+  <section id="loyalty" class="section section-alt">
+    <div class="container">
+      <div class="loyalty-content">
+        <h2>Grounds for Rewards</h2>
+        <p>Join our community of coffee lovers and earn rewards with every visit. It's our way of saying thank you for being part of the Artisan Grounds family.</p>
+        
+        <div class="loyalty-benefits">
+          <div class="benefit-card">
+            <div class="benefit-icon">☕</div>
+            <h4>Free Coffee</h4>
+            <p>Earn a free drink for every 10 purchases. Premium drinks earn double points.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">🎂</div>
+            <h4>Birthday Treat</h4>
+            <p>Celebrate with a complimentary drink and pastry during your birthday month.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">⚡</div>
+            <h4>Early Access</h4>
+            <p>Be the first to try new seasonal drinks and limited-time menu items.</p>
+          </div>
+        </div>
+
+        <a href="#" class="btn">Join Our Loyalty Program</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Merchandise Section -->
+  <section id="merch" class="section">
+    <div class="container">
+      <h2>Take Artisan Home</h2>
+      <p>Bring the Artisan Grounds experience to your kitchen with our curated selection of coffee beans, brewing equipment, and branded merchandise.</p>
+      
+      <div class="merch-grid">
+        <div class="merch-item">
+          <div class="merch-image">
+            [Coffee Beans Image]
+          </div>
+          <div class="merch-info">
+            <h4>Signature Blend - Whole Bean</h4>
+            <p>Our house blend featuring notes of chocolate, caramel, and toasted nuts. Roasted weekly in small batches.</p>
+            <div class="merch-price">$16.95</div>
+          </div>
+        </div>
+
+        <div class="merch-item">
+          <div class="merch-image">
+            [Mug Image]
+          </div>
+          <div class="merch-info">
+            <h4>Artisan Grounds Ceramic Mug</h4>
+            <p>Hand-glazed ceramic mug perfect for your morning ritual. Microwave and dishwasher safe.</p>
+            <div class="merch-price">$12.95</div>
+          </div>
+        </div>
+
+        <div class="merch-item">
+          <div class="merch-image">
+            [French Press Image]
+          </div>
+          <div class="merch-info">
+            <h4>Premium French Press</h4>
+            <p>Professional-grade French press with double-wall

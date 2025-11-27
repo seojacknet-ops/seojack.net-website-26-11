@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serenity Bay Resort - Where Luxury Meets Paradise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Variables */
+    :root {
+      --color-primary: #064E3B;
+      --color-accent: #F59E0B;
+      --color-bg: #FAFAFA;
+      --color-secondary: #065F46;
+      --color-text: #022C22;
+      --color-white: #FFFFFF;
+      --color-light: #F3F4F6;
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Source Serif Pro', serif;
+      --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-large: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      line-height: 1.6;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      min-width: 150px;
+    }
+
+    .btn-primary {
+      background-color: var(--color-accent);
+      color: var(--color-white);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-primary:hover {
+      background-color: #D97706;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      transform: translateY(-2px);
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      color: var(--color-primary);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.125rem;
+      color: var(--color-secondary);
+      text-align: center;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: var(--transition);
+    }
+
+    .header.scrolled {
+      box-shadow: var(--shadow-soft);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--color-text);
+      font-weight: 400;
+      transition: var(--transition);
+    }
+
+    .nav-link:hover {
+      color: var(--color-accent);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--color-white);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(6, 78, 59, 0.7), rgba(6, 95, 70, 0.5));
+      z-index: -1;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 0 1.5rem;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+      margin-bottom: 2rem;
+      opacity: 0.95;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .booking-widget {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 1rem;
+      margin-top: 3rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: end;
+      box-shadow: var(--shadow-large);
+    }
+
+    .booking-field {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .booking-field label {
+      display: block;
+      color: var(--color-text);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .booking-field input,
+    .booking-field select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #D1D5DB;
+      border-radius: 0.5rem;
+      font-family: var(--font-body);
+      color: var(--color-text);
+    }
+
+    /* Rooms Section */
+    .rooms {
+      padding: 6rem 0;
+      background: var(--color-white);
+    }
+
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .room-card {
+      background: var(--color-white);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+    }
+
+    .room-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .room-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .room-content {
+      padding: 1.5rem;
+    }
+
+    .room-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .room-description {
+      color: var(--color-secondary);
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .room-amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .amenity-tag {
+      background: var(--color-light);
+      color: var(--color-text);
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .room-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .room-price {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-accent);
+    }
+
+    .room-price span {
+      font-size: 0.9rem;
+      color: var(--color-secondary);
+      font-weight: 400;
+    }
+
+    /* Amenities Section */
+    .amenities {
+      padding: 6rem 0;
+      background: var(--color-bg);
+    }
+
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .amenity-card {
+      background: var(--color-white);
+      padding: 2rem;
+      border-radius: 1rem;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+    }
+
+    .amenity-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .amenity-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1rem;
+      background: var(--color-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--color-white);
+    }
+
+    .amenity-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .amenity-description {
+      color: var(--color-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* Dining Section */
+    .dining {
+      padding: 6rem 0;
+      background: var(--color-white);
+    }
+
+    .dining-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .dining-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: var(--shadow-medium);
+    }
+
+    .dining-content h3 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+
+    .dining-content .cuisine {
+      color: var(--color-accent);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .dining-content .hours {
+      color: var(--color-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Booking Section */
+    .booking-section {
+      padding: 6rem 0;
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    .booking-form {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--color-white);
+      padding: 3rem;
+      border-radius: 1rem;
+      color: var(--color-text);
+      box-shadow: var(--shadow-large);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--color-primary);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.75rem;
+      border: 1px solid #D1D5DB;
+      border-radius: 0.5rem;
+      font-family: var(--font-body);
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      padding: 6rem 0;
+      background: var(--color-bg);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      background: var(--color-white);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+
+    .testimonial-content {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      color: var(--color-secondary);
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .author-info h4 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .author-info p {
+      font-size: 0.9rem;
+      color: var(--color-secondary);
+    }
+
+    .quote-mark {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 3rem;
+      color: var(--color-accent);
+      opacity: 0.3;
+    }
+
+    /* Location Section */
+    .location {
+      padding: 6rem 0;
+      background: var(--color-white);
+    }
+
+    .location-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .location-info {
+      background: var(--color-bg);
+      padding: 2rem;
+      border-radius: 1rem;
+    }
+
+    .location-info h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+
+    .location-info p {
+      margin-bottom: 1rem;
+      color: var(--color-secondary);
+    }
+
+    .attractions {
+      margin-top: 2rem;
+    }
+
+    .attractions h4 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+
+    .attractions ul {
+      list-style: none;
+    }
+
+    .attractions li {
+      padding: 0.5rem 0;
+      color: var(--color-secondary);
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 400px;
+      background: var(--color-light);
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-secondary);
+      font-size: 1.125rem;
+      border: 2px dashed #D1D5DB;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 6rem 0;
+      background: var(--color-bg);
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+    }
+
+    .contact-info {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 3rem;
+      border-radius: 1rem;
+    }
+
+    .contact-info h3 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+    }
+
+    .contact-form {
+      background: var(--color-white);
+      padding: 3rem;
+      border-radius: 1rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 3rem 0 1rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section ul li a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-section ul li a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--color-white);
+        flex-direction: column;
+        padding: 2rem;
+        box-shadow: var(--shadow-medium);
+        transform: translateY(-100vh);
+        transition: var(--transition);
+      }
+
+      .nav-menu.active {
+        transform: translateY(0);
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .booking-widget {
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      .rooms-grid,
+      .amenities-grid,
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dining-showcase,
+      .location-content,
+      .contact-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#home" class="logo">Serenity Bay Resort</a>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#rooms" class="nav-link">Rooms</a></li>
+        <li><a href="#amenities" class="nav-link">Amenities</a></li>
+        <li><a href="#dining" class="nav-link">Dining</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle">☰</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1920&h=1080&fit=crop&auto=format" alt="Luxury resort with infinity pool overlooking ocean" class="hero-bg">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Serenity Bay Resort</h1>
+      <p class="hero-subtitle">Where luxury meets paradise in an unforgettable escape</p>
+      <div class="hero-cta">
+        <a href="#booking" class="btn btn-primary">Book Your Stay</a>
+        <a href="#rooms" class="btn btn-secondary">Explore Rooms</a>
+      </div>
+      
+      <div class="booking-widget">
+        <div class="booking-field">
+          <label>Check-in</label>
+          <input type="date" id="checkin">
+        </div>
+        <div class="booking-field">
+          <label>Check-out</label>
+          <input type="date" id="checkout">
+        </div>
+        <div class="booking-field">
+          <label>Guests</label>
+          <select>
+            <option>1 Guest</option>
+            <option>2 Guests</option>
+            <option>3 Guests</option>
+            <option>4 Guests</option>
+          </select>
+        </div>
+        <div class="booking-field">
+          <label>&nbsp;</label>
+          <a href="#booking" class="btn btn-primary">Check Availability</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rooms Section -->
+  <section class="rooms" id="rooms">
+    <div class="container">
+      <h2 class="section-title">Luxurious Accommodations</h2>
+      <p class="section-subtitle">Indulge in our curated selection of rooms and suites, each designed to provide the ultimate in comfort and sophistication</p>
+      
+      <div class="rooms-grid">
+        <div class="room-card">
+          <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&h=600&fit=crop&auto=format" alt="Ocean View Suite" class="room-image">
+          <div class="room-content">
+            <h3 class="room-title">Ocean View Suite</h3>
+            <p class="room-description">Experience breathtaking ocean vistas from your private balcony in this elegantly appointed suite featuring premium amenities.</p>
+            <div class="room-amenities">
+              <span class="amenity-tag">Ocean View</span>
+              <span class="amenity-tag">Private Balcony</span>
+              <span class="amenity-tag">King Bed</span>
+              <span class="amenity-tag">Mini Bar</span>
+            </div>
+            <div class="room-footer">
+              <div class="room-price">$450 <span>per night</span></div>
+              <a href="#booking" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="room-card">
+          <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&h=600&fit=crop&auto=format" alt="Presidential Villa" class="room-image">
+          <div class="room-content">
+            <h3 class="room-title">Presidential Villa</h3>
+            <p class="room-description">Our most exclusive accommodation featuring a private pool, dedicated butler service, and unparalleled luxury amenities.</p>
+            <div class="room-amenities">
+              <span class="amenity-tag">Private Pool</span>
+              <span class="amenity-tag">Butler Service</span>
+              <span class="amenity-tag">2 Bedrooms</span>
+              <span class="amenity-tag">Spa Bath</span>
+            </div>
+            <div class="room-footer">
+              <div class="room-price">$1,200 <span>per night</span></div>
+              <a href="#booking" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="room-card">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=600&fit=crop&auto=format" alt="Garden Deluxe Room" class="room-image">
+          <div class="room-content">
+            <h3 class="room-title">Garden Deluxe Room</h3>
+            <p class="room-description">Serene garden views and modern comfort combine in this thoughtfully designed room perfect for a peaceful retreat.</p>
+            <div class="room-amenities">
+              <span class="amenity-tag">Garden View</span>
+              <span class="amenity-tag">Queen Bed</span>
+              <span class="amenity-tag">Work Desk</span>
+              <span class="amenity-tag">Rain Shower</span>
+            </div>
+            <div class="room-footer">
+              <div class="room-price">$280 <span>per night</span></div>
+              <a href="#booking" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="room-card">
+          <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&h=600&fit=crop&auto=format" alt="Beachfront Bungalow" class="room-image">
+          <div class="room-content">
+            <h3 class="room-title">Beachfront Bungalow</h3>
+            <p class="room-description">Wake up to the sound of waves in this charming bungalow with direct beach access and stunning sunrise views.</p>
+            <div class="room-amenities">
+              <span class="amenity-tag">Beach Access</span>
+              <span class="amenity-tag">Sunrise View</span>
+              <span class="amenity-tag">Outdoor Shower</span>
+              <span class="amenity-tag">Hammock</span>
+            </div>
+            <div class="room-footer">
+              <div class="room-price">$380 <span>per night</span></div>
+              <a href="#booking" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Amenities Section -->
+  <section class="amenities" id="amenities">

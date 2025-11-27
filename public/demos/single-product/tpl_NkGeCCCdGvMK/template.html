@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UltraFit Pro - Transform Your Workout Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Variables */
+    :root {
+      --color-primary: #0C0A09;
+      --color-accent: #EF4444;
+      --color-bg: #FAFAF9;
+      --color-secondary: #1C1917;
+      --color-text: #0C0A09;
+      --color-text-light: #6B7280;
+      --color-white: #FFFFFF;
+      --font-heading: 'Bebas Neue', cursive;
+      --font-body: 'Inter', sans-serif;
+      --border-radius: 12px;
+      --shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      line-height: 1.6;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      overflow-x: hidden;
+    }
+
+    /* Optimized image loading */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      line-height: 1.2;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Header */
+    header {
+      background: rgba(250, 250, 249, 0.95);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(12, 10, 9, 0.1);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--color-primary);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--color-text);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--color-accent);
+    }
+
+    .header-cta {
+      background: var(--color-accent);
+      color: var(--color-white);
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    .header-cta:hover {
+      background: #DC2626;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--color-bg) 0%, #F5F5F4 100%);
+      padding: 8rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23EF4444" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text {
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .hero-highlight {
+      color: var(--color-accent);
+      position: relative;
+    }
+
+    .hero-subheadline {
+      font-size: clamp(1.25rem, 3vw, 1.5rem);
+      color: var(--color-text-light);
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+
+    .hero-price {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .price-original {
+      font-size: 1.5rem;
+      color: var(--color-text-light);
+      text-decoration: line-through;
+    }
+
+    .price-current {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--color-accent);
+      font-family: var(--font-heading);
+    }
+
+    .price-save {
+      background: var(--color-accent);
+      color: var(--color-white);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-cta {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 1.25rem 3rem;
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 1.25rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s;
+    }
+
+    .hero-cta:hover::before {
+      left: 100%;
+    }
+
+    .hero-cta:hover {
+      background: var(--color-secondary);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-image {
+      position: relative;
+      text-align: center;
+    }
+
+    .hero-image img {
+      max-width: 500px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-lg);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Features Section */
+    .features {
+      padding: 6rem 0;
+      background: var(--color-white);
+      position: relative;
+    }
+
+    .features::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(to bottom, var(--color-bg), var(--color-white));
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .section-subtitle {
+      font-size: 1.25rem;
+      color: var(--color-text-light);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: var(--color-bg);
+      padding: 2.5rem 2rem;
+      border-radius: var(--border-radius);
+      text-align: center;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--color-accent);
+      transform: scaleX(0);
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+      color: var(--color-white);
+      font-weight: 900;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .feature-card p {
+      color: var(--color-text-light);
+      line-height: 1.6;
+    }
+
+    /* Social Proof Section */
+    .social-proof {
+      padding: 6rem 0;
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    .social-proof .section-title h2 {
+      color: var(--color-white);
+    }
+
+    .social-proof .section-subtitle {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem 2rem;
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: var(--transition);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--color-accent);
+    }
+
+    .testimonial-info h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+      font-family: var(--font-body);
+      font-weight: 700;
+    }
+
+    .testimonial-title {
+      font-size: 0.875rem;
+      opacity: 0.8;
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 0.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .star {
+      color: #FCD34D;
+      font-size: 1.25rem;
+    }
+
+    .testimonial-quote {
+      font-style: italic;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    .testimonial-quote::before {
+      content: '"';
+      font-size: 4rem;
+      color: var(--color-accent);
+      position: absolute;
+      top: -1rem;
+      left: -1rem;
+      opacity: 0.3;
+    }
+
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--color-accent);
+      color: var(--color-white);
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 1rem;
+    }
+
+    /* How It Works Section */
+    .how-it-works {
+      padding: 6rem 0;
+      background: var(--color-bg);
+    }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      position: relative;
+    }
+
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 50px;
+      bottom: -3rem;
+      width: 2px;
+      height: 3rem;
+      background: var(--color-accent);
+      opacity: 0.3;
+    }
+
+    .step-number {
+      width: 100px;
+      height: 100px;
+      background: var(--color-accent);
+      color: var(--color-white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: 900;
+      font-family: var(--font-heading);
+      flex-shrink: 0;
+    }
+
+    .step-content h3 {
+      font-size: 1.75rem;
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .step-content p {
+      color: var(--color-text-light);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Comparison Section */
+    .comparison {
+      padding: 6rem 0;
+      background: var(--color-white);
+    }
+
+    .comparison-table {
+      background: var(--color-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .comparison-header {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .comparison-header h3 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      border-bottom: 1px solid rgba(12, 10, 9, 0.1);
+    }
+
+    .comparison-row:last-child {
+      border-bottom: none;
+    }
+
+    .comparison-cell {
+      padding: 1.5rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .comparison-cell:first-child {
+      justify-content: flex-start;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .comparison-cell.our-product {
+      background: rgba(239, 68, 68, 0.1);
+    }
+
+    .check {
+      color: var(--color-accent);
+      font-size: 1.5rem;
+      font-weight: 900;
+    }
+
+    .cross {
+      color: var(--color-text-light);
+      font-size: 1.5rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, var(--color-accent) 0%, #DC2626 100%);
+      color: var(--color-white);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat;
+      animation: float 20s linear infinite;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .cta-section p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-price {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-price-current {
+      font-size: 4rem;
+      font-weight: 900;
+      font-family: var(--font-heading);
+    }
+
+    .cta-button {
+      background: var(--color-white);
+      color: var(--color-accent);
+      padding: 1.5rem 4rem;
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 1.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 2rem;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .guarantee {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    .payment-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      opacity: 0.8;
+    }
+
+    .payment-icon {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 3rem 0 1rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      margin-bottom: 2rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 1rem;
+      font-size: 0.875rem;
+      opacity: 0.7;
+    }
+
+    /* Responsive Design */
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+
+      .hero-text {
+        text-align: left;
+      }
+
+      .hero-price {
+        justify-content: flex-start;
+      }
+
+      .step {
+        flex-direction: row;
+      }
+
+      .step:nth-child(even) {
+        flex-direction: row-reverse;
+        text-align: right;
+      }
+
+      .step:nth-child(even)::after {
+        left: calc(100% - 52px);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .step {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .step:not(:last-child)::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .comparison-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+
+      .comparison-cell {
+        padding: 1rem;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="container">
+      <a href="#" class="logo">UltraFit Pro</a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+      </ul>
+      <a href="#order" class="header-cta">Buy Now</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Transform Your <span class="hero-highlight">Fitness</span> Forever</h1>
+          <p class="hero-subheadline">The revolutionary smart fitness tracker that adapts to your lifestyle and guarantees results in just 30 days.</p>
+          
+          <div class="hero-price">
+            <span class="price-original">$299</span>
+            <span class="price-current">$149</span>
+            <span class="price-save">Save 50%</span>
+          </div>
+          
+          <button class="hero-cta" onclick="document.getElementById('order').scrollIntoView()">
+            Get Yours Today
+          </button>
+        </div>
+        
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=800&h=800&fit=crop&auto=format" alt="UltraFit Pro Smart Fitness Tracker">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why UltraFit Pro Dominates</h2>
+        <p class="section-subtitle">Advanced technology meets proven results - experience the difference that makes champions</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Lightning Fast</h3>
+          <p>Instant real-time tracking with zero lag. Get immediate feedback on every rep, every step, every heartbeat.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Precision Targeting</h3>
+          <p>AI-powered workout optimization that adapts to your unique body metrics and performance goals.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🔋</div>
+          <h3>7-Day Battery</h3>
+          <p>Never worry about charging again. Week-long battery life that keeps up with your active lifestyle.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Smart Integration</h3>
+          <p>Seamlessly syncs with all major fitness apps and platforms. Your data, everywhere you need it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof Section -->
+  <section class="social-proof" id="reviews">
+    <div class="container">
+      <div class="section-title">
+        <h2>Proven Results</h2>
+        <p class="section-subtitle">Join 50,000+ satisfied customers who transformed their fitness journey</p>
+      </div>
+      
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b17c?w=400&h=400&fit=crop&auto=format" alt="Sarah Johnson" class="testimonial-avatar">
+            <div class="testimonial-info">
+              <h4>Sarah Johnson</h4>
+              <div class="testimonial-title">Marathon Runner</div>
+            </div>
+          </div>
+          
+          <div class="testimonial-stars">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+          </div>
+          
+          <p class="testimonial-quote">
+            This device completely changed my training. I dropped 3 minutes off my marathon time in just 2 months. The precision is incredible!
+          </p>
+          
+          <div class="verified-badge">
+            ✓ Verified Purchase
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&auto=format" alt="Mike Chen" class="testimonial-avatar">
+            <div class="testimonial-info">
+              <h4>Mike Chen</h4>
+              <div class="testimonial-title">Personal Trainer</div>
+            </div>
+          </div>
+          
+          <div class="testimonial-stars">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+          </div>
+          
+          <p class="testimonial-quote">
+            I recommend this to all my clients. The data accuracy is unmatched, and the battery life means they actually use it consistently.
+          </p>
+          
+          <div class="verified-badge">
+            ✓ Verified Purchase
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&auto=format" alt="Emma Rodriguez" class="testimonial-avatar">
+            <div class="testimonial-info">
+              <h4>Emma Rodriguez</h4>
+              <div class="testimonial-title">Fitness Enthusiast

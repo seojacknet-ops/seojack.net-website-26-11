@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Willowbrook Estate - Luxurious Living Redefined</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Variables */
+    :root {
+      --color-primary: #064E3B;
+      --color-accent: #F59E0B;
+      --color-bg: #FFFFFF;
+      --color-secondary: #065F46;
+      --color-text: #1E1E1E;
+      --color-text-light: #6B7280;
+      --color-border: #E5E7EB;
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1.6;
+      background: var(--color-bg);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      background: var(--color-accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background: #D97706;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      color: var(--color-text-light);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      font-size: 1.125rem;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-border);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--color-text);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav a:hover {
+      color: var(--color-accent);
+    }
+
+    .mobile-menu {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(rgba(6, 78, 59, 0.4), rgba(6, 78, 59, 0.4)),
+                  url('https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1920&h=1080&fit=crop&auto=format') center/cover;
+      color: white;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 2rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .hero-specs {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .spec-item {
+      text-align: center;
+    }
+
+    .spec-number {
+      font-size: 2rem;
+      font-weight: 700;
+      display: block;
+    }
+
+    .spec-label {
+      font-size: 0.875rem;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero-price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      margin: 1rem 0;
+    }
+
+    .hero-address {
+      font-size: 1.125rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    /* Gallery Section */
+    .gallery {
+      padding: 5rem 0;
+      background: #F9FAFB;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+      aspect-ratio: 4/3;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: white;
+      padding: 1.5rem;
+      transform: translateY(100%);
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 5rem 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 12px;
+      background: white;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      background: var(--color-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .feature-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--color-primary);
+    }
+
+    .feature-description {
+      color: var(--color-text-light);
+      font-size: 0.875rem;
+    }
+
+    /* Floor Plan Section */
+    .floor-plan {
+      padding: 5rem 0;
+      background: #F9FAFB;
+    }
+
+    .floor-plan-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .floor-plan-image {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .floor-plan-details {
+      padding: 2rem;
+    }
+
+    .floor-plan-title {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+
+    .floor-plan-list {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .floor-plan-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .floor-plan-list strong {
+      color: var(--color-primary);
+    }
+
+    /* Mortgage Calculator */
+    .mortgage-calc {
+      padding: 5rem 0;
+    }
+
+    .calc-container {
+      max-width: 600px;
+      margin: 3rem auto 0;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .calc-form {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--color-primary);
+    }
+
+    .form-group input {
+      padding: 0.75rem;
+      border: 2px solid var(--color-border);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    .calc-result {
+      background: var(--color-primary);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .monthly-payment {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-accent);
+    }
+
+    /* Neighborhood Section */
+    .neighborhood {
+      padding: 5rem 0;
+      background: #F9FAFB;
+    }
+
+    .neighborhood-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .map-placeholder {
+      background: var(--color-primary);
+      border-radius: 12px;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.125rem;
+    }
+
+    .poi-list {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .poi-category {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .poi-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+
+    .poi-items {
+      list-style: none;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .poi-items li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      color: var(--color-text-light);
+    }
+
+    .walk-score {
+      background: var(--color-accent);
+      color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .walk-score-number {
+      font-size: 3rem;
+      font-weight: 700;
+      display: block;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 5rem 0;
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .contact-info {
+      padding: 2rem;
+    }
+
+    .contact-title {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid var(--color-border);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+      font-family: var(--font-body);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--color-primary);
+      color: white;
+      padding: 3rem 0 2rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      line-height: 1.6;
+    }
+
+    .footer-section a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+
+      .hero-specs {
+        gap: 1rem;
+      }
+
+      .floor-plan-content,
+      .neighborhood-content,
+      .contact-content {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 0.5rem;
+      }
+
+      .hero-content {
+        padding: 1rem;
+      }
+
+      .hero-specs {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="#" class="logo">Willowbrook Estate</a>
+        <nav>
+          <ul class="nav">
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#floor-plan">Floor Plan</a></li>
+            <li><a href="#neighborhood">Neighborhood</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <button class="mobile-menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Pristine Luxury Awaits</h1>
+      <p class="hero-subtitle">Experience unparalleled elegance in this stunning architectural masterpiece</p>
+      
+      <div class="hero-price">$2,850,000</div>
+      <div class="hero-address">1247 Willowbrook Lane, Beverly Hills, CA 90210</div>
+      
+      <div class="hero-specs">
+        <div class="spec-item">
+          <span class="spec-number">5</span>
+          <span class="spec-label">Bedrooms</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-number">4.5</span>
+          <span class="spec-label">Bathrooms</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-number">4,200</span>
+          <span class="spec-label">Sq Ft</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-number">0.75</span>
+          <span class="spec-label">Acres</span>
+        </div>
+      </div>
+      
+      <a href="#contact" class="btn">Schedule Viewing</a>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2 class="section-title">Stunning Gallery</h2>
+      <p class="section-subtitle">Explore every corner of this magnificent property through our curated collection of professional photography</p>
+      
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop&auto=format" alt="Luxurious Living Room">
+          <div class="gallery-overlay">
+            <h3>Grand Living Room</h3>
+            <p>Soaring ceilings and floor-to-ceiling windows</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop&auto=format" alt="Gourmet Kitchen">
+          <div class="gallery-overlay">
+            <h3>Gourmet Kitchen</h3>
+            <p>Professional-grade appliances and marble countertops</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop&auto=format" alt="Master Bedroom">
+          <div class="gallery-overlay">
+            <h3>Master Suite</h3>
+            <p>Private sanctuary with stunning city views</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop&auto=format" alt="Spa Bathroom">
+          <div class="gallery-overlay">
+            <h3>Spa-Like Bathroom</h3>
+            <p>Luxurious fixtures and premium finishes</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop&auto=format" alt="Home Office">
+          <div class="gallery-overlay">
+            <h3>Executive Study</h3>
+            <p>Sophisticated workspace with built-in shelving</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=600&fit=crop&auto=format" alt="Dining Room">
+          <div class="gallery-overlay">
+            <h3>Formal Dining</h3>
+            <p>Perfect for entertaining distinguished guests</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&h=600&fit=crop&auto=format" alt="Wine Cellar">
+          <div class="gallery-overlay">
+            <h3>Wine Cellar</h3>
+            <p>Climate-controlled storage for 500+ bottles</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&h=600&fit=crop&auto=format" alt="Pool Area">
+          <div class="gallery-overlay">
+            <h3>Resort-Style Pool</h3>
+            <p>Infinity edge with breathtaking views</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?w=800&h=600&fit=crop&auto=format" alt="Garden">
+          <div class="gallery-overlay">
+            <h3>Manicured Gardens</h3>
+            <p>Professionally landscaped outdoor spaces</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1600607688618-c12fd6cda0a4?w=800&h=600&fit=crop&auto=format" alt="Garage">
+          <div class="gallery-overlay">
+            <h3>3-Car Garage</h3>
+            <p>Premium storage with workshop space</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">Exceptional Features</h2>
+      <p class="section-subtitle">Discover the premium amenities and luxury finishes that make this property truly extraordinary</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🏠</div>
+          <h3 class="feature-title">5 Bedrooms</h3>
+          <p class="feature-description">Spacious accommodations including a luxurious master suite with private balcony</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛁</div>
+          <h3 class="feature-title">4.5 Bathrooms</h3>
+          <p class="feature-description">Spa-like retreats with premium fixtures and marble finishes throughout</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📐</div>
+          <h3 class="feature-title">4,200 Sq Ft</h3>
+          <p class="feature-description">Thoughtfully designed living spaces with soaring ceilings and open floor plan</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌳</div>
+          <h3 class="feature-title">0.75 Acres</h3>
+          <p class="feature-description">Pristine grounds with mature landscaping and private outdoor entertainment areas</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <h3 class="feature-title">Built 2018</h3>
+          <p class="feature-description">Modern construction with contemporary design and energy-efficient systems</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚗</div>
+          <h3 class="feature-title">3-Car Garage</h3>
+          <p class="feature-description">Attached garage with additional storage and workshop space</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏊</div>
+          <h3 class="feature-title">Infinity Pool</h3>
+          <p class="feature-description">Resort-style pool with spa and stunning valley views</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🍷</div>
+          <h3 class="feature-title">Wine Cellar</h3>
+          <p class="feature-description">Climate-controlled storage for 500+ bottles with tasting area</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏡</div>
+          <h3 class="feature-title">Smart Home</h3>
+          <p class="feature-description">Integrated automation system controlling lighting, security, and climate</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floor Plan Section -->
+  <section id="floor-plan" class="floor-plan">
+    <div class="container">
+      <h2 class="section-title">Thoughtful Floor Plan</h2>
+      <p class="section-subtitle">Experience the seamless flow and intelligent design of this architectural masterpiece</p>
+      
+      <div class="floor-plan-content">
+        <div class="floor-plan-image">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&auto=format" alt="Detailed Floor Plan">
+        </div>
+        <div class="floor-plan-details">
+          <h3 class="floor-plan-title">Architectural Excellence</h3>
+          <p>This meticulously designed floor plan maximizes both privacy and entertaining potential, with carefully considered sight lines and natural light throughout.</p>
+          
+          <ul class="floor-plan-list">
+            <li><span>Total Living Space</span> <strong>4,200 sq ft</strong></li>
+            <li><span>Main Level</span> <strong>2,800 sq ft</strong></li>
+            <li><span>Upper Level</span> <strong>1,400 sq ft</strong></li>
+            <li><span>Ceiling Heights</span> <strong>10-12 feet</strong></li>
+            <li><span>Master Suite</span> <strong>650 sq ft</strong></li>
+            <li><span>Kitchen & Dining</span> <strong>480 sq ft</strong></li>
+            <li><span>Great Room</span> <strong>520 sq ft</strong></li>
+            <li><span>Office/Study</span> <strong>180 sq ft</strong></li>
+          </ul>
+          
+          <a href="#contact" class="btn">Request Detailed Plans</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mortgage Calculator -->
+  <section class="mortgage-calc">
+    <div class="container">
+      <h2 class="section-title">Mortgage Calculator</h2>
+      <p class="section-subtitle">Estimate your monthly investment in this exceptional property</p>
+      
+      <div class="calc-container">
+        <form class="calc-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="home-price">Home Price</label>
+              <input type="number" id="

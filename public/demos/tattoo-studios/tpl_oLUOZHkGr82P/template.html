@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crimson Needle - Where Art Lives Forever</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Creepster&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #0C0C0C;
+      --color-accent: #22D3EE;
+      --color-bg: #0A0A0A;
+      --color-secondary: #1C1C1C;
+      --color-text: #FFFFFF;
+      --color-text-muted: #B3B3B3;
+      --color-border: #333333;
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+      --font-display: 'Creepster', cursive;
+      --shadow-glow: 0 0 20px rgba(34, 211, 238, 0.3);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--color-accent);
+      text-decoration: none;
+      text-shadow: var(--shadow-glow);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--color-text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(45deg, var(--color-bg) 0%, var(--color-secondary) 100%);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="tattoo" patternUnits="userSpaceOnUse" width="20" height="20"><circle cx="10" cy="10" r="1" fill="%2322D3EE" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23tattoo)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 2rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      margin-bottom: 1rem;
+      text-shadow: var(--shadow-glow);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-heading);
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      margin-bottom: 2rem;
+      color: var(--color-text-muted);
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--color-accent), #1DA1F2);
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: var(--transition);
+      box-shadow: var(--shadow-glow);
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(34, 211, 238, 0.4);
+    }
+
+    /* Floating elements */
+    .floating-elements {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .floating-element {
+      position: absolute;
+      color: var(--color-accent);
+      opacity: 0.2;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-element:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+    .floating-element:nth-child(2) { top: 60%; right: 15%; animation-delay: 2s; }
+    .floating-element:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
+
+    /* Gallery Section */
+    .gallery {
+      padding: 5rem 2rem;
+      background: var(--color-primary);
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: var(--color-accent);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 4/5;
+      background: var(--color-secondary);
+      border-radius: 15px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--color-secondary), var(--color-border));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--color-accent);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      padding: 2rem;
+      transform: translateY(100%);
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+
+    .gallery-tag {
+      color: var(--color-accent);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .gallery-artist {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Artists Section */
+    .artists {
+      padding: 5rem 2rem;
+      background: var(--color-bg);
+    }
+
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .artist-card {
+      background: var(--color-secondary);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid var(--color-border);
+    }
+
+    .artist-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .artist-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-accent), #1DA1F2);
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--color-primary);
+      font-weight: bold;
+    }
+
+    .artist-name {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .artist-specialty {
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .artist-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .artist-link {
+      padding: 0.5rem 1rem;
+      background: var(--color-border);
+      color: var(--color-text);
+      text-decoration: none;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .artist-link:hover {
+      background: var(--color-accent);
+      color: var(--color-primary);
+    }
+
+    .booking-status {
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .status-available {
+      background: rgba(34, 211, 238, 0.2);
+      color: var(--color-accent);
+    }
+
+    .status-booked {
+      background: rgba(255, 100, 100, 0.2);
+      color: #ff6464;
+    }
+
+    /* Booking Section */
+    .booking {
+      padding: 5rem 2rem;
+      background: var(--color-primary);
+    }
+
+    .booking-container {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .booking-form {
+      background: var(--color-secondary);
+      padding: 3rem;
+      border-radius: 20px;
+      border: 1px solid var(--color-border);
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--color-accent);
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: 1rem;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      color: var(--color-text);
+      font-family: inherit;
+      transition: var(--transition);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--color-accent), #1DA1F2);
+      color: var(--color-primary);
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(34, 211, 238, 0.3);
+    }
+
+    /* FAQ Section */
+    .faq {
+      padding: 5rem 2rem;
+      background: var(--color-bg);
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+      background: var(--color-secondary);
+      border-radius: 15px;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--color-text);
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question:hover {
+      color: var(--color-accent);
+    }
+
+    .faq-answer {
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-answer.active {
+      max-height: 200px;
+      padding: 0 1.5rem 1.5rem;
+    }
+
+    .faq-icon {
+      transition: var(--transition);
+    }
+
+    .faq-question.active .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Studio Tour Section */
+    .studio-tour {
+      padding: 5rem 2rem;
+      background: var(--color-primary);
+    }
+
+    .tour-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tour-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .tour-item {
+      position: relative;
+      aspect-ratio: 16/10;
+      background: var(--color-secondary);
+      border-radius: 15px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tour-item:hover {
+      transform: scale(1.05);
+    }
+
+    .tour-image {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, var(--color-secondary), var(--color-border));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--color-accent);
+    }
+
+    .tour-label {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-weight: 500;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--color-bg);
+      padding: 3rem 2rem 1rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+      font-family: var(--font-heading);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      line-height: 1.8;
+    }
+
+    .footer-section a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+      }
+
+      .gallery-grid,
+      .artists-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .booking-form {
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-container {
+        padding: 1rem;
+      }
+
+      .hero-content {
+        padding: 0 1rem;
+      }
+
+      .booking-form {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">Crimson Needle</a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#artists">Artists</a></li>
+        <li><a href="#booking">Book Now</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <button class="nav-toggle">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="floating-elements">
+      <div class="floating-element">🌹</div>
+      <div class="floating-element">⚡</div>
+      <div class="floating-element">🔥</div>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">Crimson Needle</h1>
+      <p class="hero-tagline">Where Art Lives Forever</p>
+      <a href="#booking" class="hero-cta">Book Your Session</a>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery">
+    <h2 class="section-title">Our Masterpieces</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <div class="gallery-image">🌹</div>
+        <div class="gallery-overlay">
+          <div class="gallery-tag">Traditional</div>
+          <div class="gallery-artist">by Marcus Steel</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-image">🐺</div>
+        <div class="gallery-overlay">
+          <div class="gallery-tag">Realism</div>
+          <div class="gallery-artist">by Luna Blackwood</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-image">⚡</div>
+        <div class="gallery-overlay">
+          <div class="gallery-tag">Neo-Traditional</div>
+          <div class="gallery-artist">by Zara Ink</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-image">🔮</div>
+        <div class="gallery-overlay">
+          <div class="gallery-tag">Geometric</div>
+          <div class="gallery-artist">by Raven Storm</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-image">🦅</div>
+        <div class="gallery-overlay">
+          <div class="gallery-tag">Black & Grey</div>
+          <div class="gallery-artist">by Marcus Steel</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-image">🌙</div>
+        <div class="gallery-overlay">
+          <div class="gallery-tag">Dotwork</div>
+          <div class="gallery-artist">by Luna Blackwood</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-image">🗡️</div>
+        <div class="gallery-overlay">
+          <div class="gallery-tag">Traditional</div>
+          <div class="gallery-artist">by Zara Ink</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-image">🦋</div>
+        <div class="gallery-overlay">
+          <div class="gallery-tag">Watercolor</div>
+          <div class="gallery-artist">by Raven Storm</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Artists Section -->
+  <section id="artists" class="artists">
+    <h2 class="section-title">Meet Our Artists</h2>
+    <div class="artists-grid">
+      <div class="artist-card">
+        <div class="artist-avatar">MS</div>
+        <h3 class="artist-name">Marcus Steel</h3>
+        <p class="artist-specialty">Traditional & Black & Grey</p>
+        <div class="artist-links">
+          <a href="#" class="artist-link">Instagram</a>
+          <a href="#" class="artist-link">Portfolio</a>
+        </div>
+        <div class="booking-status status-available">Available</div>
+      </div>
+      <div class="artist-card">
+        <div class="artist-avatar">LB</div>
+        <h3 class="artist-name">Luna Blackwood</h3>
+        <p class="artist-specialty">Realism & Dotwork</p>
+        <div class="artist-links">
+          <a href="#" class="artist-link">Instagram</a>
+          <a href="#" class="artist-link">Portfolio</a>
+        </div>
+        <div class="booking-status status-booked">Booked Until March</div>
+      </div>
+      <div class="artist-card">
+        <div class="artist-avatar">ZI</div>
+        <h3 class="artist-name">Zara Ink</h3>
+        <p class="artist-specialty">Neo-Traditional</p>
+        <div class="artist-links">
+          <a href="#" class="artist-link">Instagram</a>
+          <a href="#" class="artist-link">Portfolio</a>
+        </div>
+        <div class="booking-status status-available">Available</div>
+      </div>
+      <div class="artist-card">
+        <div class="artist-avatar">RS</div>
+        <h3 class="artist-name">Raven Storm</h3>
+        <p class="artist-specialty">Geometric & Watercolor</p>
+        <div class="artist-links">
+          <a href="#" class="artist-link">Instagram</a>
+          <a href="#" class="artist-link">Portfolio</a>
+        </div>
+        <div class="booking-status status-available">Available</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Section -->
+  <section id="booking" class="booking">
+    <div class="booking-container">
+      <h2 class="section-title">Start Your Design</h2>
+      <form class="booking-form">
+        <div class="form-group">
+          <label class="form-label" for="name">Full Name</label>
+          <input type="text" id="name" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input type="email" id="email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="phone">Phone</label>
+          <input type="tel" id="phone" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="artist">Preferred Artist</label>
+          <select id="artist" class="form-select">
+            <option value="">Any Artist</option>
+            <option value="marcus">Marcus Steel</option>
+            <option value="luna">Luna Blackwood</option>
+            <option value="zara">Zara Ink</option>
+            <option value="raven">Raven Storm</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="style">Tattoo Style</label>
+          <select id="style" class="form-select">
+            <option value="">Select Style</option>
+            <option value="traditional">Traditional</option>
+            <option value="realism">Realism</option>
+            <option value="neo-traditional">Neo-Traditional</option>
+            <option value="geometric">Geometric</option>
+            <option value="blackgrey">Black & Grey</option>
+            <option value="watercolor">Watercolor</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="description">Design Description</label>
+          <textarea id="description" class="form-textarea" placeholder="Tell us about your vision..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Claim Your Spot</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="faq">
+    <div class="faq-container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <button class="faq-question">
+          How much do tattoos cost?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Our pricing starts at $150 per hour, with a minimum of $100. Large custom pieces are quoted individually after consultation.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          How far in advance should I book?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>We recommend booking 2-4 weeks in advance for consultations, and 1-3 months for actual tattoo sessions depending on the artist.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          What should I bring to my appointment?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Bring a valid ID, reference images if you have them, and wear comfortable clothing that provides easy access to the tattoo area.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Do you offer touch-ups?
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes, we offer free touch-ups within 6 months of your original session, provided you've followed proper aftercare instructions.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          What's your age requirement?
+          <span class="faq-icon">▼</span>

@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roasted Roots - Where Community Meets Coffee</title>
+  <meta name="description" content="Handcrafted artisan coffee, locally roasted beans, and cozy community atmosphere in the heart of downtown. Visit Roasted Roots for your perfect cup.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #1C1917;
+      --color-accent: #A16207;
+      --color-bg: #FAF9F6;
+      --color-secondary: #44403C;
+      --color-text: #0C0A09;
+      --color-white: #FFFFFF;
+      --color-light-gray: #F5F5F4;
+      --color-medium-gray: #78716C;
+      --font-heading: 'Crimson Text', serif;
+      --font-body: 'Inter', sans-serif;
+      --shadow-soft: 0 4px 20px rgba(28, 25, 23, 0.1);
+      --shadow-medium: 0 8px 30px rgba(28, 25, 23, 0.15);
+      --border-radius: 8px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(250, 249, 246, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--color-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-accent);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: var(--color-primary);
+      transition: var(--transition);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(28, 25, 23, 0.4), rgba(28, 25, 23, 0.4)),
+                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect width="1200" height="800" fill="%23A16207"/><circle cx="200" cy="150" r="80" fill="%23FAF9F6" opacity="0.1"/><circle cx="800" cy="300" r="120" fill="%23FAF9F6" opacity="0.05"/><circle cx="1000" cy="600" r="100" fill="%23FAF9F6" opacity="0.08"/></svg>');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--color-white);
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 600px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+
+    .hero-hours {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-hours h3 {
+      font-family: var(--font-heading);
+      margin-bottom: 0.5rem;
+      color: var(--color-accent);
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--color-accent);
+      color: var(--color-white);
+      padding: 1rem 2rem;
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .cta-button:hover {
+      background: #92400E;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    /* Section Styling */
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: var(--color-medium-gray);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Menu Section */
+    .menu {
+      background: var(--color-white);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .menu-category {
+      background: var(--color-bg);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+    }
+
+    .menu-category:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .menu-category h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(68, 64, 60, 0.1);
+    }
+
+    .menu-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .menu-item-info {
+      flex: 1;
+    }
+
+    .menu-item h4 {
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .menu-item p {
+      font-size: 0.9rem;
+      color: var(--color-medium-gray);
+    }
+
+    .menu-item-price {
+      color: var(--color-accent);
+      font-weight: 600;
+      margin-left: 1rem;
+    }
+
+    .dietary-badge {
+      display: inline-block;
+      background: var(--color-accent);
+      color: var(--color-white);
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      margin-top: 0.5rem;
+    }
+
+    /* Location Section */
+    .location {
+      background: var(--color-light-gray);
+    }
+
+    .location-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .location-info {
+      background: var(--color-white);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .location-info h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+
+    .address {
+      margin-bottom: 1.5rem;
+    }
+
+    .address p {
+      color: var(--color-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      color: var(--color-secondary);
+    }
+
+    .info-item strong {
+      color: var(--color-primary);
+      margin-right: 0.5rem;
+    }
+
+    .map-placeholder {
+      height: 300px;
+      background: var(--color-accent);
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      font-size: 1.2rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* Hours Section */
+    .hours {
+      background: var(--color-white);
+    }
+
+    .hours-table {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--color-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba(68, 64, 60, 0.1);
+    }
+
+    .hours-row:last-child {
+      border-bottom: none;
+    }
+
+    .hours-row:nth-child(even) {
+      background: rgba(161, 98, 7, 0.05);
+    }
+
+    .day {
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .time {
+      color: var(--color-secondary);
+    }
+
+    .holiday-notice {
+      text-align: center;
+      margin-top: 2rem;
+      padding: 1rem;
+      background: rgba(161, 98, 7, 0.1);
+      border-radius: var(--border-radius);
+      color: var(--color-accent);
+      font-weight: 500;
+    }
+
+    /* Catering Section */
+    .catering {
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    .catering .section-title {
+      color: var(--color-white);
+    }
+
+    .catering .section-subtitle {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .catering-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .catering-feature {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      backdrop-filter: blur(10px);
+      transition: var(--transition);
+    }
+
+    .catering-feature:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.5rem;
+    }
+
+    .catering-cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .cta-secondary {
+      background: transparent;
+      border: 2px solid var(--color-white);
+      color: var(--color-white);
+    }
+
+    .cta-secondary:hover {
+      background: var(--color-white);
+      color: var(--color-primary);
+    }
+
+    /* Gallery Section */
+    .gallery {
+      background: var(--color-light-gray);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      aspect-ratio: 4/3;
+      background: var(--color-accent);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .gallery-item::after {
+      content: attr(data-caption);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(28, 25, 23, 0.8));
+      color: var(--color-white);
+      padding: 2rem 1rem 1rem;
+      transform: translateY(100%);
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover::after {
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 3rem 0 1rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h4 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--color-accent);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .footer-section a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .hero {
+        height: 80vh;
+        padding: 0 1rem;
+      }
+
+      .location-content {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .catering-features {
+        grid-template-columns: 1fr;
+      }
+
+      .hours-row {
+        padding: 1rem;
+      }
+
+      section {
+        padding: 3rem 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 0.5rem;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-category {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a href="#" class="logo">Roasted Roots</a>
+      <ul class="nav-links">
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#hours">Hours</a></li>
+        <li><a href="#catering">Catering</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Roasted Roots</h1>
+        <p class="hero-tagline">Where Community Meets Handcrafted Coffee</p>
+        <div class="hero-hours">
+          <h3>Open Now</h3>
+          <p>Monday - Friday: 6:00 AM - 8:00 PM<br>
+          Saturday - Sunday: 7:00 AM - 9:00 PM</p>
+        </div>
+        <a href="#menu" class="cta-button">View Our Menu</a>
+      </div>
+    </section>
+
+    <section id="menu" class="menu">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Artisan Menu</h2>
+          <p class="section-subtitle">Handcrafted beverages and fresh pastries made with locally sourced, organic ingredients</p>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-category">
+            <h3>Specialty Coffee</h3>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>House Blend Espresso</h4>
+                <p>Rich, full-bodied blend with notes of chocolate and caramel</p>
+              </div>
+              <span class="menu-item-price">$3.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Single Origin Pour Over</h4>
+                <p>Ethiopian beans with floral and citrus notes</p>
+              </div>
+              <span class="menu-item-price">$4.25</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Maple Cinnamon Latte</h4>
+                <p>Espresso with steamed milk, maple syrup, and Ceylon cinnamon</p>
+              </div>
+              <span class="menu-item-price">$5.75</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Cold Brew Float</h4>
+                <p>House cold brew with vanilla bean ice cream</p>
+              </div>
+              <span class="menu-item-price">$6.00</span>
+            </div>
+          </div>
+
+          <div class="menu-category">
+            <h3>Tea & Alternatives</h3>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Chai Tea Latte</h4>
+                <p>Spiced black tea with steamed milk and honey</p>
+              </div>
+              <span class="menu-item-price">$4.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Matcha Latte</h4>
+                <p>Premium ceremonial grade matcha with oat milk</p>
+                <span class="dietary-badge">Vegan</span>
+              </div>
+              <span class="menu-item-price">$5.25</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Golden Turmeric Latte</h4>
+                <p>Turmeric, ginger, and coconut milk blend</p>
+                <span class="dietary-badge">Vegan</span>
+              </div>
+              <span class="menu-item-price">$4.75</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Herbal Tea Selection</h4>
+                <p>Chamomile, peppermint, or seasonal blend</p>
+              </div>
+              <span class="menu-item-price">$3.25</span>
+            </div>
+          </div>
+
+          <div class="menu-category">
+            <h3>Fresh Pastries</h3>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Artisan Croissant</h4>
+                <p>Buttery, flaky pastry baked fresh daily</p>
+              </div>
+              <span class="menu-item-price">$3.75</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Blueberry Scone</h4>
+                <p>Made with local organic blueberries</p>
+              </div>
+              <span class="menu-item-price">$4.25</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Avocado Toast</h4>
+                <p>Sourdough with smashed avocado, sea salt, and hemp seeds</p>
+                <span class="dietary-badge">Vegan</span>
+              </div>
+              <span class="menu-item-price">$8.50</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info">
+                <h4>Seasonal Muffin</h4>
+                <p>Ask about today's fresh-baked selection</p>
+              </div>
+              <span class="menu-item-price">$3.50</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="location" class="location">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Find Us</h2>
+          <p class="section-subtitle">Located in the heart of downtown, we're your neighborhood coffee destination</p>
+        </div>
+        <div class="location-content">
+          <div class="location-info">
+            <h3>Visit Our Cozy Cafe</h3>
+            <div class="address">
+              <p><strong>Address:</strong></p>
+              <p>123 Main Street</p>
+              <p>Downtown District</p>
+              <p>Coffee City, CC 12345</p>
+            </div>
+            <div class="info-item">
+              <strong>Parking:</strong> Street parking available, public garage 2 blocks away
+            </div>
+            <div class="info-item">
+              <strong>Transit:</strong> Bus lines 15, 22, 45 - Main St stop
+            </div>
+            <div class="info-item">
+              <strong>Phone:</strong> (555) 123-BREW
+            </div>
+            <div class="info-item">
+              <strong>Email:</strong> hello@roastedroots.com
+            </div>
+          </div>
+          <div class="map-placeholder">
+            🗺️ Interactive Map Coming Soon
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hours" class="hours">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Hours</h2>
+          <p class="section-subtitle">We're here to fuel your day, every day of the week</p>
+        </div>
+        <div class="hours-table">
+          <div class="hours-row">
+            <span class="day">Monday</span>
+            <span class="time">6:00 AM - 8:00 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Tuesday</span>
+            <span class="time">6:00 AM - 8:00 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Wednesday</span>
+            <span class="time">6:00 AM - 8:00 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Thursday</span>
+            <span class="time">6:00 AM - 8:00 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Friday</span>
+            <span class="time">6:00 AM - 8:00 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Saturday</span>
+            <span class="time">7:00 AM - 9:00 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Sunday</span>
+            <span class="time">7:00 AM - 9:00 PM</span>
+          </div>
+        </div>
+        <div class="holiday-notice">
+          <strong>Holiday Hours:</strong> We may have modified hours during holidays. Check our social media for updates!
+        </div>
+      </div>
+    </section>
+
+    <section id="catering" class="catering">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Catering Services</h2>
+          <p class="section-subtitle">Bring our handcrafted coffee experience to your next event, meeting, or celebration</p>
+        </div>
+        <div class="catering-features">
+          <div class="catering-feature">
+            <div class="feature-icon">☕</div>
+            <h3>Coffee Bar Service</h3>
+            <p>Professional baristas bring our full coffee experience to your venue with premium equipment and artisan beverages.</p>
+          </div>
+          <div class="catering-feature">
+            <div class="feature-icon">🥐</div>
+            <h3>Fresh Pastries</h3>
+            <p>Complement your event with our selection of fresh-baked croissants, scones, and seasonal pastries.</p>
+          </div>
+          <div class="catering-feature">
+            <div class="feature-icon">🚚</div>
+            <h3>Delivery & Setup</h3>
+            <p>We handle everything from delivery to setup, so you can focus on your guests while we craft the perfect coffee experience.</p>
+          </div>
+        </div>
+        <div class="catering-cta">
+          <a href="#" class="cta-button cta-secondary">Plan Your Event</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Our Atmosphere</h2>
+          <p class="section-subtitle">Step inside our cozy space where community, comfort, and exceptional coffee come together</p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-caption="Cozy seating area with warm lighting">
+          </div>
+          <div class="gallery-item" data-caption="Fresh latte art by our skilled baristas">
+          </div>
+          <div class="gallery-item" data-caption="Our vintage espresso machine in action">
+          </div>
+          <div class="gallery-item" data-caption="Community table perfect for meetings">
+          </div>
+          <div class="gallery-item" data-caption="Fresh pastries baked daily">
+          </div>
+          <div class="gallery-item" data-caption="Outdoor seating for sunny days">
+          </div>
+        </div>
+      </div>

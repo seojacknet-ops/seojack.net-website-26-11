@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elena Voss Photography - Capturing Timeless Moments</title>
+  <meta name="description" content="Professional photography services specializing in portrait, wedding, and artistic photography. Capturing light, emotion, and timeless stories.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* CSS Variables */
+    :root {
+      --color-primary: #0A0A0A;
+      --color-accent: #FFFFFF;
+      --color-bg: #FFFFFF;
+      --color-secondary: #1A1A1A;
+      --color-text: #0A0A0A;
+      --color-text-light: #666666;
+      --color-border: #E5E5E5;
+      
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+      
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 2rem;
+      --spacing-lg: 4rem;
+      --spacing-xl: 6rem;
+      
+      --transition: all 0.3s ease;
+    }
+
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 500;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    h3 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    p {
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      font-weight: 300;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-border);
+      transition: var(--transition);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--color-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: var(--spacing-md);
+    }
+
+    .nav-links a {
+      font-weight: 400;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.5rem 0;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--color-primary);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .mobile-menu span {
+      width: 25px;
+      height: 2px;
+      background: var(--color-primary);
+      transition: var(--transition);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(10, 10, 10, 0.4), rgba(26, 26, 26, 0.2));
+      z-index: -1;
+    }
+
+    .hero-content {
+      text-align: center;
+      color: var(--color-accent);
+      max-width: 800px;
+      padding: var(--spacing-md);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero h1 {
+      margin-bottom: var(--spacing-sm);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+      font-weight: 300;
+      margin-bottom: var(--spacing-lg);
+      letter-spacing: 1px;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--color-accent);
+      border: 2px solid var(--color-accent);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: var(--transition);
+    }
+
+    .cta-button:hover {
+      background: var(--color-accent);
+      color: var(--color-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Portfolio Section */
+    .portfolio {
+      padding: var(--spacing-xl) var(--spacing-md);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .section-title {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .section-subtitle {
+      color: var(--color-text-light);
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+    }
+
+    .portfolio-item {
+      position: relative;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      cursor: pointer;
+      group: hover;
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(26, 26, 26, 0.6));
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: var(--color-accent);
+      transition: var(--transition);
+      text-align: center;
+      padding: var(--spacing-md);
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .portfolio-category {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: var(--spacing-xs);
+      opacity: 0.8;
+    }
+
+    .portfolio-title {
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+
+    /* About Section */
+    .about {
+      padding: var(--spacing-xl) var(--spacing-md);
+      background: #FAFAFA;
+    }
+
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-xl);
+      align-items: center;
+    }
+
+    .about-image {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+    }
+
+    .about-content h2 {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .about-text {
+      margin-bottom: var(--spacing-md);
+      color: var(--color-text-light);
+    }
+
+    .about-details {
+      margin-top: var(--spacing-lg);
+    }
+
+    .about-detail {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .about-detail strong {
+      color: var(--color-primary);
+      font-weight: 500;
+    }
+
+    /* Blog Section */
+    .blog {
+      padding: var(--spacing-xl) var(--spacing-md);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+    }
+
+    .blog-post {
+      background: var(--color-accent);
+      border: 1px solid var(--color-border);
+      transition: var(--transition);
+    }
+
+    .blog-post:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-post img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+    }
+
+    .blog-content {
+      padding: var(--spacing-md);
+    }
+
+    .blog-date {
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .blog-title {
+      font-size: 1.25rem;
+      margin-bottom: var(--spacing-sm);
+      font-weight: 400;
+    }
+
+    .blog-excerpt {
+      color: var(--color-text-light);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Prints Shop Section */
+    .prints-shop {
+      padding: var(--spacing-xl) var(--spacing-md);
+      background: #FAFAFA;
+    }
+
+    .shop-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+    }
+
+    .product-card {
+      background: var(--color-accent);
+      border: 1px solid var(--color-border);
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: var(--spacing-md);
+    }
+
+    .product-title {
+      font-size: 1.125rem;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 400;
+    }
+
+    .product-price {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .product-button {
+      padding: 0.75rem 1.5rem;
+      background: var(--color-primary);
+      color: var(--color-accent);
+      border: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.875rem;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    .product-button:hover {
+      background: var(--color-secondary);
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: var(--spacing-xl) var(--spacing-md);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .contact-form {
+      margin-top: var(--spacing-lg);
+    }
+
+    .form-group {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.875rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid var(--color-border);
+      background: var(--color-accent);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-button {
+      padding: 1rem 2.5rem;
+      background: var(--color-primary);
+      color: var(--color-accent);
+      border: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 400;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .submit-button:hover {
+      background: var(--color-secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--color-primary);
+      color: var(--color-accent);
+      padding: var(--spacing-lg) var(--spacing-md);
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-social {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .social-links a {
+      padding: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      border-color: var(--color-accent);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-text {
+      font-size: 0.875rem;
+      opacity: 0.8;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: flex;
+      }
+
+      .about-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+      }
+
+      .hero-content {
+        padding: var(--spacing-sm);
+      }
+
+      .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-sm);
+      }
+
+      .blog-grid,
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      :root {
+        --spacing-md: 1rem;
+        --spacing-lg: 2rem;
+        --spacing-xl: 3rem;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo">Elena Voss</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#blog">Journal</a></li>
+        <li><a href="#shop">Prints</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=1920&h=1080&fit=crop&auto=format" alt="Elena Voss Photography" class="hero-image">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Elena Voss</h1>
+      <p class="hero-tagline">Capturing light, emotion, and timeless stories</p>
+      <a href="#portfolio" class="cta-button">View Portfolio</a>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="portfolio">
+    <div class="section-header">
+      <h2 class="section-title">Portfolio</h2>
+      <p class="section-subtitle">A curated collection of moments that speak to the soul. Each image tells a story of light, emotion, and artistry.</p>
+    </div>
+    
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&h=600&fit=crop&auto=format" alt="Portrait Photography">
+        <div class="portfolio-overlay">
+          <div class="portfolio-category">Portrait</div>
+          <h3 class="portfolio-title">Intimate Moments</h3>
+        </div>
+      </div>
+      
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&h=600&fit=crop&auto=format" alt="Wedding Photography">
+        <div class="portfolio-overlay">
+          <div class="portfolio-category">Wedding</div>
+          <h3 class="portfolio-title">Eternal Vows</h3>
+        </div>
+      </div>
+      
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&h=600&fit=crop&auto=format" alt="Landscape Photography">
+        <div class="portfolio-overlay">
+          <div class="portfolio-category">Landscape</div>
+          <h3 class="portfolio-title">Natural Beauty</h3>
+        </div>
+      </div>
+      
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&auto=format" alt="Fashion Photography">
+        <div class="portfolio-overlay">
+          <div class="portfolio-category">Fashion</div>
+          <h3 class="portfolio-title">Editorial Vision</h3>
+        </div>
+      </div>
+      
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1516627145497-ae4099d4e6ed?w=800&h=600&fit=crop&auto=format" alt="Family Photography">
+        <div class="portfolio-overlay">
+          <div class="portfolio-category">Family</div>
+          <h3 class="portfolio-title">Generational Love</h3>
+        </div>
+      </div>
+      
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1554048612-b6a482b224d1?w=800&h=600&fit=crop&auto=format" alt="Street Photography">
+        <div class="portfolio-overlay">
+          <div class="portfolio-category">Street</div>
+          <h3 class="portfolio-title">Urban Stories</h3>
+        </div>
+      </div>
+      
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800&h=600&fit=crop&auto=format" alt="Corporate Photography">
+        <div class="portfolio-overlay">
+          <div class="portfolio-category">Corporate</div>
+          <h3 class="portfolio-title">Professional Edge</h3>
+        </div>
+      </div>
+      
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1502780402662-acc01917471e?w=800&h=600&fit=crop&auto=format" alt="Event Photography">
+        <div class="portfolio-overlay">
+          <div class="portfolio-category">Event</div>
+          <h3 class="portfolio-title">Celebration Captured</h3>
+        </div>
+      </div>
+      
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&auto=format" alt="Fine Art Photography">
+        <div class="portfolio-overlay">
+          <div class="portfolio-category">Fine Art</div>
+          <h3 class="portfolio-title">Artistic Expression</h3>
+        </div>
+      </div>
+      
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1546026423-cc4642628d2b?w=800&h=600&fit=crop&auto=format" alt="Maternity Photography">
+        <div class="portfolio-overlay">
+          <div class="portfolio-category">Maternity</div>
+          <h3 class="portfolio-title">New Beginnings</h3>
+        </div>
+      </div>
+      
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=600&fit=crop&auto=format" alt="Architecture Photography">
+        <div class="portfolio-overlay">
+          <div class="portfolio-category">Architecture</div>
+          <h3 class="portfolio-title">Structural Poetry</h3>
+        </div>
+      </div>
+      
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&h=600&fit=crop&auto=format" alt="Travel Photography">
+        <div class="portfolio-overlay">
+          <div class="portfolio-category">Travel</div>
+          <h3 class="portfolio-title">Wanderlust Stories</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="about-container">
+      <div class="about-content">
+        <h2>The Vision Behind the Lens</h2>
+        <p class="about-text">Photography is more than capturing images—it's about freezing moments that tell profound stories. With over a decade of experience, I specialize in finding the extraordinary within the ordinary, creating timeless imagery that resonates with authentic emotion.</p>
+        
+        <p class="about-text">My approach combines technical mastery with artistic vision, ensuring each photograph becomes a piece of visual poetry that speaks to the heart and stands the test of time.</p>
+        
+        <div class="about-details">
+          <div class="about-detail">
+            <strong>Equipment:</strong> Canon EOS R5, Leica Q2, Profoto Lighting
+          </div>
+          <div class="about-detail">
+            <strong>Specialties:</strong> Portrait, Wedding, Fine Art, Editorial
+          </div>
+          <div class="about-detail">
+            <strong>Approach:</strong> Authentic storytelling through light and composition
+          </div>
+          <div class="about-detail">
+            <strong>Experience:</strong> 12+ years capturing life's most precious moments
+          </div>
+        </div>
+      </div>
+      
+      <div class="about-image-container">
+        <img src="https://images.unsplash.com/photo-1494790108755-2616c96f40e3?w=400&h=400&fit=crop&auto=format" alt="Elena Voss Portrait" class="about-image">
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="blog">
+    <div class="section-header">
+      <h2 class="section-title">Journal</h2>
+      <p class="section-subtitle">Insights, inspiration, and stories from behind the camera. Exploring the art of photography and the moments that move us.</p>
+    </div>
+    
+    <div class="blog-grid">
+      <article class="blog-post">
+        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&h=500&fit=crop&auto=format" alt="Wedding Photography Tips">
+        <div class="blog-content">
+          <div class="blog-date">December 15, 2023</div>
+          <h3 class="blog-title">The Art of Capturing Authentic Wedding Moments</h3>
+          <p class="blog-excerpt">Discover the techniques and mindset needed to capture genuine emotions and timeless memories on one of life's most important days.</p>
+        </div>
+      </article>
+      
+      <article class="blog-post">
+        <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=800&h=500&fit=crop&auto=format" alt="Portrait Lighting">
+        <div class="blog-content">
+          <div class="blog-date">December 8, 2023</div>
+          <h3 class="blog-title">Mastering Natural Light in Portrait Photography</h3>
+          <p class="blog-excerpt">Learn how to work with natural light to create stunning portraits that showcase your subject's true essence and personality.</p>
+        </div>
+      </article>
+      
+      <article class="blog-post">
+        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&h=500&fit=crop&auto=format" alt="Landscape Photography">
+        <div class="blog-content">
+          <div class="blog-date">November 28, 2023</div>
+          <h3 class="blog-title">Finding Poetry in Landscape Photography</h3>
+          <p class="blog-excerpt">Explore the deeper connection between photographer and nature, and how to translate that relationship into powerful imagery.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Prints Shop Section -->
+  <section id="shop" class="prints-shop">
+    <div class="shop-container">
+      <div class="section-header">
+        <h2 class="section-title">Fine Art Prints</h2>
+        <p class="section-subtitle">Museum-quality prints of selected works, carefully produced on archival paper to preserve the artistry for generations.</p>
+      </div>
+      
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&h=400&fit=crop&auto=format" alt="Ethereal Portrait Print" class="product-image">
+          <div class="product-info">
+            <h3 class="product-title">Ethereal Portrait

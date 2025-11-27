@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian Roofing - Your Trusted Roof Protection Experts</title>
+  <meta name="description" content="Professional roofing services with 25+ years experience. Licensed, insured, and storm-ready. Free inspections and guaranteed quality workmanship.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Slab:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #1E3A5F;
+      --color-accent: #EF4444;
+      --color-bg: #FFFFFF;
+      --color-secondary: #2C5282;
+      --color-text: #1A202C;
+      --color-text-light: #4A5568;
+      --color-text-lighter: #718096;
+      --color-border: #E2E8F0;
+      --color-surface: #F7FAFC;
+      --color-success: #48BB78;
+      --color-warning: #ED8936;
+      
+      --font-heading: 'Roboto Slab', serif;
+      --font-body: 'Inter', sans-serif;
+      
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 1.5rem;
+      --spacing-lg: 2rem;
+      --spacing-xl: 3rem;
+      --spacing-2xl: 4rem;
+      
+      --border-radius: 8px;
+      --border-radius-lg: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      line-height: 1.6;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-sm);
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border: none;
+      border-radius: var(--border-radius);
+      font-family: var(--font-body);
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    
+    .btn-primary {
+      background-color: var(--color-accent);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: #DC2626;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+    }
+    
+    .btn-secondary:hover {
+      background-color: var(--color-primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .btn-large {
+      padding: var(--spacing-md) var(--spacing-xl);
+      font-size: 1.125rem;
+    }
+    
+    .section {
+      padding: var(--spacing-2xl) 0;
+    }
+    
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--color-primary);
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .section-subtitle {
+      font-size: 1.125rem;
+      color: var(--color-text-light);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto var(--spacing-xl);
+    }
+    
+    /* Header */
+    .header {
+      background-color: var(--color-bg);
+      box-shadow: var(--shadow);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-sm) 0;
+    }
+    
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+    
+    .nav {
+      display: none;
+    }
+    
+    .nav-list {
+      display: flex;
+      gap: var(--spacing-lg);
+      list-style: none;
+    }
+    
+    .nav-link {
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: var(--color-accent);
+    }
+    
+    .header-cta {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .phone-number {
+      display: none;
+      color: var(--color-primary);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(30, 58, 95, 0.95), rgba(44, 82, 130, 0.85)), url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&h=1080&fit=crop&auto=format') center/cover;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding-top: 80px;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      margin-bottom: var(--spacing-md);
+      line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+      font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+      margin-bottom: var(--spacing-xl);
+      opacity: 0.95;
+    }
+    
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .badge {
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: var(--border-radius-lg);
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .hero-cta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+      align-items: center;
+    }
+    
+    .emergency-banner {
+      background-color: var(--color-accent);
+      color: white;
+      padding: var(--spacing-sm);
+      text-align: center;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .emergency-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+    
+    /* Services Section */
+    .services {
+      background-color: var(--color-surface);
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-lg);
+    }
+    
+    .service-card {
+      background-color: white;
+      padding: var(--spacing-xl);
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background-color: var(--color-primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--spacing-md);
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    
+    .service-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .service-description {
+      color: var(--color-text-light);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    /* Gallery Section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--spacing-lg);
+    }
+    
+    .gallery-item {
+      background-color: white;
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .gallery-images {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+    }
+    
+    .before-after {
+      display: flex;
+      height: 100%;
+    }
+    
+    .before-image, .after-image {
+      flex: 1;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .before-image::after, .after-image::after {
+      content: attr(data-label);
+      position: absolute;
+      top: var(--spacing-sm);
+      left: var(--spacing-sm);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--border-radius);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    .gallery-info {
+      padding: var(--spacing-md);
+    }
+    
+    .project-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .project-details {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+    }
+    
+    /* Testimonials Section */
+    .testimonials {
+      background-color: var(--color-surface);
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-lg);
+    }
+    
+    .testimonial-card {
+      background-color: white;
+      padding: var(--spacing-xl);
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: var(--spacing-md);
+      font-size: 4rem;
+      color: var(--color-accent);
+      font-family: serif;
+      line-height: 1;
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: var(--spacing-md);
+      color: var(--color-text-light);
+      line-height: 1.7;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .author-info {
+      flex: 1;
+    }
+    
+    .author-name {
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+    
+    .author-project {
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+    }
+    
+    .rating {
+      display: flex;
+      gap: 2px;
+    }
+    
+    .star {
+      color: var(--color-warning);
+      font-size: 1.25rem;
+    }
+    
+    /* Storm Damage Section */
+    .storm-damage {
+      background: linear-gradient(135deg, var(--color-accent), #DC2626);
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .storm-damage::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?w=1920&h=600&fit=crop&auto=format') center/cover;
+      opacity: 0.1;
+      z-index: 1;
+    }
+    
+    .storm-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .storm-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .storm-subtitle {
+      font-size: 1.25rem;
+      margin-bottom: var(--spacing-xl);
+      opacity: 0.95;
+    }
+    
+    .storm-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .storm-feature {
+      text-align: center;
+    }
+    
+    .storm-feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .storm-feature-title {
+      font-weight: 700;
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .emergency-phone {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: var(--spacing-md);
+      text-decoration: none;
+      color: white;
+      display: block;
+    }
+    
+    /* About Section */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-xl);
+      align-items: center;
+    }
+    
+    .about-text {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--color-text-light);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .stat {
+      text-align: center;
+      padding: var(--spacing-md);
+      background-color: var(--color-surface);
+      border-radius: var(--border-radius-lg);
+    }
+    
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--color-accent);
+      display: block;
+    }
+    
+    .stat-label {
+      color: var(--color-text-light);
+      font-weight: 600;
+    }
+    
+    .about-image {
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* Contact Section */
+    .contact {
+      background-color: var(--color-surface);
+    }
+    
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-xl);
+    }
+    
+    .contact-form {
+      background-color: white;
+      padding: var(--spacing-xl);
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow);
+    }
+    
+    .form-group {
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+    
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 2px solid var(--color-border);
+      border-radius: var(--border-radius);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+    
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+    
+    .contact-info {
+      background-color: var(--color-primary);
+      color: white;
+      padding: var(--spacing-xl);
+      border-radius: var(--border-radius-lg);
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background-color: var(--color-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    
+    .contact-details h3 {
+      font-weight: 700;
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .contact-details p {
+      opacity: 0.9;
+    }
+    
+    /* Footer */
+    .footer {
+      background-color: var(--color-primary);
+      color: white;
+      padding: var(--spacing-xl) 0 var(--spacing-lg);
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-xl);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .footer-section h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      margin-bottom: var(--spacing-md);
+      color: white;
+    }
+    
+    .footer-section p,
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      margin-bottom: var(--spacing-xs);
+      display: block;
+    }
+    
+    .footer-section a:hover {
+      color: white;
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: var(--spacing-lg);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    /* Responsive Design */
+    @media (min-width: 768px) {
+      .nav {
+        display: block;
+      }
+      
+      .phone-number {
+        display: block;
+      }
+      
+      .hero-cta {
+        flex-direction: row;
+        justify-content: center;
+      }
+      
+      .form-row {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .about-content {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .contact-content {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .container {
+        padding: 0 var(--spacing-lg);
+      }
+      
+      .section {
+        padding: var(--spacing-2xl) 0 4rem;
+      }
+    }
+    
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Emergency Banner -->
+  <div class="emergency-banner">
+    <div class="container">
+      ⚡ STORM DAMAGE EMERGENCY? Call 24/7: (555) 123-ROOF - Insurance Claims Specialist ⚡
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="#" class="logo">Guardian Roofing</a>
+        
+        <nav class="nav">
+          <ul class="nav-list">
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#gallery" class="nav-link">Gallery</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+        
+        <div class="header-cta">
+          <a href="tel:5551234567" class="phone-number">(555) 123-ROOF</a>
+          <a href="#contact" class="btn btn-primary">Free Inspection</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Your Trusted Roof Protection Experts</h1>
+        <p class="hero-subtitle">25+ years of guaranteed quality workmanship. Licensed, insured, and storm-ready to protect your most valuable investment.</p>
+        
+        <div class="hero-badges">
+          <span class="badge">✓ Licensed & Insured</span>
+          <span class="badge">✓ 25+ Years Experience</span>
+          <span class="badge">✓ Lifetime Warranty</span>
+          <span class="badge">✓ Storm Damage Certified</span>
+        </div>
+        
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary btn-large">Free Roof Inspection</a>
+          <a href="tel:5551234567" class="btn btn-secondary btn-large">Call (555) 123-ROOF</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="section services">
+    <div class="container">
+      <h2 class="section-title">Professional Roofing Services</h2>
+      <p class="section-subtitle">From emergency repairs to complete replacements, we deliver durable solutions that protect your home for decades.</p>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🏠</div>
+          <h3 class="service-title">Roof Replacement</h3>
+          <p class="service-description">Complete roof replacement with premium materials and lifetime warranty. We handle everything from permits to cleanup.</p>
+          <a href="#contact" class="btn btn-secondary">Get Quote</a>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <h3 class="service-title">Roof Repair</h3>
+          <p class="service-description">Fast, reliable repairs for leaks, storm damage, and wear. Emergency service available 24/7 for urgent issues.</p>
+          <a href="#contact" class="btn btn-secondary">Get Quote</a>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">⛈️</div>
+          <h3 class="service-title">Storm Damage</h3>
+          <p class="service-description">Expert storm damage assessment and repair. We work directly with insurance companies to maximize your claim.</p>
+          <a href="#contact" class="btn btn-secondary">Get Quote</a>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🏗️</div>
+          <h3 class="service-title">New Construction</h3>
+          <p class="service-description">Custom roofing solutions for new homes and additions. Premium materials and expert installation guaranteed.</p>
+          <a href="#contact" class="btn btn-secondary">Get Quote</a>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🏢</div>
+          <h3 class="service-title">Commercial Roofing</h3>
+          <p class="service-description">Specialized commercial roofing services. Flat roofs, metal systems, and maintenance programs available.</p>
+          <a href="#contact" class="btn btn-secondary">Get Quote</a>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🔍</div>
+          <h3 class="service-title">Roof Inspections</h3>
+          <p class="service-description">Comprehensive roof inspections with detailed reports. Perfect for home purchases or insurance requirements.</p>
+          <a href="#contact" class="btn btn-secondary">Get Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="section gallery">
+    <div class="container">
+      <h2 class="section-title">Our Quality Work</h2>
+      <p class="section-subtitle">See the transformation! Before and after photos of our recent roofing projects across the area.</p>
+      
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div class="gallery-images">
+            <div class="before-after">
+              <div class="before-image" data-label="Before" style="background-image: url('https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?w=800&h=600&fit=crop&auto=format')"></div>
+              <div class="after-image" data-label="After" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&auto=format')"></div>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <h3 class="project-title

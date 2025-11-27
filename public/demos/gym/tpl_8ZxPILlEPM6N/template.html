@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PowerFit Gym - Transform Your Life</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Variables */
+    :root {
+      --color-primary: #EF4444;
+      --color-accent: #1F2937;
+      --color-bg: #FFFFFF;
+      --color-secondary: #F87171;
+      --color-text: #111827;
+      --color-text-light: #6B7280;
+      --color-card: #F9FAFB;
+      --font-heading: 'Oswald', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --shadow-light: 0 1px 3px rgba(0,0,0,0.1);
+      --shadow-medium: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-heavy: 0 10px 25px rgba(0,0,0,0.15);
+      --border-radius: 8px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      line-height: 1.6;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .section-padding {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: var(--color-primary);
+      color: white;
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+    }
+
+    .btn:hover {
+      background: #DC2626;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: var(--shadow-light);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--color-text);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--color-primary);
+    }
+
+    .mobile-menu {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(31, 41, 55, 0.7), rgba(239, 68, 68, 0.3)),
+                  url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&h=1080&fit=crop&auto=format') center/cover;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    .hero-content h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      animation: slideInUp 1s ease-out;
+    }
+
+    .hero-content p {
+      font-size: clamp(1.1rem, 3vw, 1.3rem);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: slideInUp 1s ease-out 0.2s both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: slideInUp 1s ease-out 0.4s both;
+    }
+
+    .trial-badge {
+      position: absolute;
+      top: 20%;
+      right: 10%;
+      background: var(--color-primary);
+      color: white;
+      padding: 1rem;
+      border-radius: 50%;
+      text-align: center;
+      font-weight: 700;
+      animation: pulse 2s infinite;
+    }
+
+    .hero-features {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+    }
+
+    /* Membership Section */
+    .membership {
+      background: var(--color-card);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .pricing-card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-medium);
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-heavy);
+    }
+
+    .pricing-card.featured {
+      border: 3px solid var(--color-primary);
+      transform: scale(1.05);
+    }
+
+    .pricing-card.featured::before {
+      content: 'MOST POPULAR';
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .plan-name {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .plan-price {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .plan-price span {
+      font-size: 1rem;
+      color: var(--color-text-light);
+    }
+
+    .plan-features {
+      list-style: none;
+      margin: 2rem 0;
+      text-align: left;
+    }
+
+    .plan-features li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .plan-features li::before {
+      content: '✓';
+      color: var(--color-primary);
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    /* Classes Section */
+    .classes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .class-card {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-medium);
+      transition: var(--transition);
+    }
+
+    .class-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-heavy);
+    }
+
+    .class-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .class-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      padding: 1rem;
+    }
+
+    .class-title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .class-info {
+      padding: 1rem;
+    }
+
+    .class-schedule {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+      margin-bottom: 1rem;
+    }
+
+    /* Facilities Section */
+    .facilities {
+      background: var(--color-card);
+    }
+
+    .facilities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .facility-card {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-medium);
+      transition: var(--transition);
+    }
+
+    .facility-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .facility-image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .facility-content {
+      padding: 1.5rem;
+    }
+
+    .facility-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    /* Trainers Section */
+    .trainers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .trainer-card {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-medium);
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .trainer-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-heavy);
+    }
+
+    .trainer-image {
+      height: 300px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .trainer-info {
+      padding: 1.5rem;
+    }
+
+    .trainer-name {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .trainer-specialty {
+      color: var(--color-primary);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .trainer-certs {
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+      margin-bottom: 1rem;
+    }
+
+    /* Virtual Tour Section */
+    .virtual-tour {
+      background: var(--color-accent);
+      color: white;
+      text-align: center;
+    }
+
+    .tour-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .tour-video {
+      width: 100%;
+      height: 400px;
+      border-radius: var(--border-radius);
+      margin: 2rem 0;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tour-video:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      background: var(--color-card);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-medium);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .testimonial-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      margin: 0 auto 1rem;
+    }
+
+    .testimonial-quote {
+      font-style: italic;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .testimonial-stats {
+      color: var(--color-primary);
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: var(--color-accent);
+      color: white;
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .contact-info h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-form {
+      background: rgba(255,255,255,0.1);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: var(--border-radius);
+      font-family: var(--font-body);
+      background: rgba(255,255,255,0.9);
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    /* Footer */
+    footer {
+      background: #0F172A;
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h4 {
+      font-family: var(--font-heading);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--color-primary);
+    }
+
+    /* Animations */
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+
+      .hero-features {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .trial-badge {
+        position: static;
+        margin-bottom: 2rem;
+      }
+
+      .pricing-card.featured {
+        transform: none;
+      }
+
+      .contact-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 0.5rem;
+      }
+
+      .section-padding {
+        padding: 2rem 0;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="container">
+      <a href="#" class="logo">PowerFit</a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#membership">Membership</a></li>
+        <li><a href="#classes">Classes</a></li>
+        <li><a href="#facilities">Facilities</a></li>
+        <li><a href="#trainers">Trainers</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="mobile-menu">☰</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="trial-badge">
+          <div>7-Day</div>
+          <div>FREE</div>
+          <div>Trial</div>
+        </div>
+        <h1>Transform Your Life</h1>
+        <p>Unleash your potential at PowerFit Gym - where champions are made and goals become reality. Join our community of achievers today.</p>
+        <div class="hero-cta">
+          <a href="#membership" class="btn">Start Your Free Trial</a>
+          <a href="#virtual-tour" class="btn btn-outline">Take Virtual Tour</a>
+        </div>
+      </div>
+      <div class="hero-features">
+        <div class="hero-feature">
+          <span>🕒</span>
+          <span>24/7 Access</span>
+        </div>
+        <div class="hero-feature">
+          <span>👥</span>
+          <span>Expert Trainers</span>
+        </div>
+        <div class="hero-feature">
+          <span>🏆</span>
+          <span>Premium Equipment</span>
+        </div>
+        <div class="hero-feature">
+          <span>💪</span>
+          <span>Results Guaranteed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Membership Section -->
+  <section id="membership" class="membership section-padding">
+    <div class="container">
+      <h2 class="section-title">Choose Your Path to Success</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3 class="plan-name">Basic</h3>
+          <div class="plan-price">$29<span>/month</span></div>
+          <ul class="plan-features">
+            <li>24/7 Gym Access</li>
+            <li>Cardio & Weight Equipment</li>
+            <li>Locker Room Access</li>
+            <li>Basic Mobile App</li>
+            <li>Guest Pass (1/month)</li>
+          </ul>
+          <a href="#contact" class="btn">Join Now</a>
+        </div>
+        
+        <div class="pricing-card featured">
+          <h3 class="plan-name">Premium</h3>
+          <div class="plan-price">$59<span>/month</span></div>
+          <ul class="plan-features">
+            <li>Everything in Basic</li>
+            <li>Unlimited Group Classes</li>
+            <li>Sauna & Steam Room</li>
+            <li>Nutrition Consultation</li>
+            <li>Personal Training (2 sessions)</li>
+            <li>Guest Pass (4/month)</li>
+          </ul>
+          <a href="#contact" class="btn">Transform Today</a>
+        </div>
+        
+        <div class="pricing-card">
+          <h3 class="plan-name">Elite</h3>
+          <div class="plan-price">$99<span>/month</span></div>
+          <ul class="plan-features">
+            <li>Everything in Premium</li>
+            <li>Unlimited Personal Training</li>
+            <li>VIP Locker Room</li>
+            <li>Recovery Zone Access</li>
+            <li>Meal Planning Service</li>
+            <li>Unlimited Guest Passes</li>
+            <li>Priority Class Booking</li>
+          </ul>
+          <a href="#contact" class="btn">Go Elite</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Classes Section -->
+  <section id="classes" class="classes section-padding">
+    <div class="container">
+      <h2 class="section-title">Energizing Classes</h2>
+      <div class="classes-grid">
+        <div class="class-card">
+          <div class="class-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&auto=format')">
+            <div class="class-overlay">
+              <div class="class-title">HIIT Training</div>
+              <p>High-intensity interval training for maximum results</p>
+            </div>
+          </div>
+          <div class="class-info">
+            <div class="class-schedule">
+              <span>Mon, Wed, Fri</span>
+              <span>6:00 AM - 7:00 AM</span>
+            </div>
+            <a href="#contact" class="btn btn-outline">Book Class</a>
+          </div>
+        </div>
+
+        <div class="class-card">
+          <div class="class-image" style="background-image: url('https://images.unsplash.com/photo-1506629905607-d405c1725481?w=800&h=600&fit=crop&auto=format')">
+            <div class="class-overlay">
+              <div class="class-title">Power Yoga</div>
+              <p>Build strength, flexibility, and inner peace</p>
+            </div>
+          </div>
+          <div class="class-info">
+            <div class="class-schedule">
+              <span>Daily</span>
+              <span>7:00 AM - 8:00 AM</span>
+            </div>
+            <a href="#contact" class="btn btn-outline">Book Class</a>
+          </div>
+        </div>
+
+        <div class="class-card">
+          <div class="class-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&auto=format')">
+            <div class="class-overlay">
+              <div class="class-title">Spin Cycling</div>
+              <p>High-energy cardio with motivating music</p>
+            </div>
+          </div>
+          <div class="class-info">
+            <div class="class-schedule">
+              <span>Mon-Sat</span>
+              <span>5:30 PM - 6:30 PM</span>
+            </div>
+            <a href="#contact" class="btn btn-outline">Book Class</a>
+          </div>
+        </div>
+
+        <div class="class-card">
+          <div class="class-image" style="background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&h=600&fit=crop&auto=format')">
+            <div class="class-overlay">
+              <div class="class-title">Strength Training</div>
+              <p>Build muscle and increase power with expert guidance</p>
+            </div>
+          </div>
+          <div class="class-info">
+            <div class="class-schedule">
+              <span>Tue, Thu, Sat</span>
+              <span>8:00 AM - 9:00 AM</span>
+            </div>
+            <a href="#contact" class="btn btn-outline">Book Class</a>
+          </div>
+        </div>
+
+        <div class="class-card">
+          <div class="class-image" style="background-image: url('https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=800&h=600&fit=crop&auto=format')">
+            <div class="class-overlay">
+              <div class="class-title">Boxing</div>
+              <p>Learn technique while getting an incredible workout</p>
+            </div>
+          </div>
+          <div class="class-info">
+            <div class="class-schedule">
+              <span>Mon, Wed, Fri</span>
+              <span>7:00 PM - 8:00 PM</span>
+            </div>
+            <a href="#contact" class="btn btn-outline">Book Class</a>
+          </div>
+        </div>
+
+        <div class="class-card">
+          <div class="class-image" style="background-image: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&h=600&fit=crop&auto=format')">
+            <div class="class-overlay">
+              <div class="class-title">CrossFit</div>
+              <p>Functional fitness for everyday strength</p>
+            </div>
+          </div>
+          <div class="class-info">
+            <div class="class-schedule">
+              <span>Daily</span>
+              <span>6:00 PM - 7:00 PM</span>
+            </div>
+            <a href="#contact" class="btn btn-outline">Book Class</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Facilities Section -->
+  <section id="facilities" class="facilities section-padding">
+    <div class="container">
+      <h2 class="section-title">World-Class Facilities</h2>
+      <div class="facilities-grid">
+        <div class="facility-card">
+          <div class="facility-image" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=600&fit=crop&auto=format')"></div>
+          <div class="facility-content">
+            <h3 class="facility-title">Weight Room</h3>
+            <p>State-of-the-art equipment including free weights, machines, and functional training areas designed for maximum results.</p>
+          </div>
+        </div>
+
+        <div class="facility-card">
+          <div class="facility-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&auto=format')"></div>
+          <div class="facility-content">
+            <h3 class="facility-title">Cardio Floor</h3>
+            <p>Premium cardio equipment with entertainment systems and heart rate monitoring for optimal training efficiency.</p>
+          </div>
+        </div>
+
+        <div class="facility-card">
+          <div class="facility-image" style="background-image: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&h=

@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Construction - Built to Last, Delivered on Time</title>
+  <meta name="description" content="Professional construction services with 25+ years of experience. Commercial, residential, and design-build projects delivered on-time and on-budget.">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #B45309;
+      --color-accent: #1F2937;
+      --color-bg: #FFFFFF;
+      --color-secondary: #D97706;
+      --color-text: #78350F;
+      --color-text-light: #92400E;
+      --color-text-muted: #6B7280;
+      --color-border: #E5E7EB;
+      --color-surface: #F9FAFB;
+      
+      --font-heading: 'Oswald', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      
+      --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+      
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      line-height: 1.6;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background-color: var(--color-primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .btn:hover {
+      background-color: var(--color-secondary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--color-primary);
+      color: white;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: var(--color-text-light);
+      margin-bottom: 3rem;
+      max-width: 600px;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: var(--transition);
+    }
+
+    .header.scrolled {
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-link:hover {
+      color: var(--color-primary);
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .nav-toggle span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--color-text);
+      transition: var(--transition);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(rgba(31, 41, 55, 0.7), rgba(31, 41, 55, 0.7)),
+                  url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&h=1080&fit=crop&auto=format') center/cover;
+      display: flex;
+      align-items: center;
+      color: white;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .hero-badge {
+      background-color: var(--color-primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-number {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-secondary);
+    }
+
+    .hero-stat-label {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Services Section */
+    .services {
+      padding: 6rem 0;
+      background-color: var(--color-surface);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background-color: var(--color-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+      color: white;
+    }
+
+    .service-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .service-description {
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    /* Projects Section */
+    .projects {
+      padding: 6rem 0;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .project-title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-description {
+      color: var(--color-text-light);
+      font-size: 0.95rem;
+    }
+
+    /* About Section */
+    .about {
+      padding: 6rem 0;
+      background-color: var(--color-surface);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--color-text-light);
+      margin-bottom: 2rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .about-stat {
+      text-align: center;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .about-stat-number {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      display: block;
+    }
+
+    .about-stat-label {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .about-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      padding: 6rem 0;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .testimonial-quote {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--color-text-light);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .testimonial-info h4 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: var(--color-accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .testimonial-info p {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+    }
+
+    .testimonial-stars {
+      color: var(--color-secondary);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 6rem 0;
+      background-color: var(--color-surface);
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid var(--color-border);
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    .contact-info {
+      padding: 2rem;
+    }
+
+    .contact-info h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--color-accent);
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background-color: var(--color-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    /* FAQ Section */
+    .faq {
+      padding: 6rem 0;
+    }
+
+    .faq-item {
+      background: white;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 1.5rem;
+      background: none;
+      border: none;
+      text-align: left;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .faq-question:hover {
+      background-color: var(--color-surface);
+    }
+
+    .faq-answer {
+      padding: 0 1.5rem 1.5rem;
+      color: var(--color-text-light);
+      line-height: 1.6;
+      display: none;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    .faq-icon {
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      transition: var(--transition);
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--color-accent);
+      color: white;
+      padding: 3rem 0 1rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--color-secondary);
+      text-transform: uppercase;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      line-height: 1.6;
+    }
+
+    .footer-section a:hover {
+      color: var(--color-secondary);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 1rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .about-content,
+      .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .about-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 0.75rem;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .hero-badge {
+        font-size: 0.8rem;
+      }
+
+      .service-card,
+      .contact-form {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="#" class="logo">Apex Construction</a>
+        <ul class="nav-menu">
+          <li><a href="#hero" class="nav-link">Home</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">25+ Years of Excellence</div>
+        <h1 class="hero-title">Built to Last, Delivered on Time</h1>
+        <p class="hero-subtitle">Expert construction services engineered for quality, delivered with precision. Your trusted partner for commercial and residential projects.</p>
+        <a href="#contact" class="btn">Get Free Consultation</a>
+        
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-number">500+</div>
+            <div class="hero-stat-label">Projects Completed</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">25</div>
+            <div class="hero-stat-label">Years Experience</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">98%</div>
+            <div class="hero-stat-label">On-Time Delivery</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">Comprehensive construction solutions engineered to exceed expectations and delivered with professional excellence.</p>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🏢</div>
+          <h3 class="service-title">Commercial Construction</h3>
+          <p class="service-description">Expert commercial building construction with focus on functionality, durability, and on-schedule delivery for offices, retail, and industrial facilities.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🏠</div>
+          <h3 class="service-title">Residential Construction</h3>
+          <p class="service-description">Quality residential construction services from custom homes to multi-family developments, built with precision and attention to detail.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <h3 class="service-title">Renovations</h3>
+          <p class="service-description">Professional renovation and remodeling services that transform spaces while maintaining structural integrity and code compliance.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">📐</div>
+          <h3 class="service-title">Design-Build</h3>
+          <p class="service-description">Streamlined design-build services that integrate planning, design, and construction for efficient project delivery and cost control.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">📋</div>
+          <h3 class="service-title">Project Management</h3>
+          <p class="service-description">Comprehensive project management ensuring on-time, on-budget delivery with clear communication and quality control throughout.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🏗️</div>
+          <h3 class="service-title">Pre-Construction</h3>
+          <p class="service-description">Strategic pre-construction planning including feasibility studies, cost estimation, and permit assistance for successful project execution.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">Showcasing our expertise through successfully completed projects that demonstrate quality craftsmanship and professional execution.</p>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop&auto=format" alt="Metropolitan Office Complex" class="project-image">
+          <div class="project-content">
+            <h3 class="project-title">Metropolitan Office Complex</h3>
+            <div class="project-meta">
+              <span>Commercial</span>
+              <span>Downtown Seattle</span>
+              <span>2024</span>
+            </div>
+            <p class="project-description">Modern 12-story office building featuring sustainable design elements and advanced building systems.</p>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop&auto=format" alt="Luxury Residential Estate" class="project-image">
+          <div class="project-content">
+            <h3 class="project-title">Luxury Residential Estate</h3>
+            <div class="project-meta">
+              <span>Residential</span>
+              <span>Bellevue, WA</span>
+              <span>2023</span>
+            </div>
+            <p class="project-description">Custom 6,500 sq ft luxury home with premium finishes and smart home technology integration.</p>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop&auto=format" alt="Industrial Warehouse Facility" class="project-image">
+          <div class="project-content">
+            <h3 class="project-title">Industrial Warehouse Facility</h3>
+            <div class="project-meta">
+              <span>Industrial</span>
+              <span>Tacoma, WA</span>
+              <span>2023</span>
+            </div>
+            <p class="project-description">150,000 sq ft distribution center with advanced logistics systems and energy-efficient design.</p>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop&auto=format" alt="Historic Building Renovation" class="project-image">
+          <div class="project-content">
+            <h3 class="project-title">Historic Building Renovation</h3>
+            <div class="project-meta">
+              <span>Renovation</span>
+              <span>Pioneer Square</span>
+              <span>2024</span>
+            </div>
+            <p class="project-description">Careful restoration of 1920s building preserving historical character while adding modern amenities.</p>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&auto=format" alt="Multi-Family Housing Complex" class="project-image">
+          <div class="project-content">
+            <h3 class="project-title">Multi-Family Housing Complex</h3>
+            <div class="project-meta">
+              <span>Residential</span>
+              <span>Kirkland, WA</span>
+              <span>2023</span>
+            </div>
+            <p class="project-description">120-unit apartment complex featuring sustainable construction and community amenities.</p>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&h=600&fit=crop&auto=format" alt="Medical Center Expansion" class="project-image">
+          <div class="project-content">
+            <h3 class="project-title">Medical Center Expansion</h3>
+            <div class="project-meta">
+              <span>Healthcare</span>
+              <span>Redmond, WA</span>
+              <span>2024</span>
+            </div>
+            <p class="project-description">50,000 sq ft medical facility expansion with specialized systems and patient-focused design.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-content">
+        <div>
+          <h2 class="section-title">Built on Experience</h2>
+          <p class="about-text">For over 25 years, Apex Construction has been the trusted choice for quality construction services in the Pacific Northwest. Our commitment to excellence, safety, and client satisfaction has built our reputation as a leader in the industry.</p>
+          <p class="about-text">We combine traditional craftsmanship with modern technology and sustainable practices to deliver projects that stand the test of time. Every project is approached with the same dedication to quality, regardless of size or complexity.</p>
+          <a href="#contact" class="btn btn-outline">Start Your Project</a>
+          
+          <div class="about-stats">
+            <div class="about-stat">
+              <span class="about-stat-number">500+</span>
+              <span class="about-stat-label">Projects Completed</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-number">25</span>
+              <span class="about-stat-label">Years Experience</span>

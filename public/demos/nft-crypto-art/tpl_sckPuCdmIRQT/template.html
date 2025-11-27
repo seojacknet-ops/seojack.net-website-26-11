@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberVault - Genesis Collection NFTs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Variables */
+    :root {
+      --color-primary: #0A0A0F;
+      --color-accent: #00D4FF;
+      --color-bg: #000005;
+      --color-secondary: #15151F;
+      --color-text: #FAFAFA;
+      --color-text-dim: #B0B0B0;
+      --color-gradient: linear-gradient(135deg, #00D4FF 0%, #0099CC 100%);
+      --color-gradient-dark: linear-gradient(135deg, #001122 0%, #000811 100%);
+      --font-heading: 'Orbitron', monospace;
+      --font-body: 'JetBrains Mono', monospace;
+      --border-radius: 12px;
+      --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.3);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      background: var(--color-gradient);
+      color: var(--color-primary);
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-accent);
+      border: 2px solid var(--color-accent);
+    }
+
+    .btn-outline:hover {
+      background: var(--color-accent);
+      color: var(--color-primary);
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 5, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 900;
+      background: var(--color-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .wallet-btn {
+      font-size: 0.875rem;
+      padding: 0.5rem 1rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: var(--color-gradient-dark);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1634973357973-f2ed2657db3c?w=1920&h=1080&fit=crop&auto=format') center/cover;
+      opacity: 0.3;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
+      background: var(--color-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+    }
+
+    .hero-text .subtitle {
+      font-size: 1.25rem;
+      color: var(--color-text-dim);
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+
+    .artist-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2rem 0;
+      padding: 1rem;
+      background: rgba(21, 21, 31, 0.8);
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    .artist-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid var(--color-accent);
+    }
+
+    .artist-details h3 {
+      font-family: var(--font-heading);
+      color: var(--color-accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.875rem;
+      color: var(--color-text-dim);
+    }
+
+    .featured-artwork {
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-glow);
+      transform: perspective(1000px) rotateY(-5deg);
+      transition: var(--transition);
+    }
+
+    .featured-artwork:hover {
+      transform: perspective(1000px) rotateY(0deg) scale(1.05);
+    }
+
+    .featured-artwork img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+    }
+
+    .artwork-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+      padding: 2rem;
+      color: white;
+    }
+
+    /* Featured NFTs Section */
+    .featured-nfts {
+      padding: 6rem 0;
+      background: var(--color-primary);
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-align: center;
+      margin-bottom: 3rem;
+      background: var(--color-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nft-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .nft-card {
+      background: var(--color-secondary);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid rgba(0, 212, 255, 0.1);
+      position: relative;
+    }
+
+    .nft-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--color-gradient);
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 1;
+    }
+
+    .nft-card:hover::before {
+      opacity: 0.1;
+    }
+
+    .nft-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .nft-card > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .nft-image {
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .nft-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .nft-card:hover .nft-image img {
+      transform: scale(1.1);
+    }
+
+    .nft-info {
+      padding: 1.5rem;
+    }
+
+    .nft-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--color-accent);
+    }
+
+    .nft-price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .price-eth {
+      font-weight: 700;
+      font-size: 1.125rem;
+    }
+
+    .rarity-badge {
+      background: var(--color-gradient);
+      color: var(--color-primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .nft-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .nft-actions .btn {
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      justify-content: center;
+    }
+
+    /* About Artist Section */
+    .about-artist {
+      padding: 6rem 0;
+      background: var(--color-bg);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .artist-profile {
+      text-align: center;
+    }
+
+    .artist-avatar-large {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 4px solid var(--color-accent);
+      margin: 0 auto 2rem;
+      box-shadow: var(--shadow-glow);
+    }
+
+    .artist-name {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--color-accent);
+    }
+
+    .artist-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1rem;
+      background: var(--color-secondary);
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(0, 212, 255, 0.1);
+    }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-accent);
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--color-text-dim);
+      text-transform: uppercase;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-secondary);
+      border-radius: 50%;
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: var(--transition);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    .social-link:hover {
+      background: var(--color-accent);
+      color: var(--color-primary);
+      transform: translateY(-3px);
+    }
+
+    .artist-bio {
+      font-size: 1.125rem;
+      line-height: 1.8;
+      color: var(--color-text-dim);
+    }
+
+    .artist-bio h3 {
+      color: var(--color-text);
+      margin-bottom: 1rem;
+      font-family: var(--font-heading);
+    }
+
+    /* Connect Section */
+    .connect {
+      padding: 6rem 0;
+      background: var(--color-primary);
+      text-align: center;
+    }
+
+    .wallet-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .wallet-card {
+      background: var(--color-secondary);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      border: 2px solid transparent;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .wallet-card:hover {
+      border-color: var(--color-accent);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .wallet-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      background: var(--color-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .wallet-name {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--color-accent);
+    }
+
+    .email-signup {
+      max-width: 500px;
+      margin: 3rem auto 0;
+      padding: 2rem;
+      background: var(--color-secondary);
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    .email-form {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .email-form input {
+      flex: 1;
+      padding: 0.875rem;
+      background: var(--color-bg);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: var(--border-radius);
+      color: var(--color-text);
+      font-family: var(--font-body);
+    }
+
+    .email-form input:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+    }
+
+    /* Collection Section */
+    .collection {
+      padding: 6rem 0;
+      background: var(--color-bg);
+    }
+
+    .collection-filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      color: var(--color-text-dim);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: 25px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--font-body);
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--color-accent);
+      color: var(--color-primary);
+    }
+
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Stats Section */
+    .stats {
+      padding: 6rem 0;
+      background: var(--color-primary);
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .stats-card {
+      padding: 2rem;
+      background: var(--color-secondary);
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(0, 212, 255, 0.1);
+      transition: var(--transition);
+    }
+
+    .stats-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .stats-number {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 900;
+      background: var(--color-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .stats-label {
+      font-size: 1.125rem;
+      color: var(--color-text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--color-bg);
+      padding: 3rem 0 1rem;
+      border-top: 1px solid rgba(0, 212, 255, 0.1);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      font-family: var(--font-heading);
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+    }
+
+    .footer-section a {
+      color: var(--color-text-dim);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .footer-section a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0, 212, 255, 0.1);
+      color: var(--color-text-dim);
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .artist-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .email-form {
+        flex-direction: column;
+      }
+
+      .collection-filters {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .featured-artwork {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+      50% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.6); }
+    }
+
+    .hero .btn {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="container">
+      <div class="logo">CyberVault</div>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#featured-nfts">Collection</a></li>
+        <li><a href="#about-artist">Artist</a></li>
+        <li><a href="#connect">Connect</a></li>
+      </ul>
+      <a href="#connect" class="btn wallet-btn">Connect Wallet</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Genesis Collection</h1>
+          <p class="subtitle">Rare digital artworks from the metaverse</p>
+          <div class="artist-info">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&auto=format" alt="Artist Avatar" class="artist-avatar">
+            <div class="artist-details">
+              <h3>CyberArtist_0x</h3>
+              <div class="verified-badge">
+                ✓ Verified Creator
+              </div>
+            </div>
+          </div>
+          <a href="#featured-nfts" class="btn">View Collection</a>
+        </div>
+        <div class="featured-artwork">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=600&fit=crop&auto=format" alt="Featured Artwork">
+          <div class="artwork-overlay">
+            <h3>Quantum Dreams #001</h3>
+            <p>Starting bid: 2.5 ETH</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured NFTs Section -->
+  <section id="featured-nfts" class="featured-nfts">
+    <div class="container">
+      <h2 class="section-title">Featured NFTs</h2>
+      <div class="nft-grid">
+        <div class="nft-card">
+          <div class="nft-image">
+            <img src="https://images.unsplash.com/photo-1634973357973-f2ed2657db3c?w=800&h=600&fit=crop&auto=format" alt="NFT Artwork">
+          </div>
+          <div class="nft-info">
+            <h3 class="nft-title">Digital Genesis #001</h3>
+            <div class="nft-price">
+              <span class="price-eth">2.5 ETH</span>
+              <span class="rarity-badge">Legendary</span>
+            </div>
+            <div class="nft-actions">
+              <button class="btn">Place Bid</button>
+              <button class="btn btn-outline">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="nft-card">
+          <div class="nft-image">
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=600&fit=crop&auto=format" alt="NFT Artwork">
+          </div>
+          <div class="nft-info">
+            <h3 class="nft-title">Cyber Vision #042</h3>
+            <div class="nft-price">
+              <span class="price-eth">1.8 ETH</span>
+              <span class="rarity-badge">Epic</span>
+            </div>
+            <div class="nft-actions">
+              <button class="btn">Place Bid</button>
+              <button class="btn btn-outline">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="nft-card">
+          <div class="nft-image">
+            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&h=600&fit=crop&auto=format" alt="NFT Artwork">
+          </div>
+          <div class="nft-info">
+            <h3 class="nft-title">Neon Dreams #128</h3>
+            <div class="nft-price">
+              <span class="price-eth">3.2 ETH</span>
+              <span class="rarity-badge">Mythic</span>
+            </div>
+            <div class="nft-actions">
+              <button class="btn">Place Bid</button>
+              <button class="btn btn-outline">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="nft-card">
+          <div class="nft-image">
+            <img src="https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=800&h=600&fit=crop&auto=format" alt="NFT Artwork">
+          </div>
+          <div class="nft-info">
+            <h3 class="nft-title">Matrix Code #256</h3>
+            <div class="nft-price">
+              <span class="price-eth">1.5 ETH</span>
+              <span class="rarity-badge">Rare</span>
+            </div>
+            <div class="nft-actions">
+              <button class="btn">Place Bid</button>
+              <button class="btn btn-outline">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="nft-card">
+          <div class="nft-image">
+            <img src="https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=800&h=600&fit=crop&auto=format" alt="NFT Artwork">
+          </div>
+          <div class="nft-info">
+            <h3 class="nft-title">Holographic #077</h3>
+            <div class="nft-price">
+              <span class="price-eth">2.1 ETH</span>
+              <span class="rarity-badge">Epic</span>
+            </div>
+            <div class="nft-actions">
+              <button class="btn">Place Bid</button>
+              <button class="btn btn-outline">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="nft-card">
+          <div class="nft-image">
+            <img src="https://images.unsplash.com/photo-1617791160588-241658c0f566?w=800&h=600&fit=crop&auto=format" alt="NFT Artwork">
+          </div>
+          <div class="nft-info">
+            <h3 class="nft-title">Pixel Realm #512</h3>
+            <div class="nft-price">
+              <span class="price-eth">4.0 ETH</span>
+              <span class="rarity-badge">Legendary</span>
+            </div>
+            <div class="nft-actions">
+              <button class="btn">Place Bid</button>
+              <button class="btn btn-outline">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Artist Section -->
+  <section id="about-artist" class="about-artist">
+    <div class="container">
+      <h2 class="section-title">About the Artist</h2>
+      <div class="about-content">
+        <div class="artist-profile">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=

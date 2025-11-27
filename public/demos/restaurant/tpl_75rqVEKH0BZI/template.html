@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saveur - Where Culinary Art Meets Passion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Variables */
+    :root {
+      --color-primary: #8B0000;
+      --color-accent: #D4AF37;
+      --color-bg: #FFFAF0;
+      --color-secondary: #2C1810;
+      --color-text: #1A1A1A;
+      --color-text-light: #666;
+      --color-white: #FFFFFF;
+      --color-border: #E5E5E5;
+      
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+      
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 2rem;
+      --spacing-lg: 3rem;
+      --spacing-xl: 4rem;
+      --spacing-xxl: 6rem;
+      
+      --border-radius: 8px;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
+      
+      --transition: all 0.3s ease;
+    }
+
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1.6;
+      background-color: var(--color-bg);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      line-height: 1.2;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+    }
+
+    h3 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: var(--spacing-sm);
+      font-size: clamp(1rem, 2vw, 1.125rem);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: var(--spacing-sm) var(--spacing-md);
+      font-family: var(--font-body);
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+      cursor: pointer;
+      border: 2px solid transparent;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-secondary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    .btn-accent {
+      background-color: var(--color-accent);
+      color: var(--color-secondary);
+    }
+
+    .btn-accent:hover {
+      background-color: var(--color-secondary);
+      color: var(--color-accent);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-sm);
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(255, 250, 240, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: var(--spacing-sm) 0;
+      border-bottom: 1px solid var(--color-border);
+      transition: var(--transition);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: var(--spacing-md);
+    }
+
+    .nav-link {
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--color-primary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--color-accent);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--color-primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(44, 24, 16, 0.4), rgba(139, 0, 0, 0.3)),
+                  url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&h=1080&fit=crop&auto=format') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-content {
+      color: var(--color-white);
+      max-width: 800px;
+      padding: 0 var(--spacing-sm);
+    }
+
+    .hero h1 {
+      margin-bottom: var(--spacing-sm);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.25rem, 3vw, 1.5rem);
+      margin-bottom: var(--spacing-lg);
+      color: var(--color-accent);
+      font-family: var(--font-heading);
+      font-style: italic;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: var(--spacing-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: var(--spacing-lg);
+    }
+
+    .hours-badge {
+      position: absolute;
+      top: 100px;
+      right: var(--spacing-md);
+      background-color: var(--color-accent);
+      color: var(--color-secondary);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Section Styles */
+    .section {
+      padding: var(--spacing-xxl) 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .section-title {
+      color: var(--color-secondary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .section-subtitle {
+      color: var(--color-text-light);
+      font-size: 1.125rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Menu Preview Section */
+    .menu-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .menu-category {
+      background-color: var(--color-white);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .menu-category:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .menu-category h3 {
+      color: var(--color-primary);
+      border-bottom: 2px solid var(--color-accent);
+      padding-bottom: var(--spacing-xs);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .menu-items {
+      list-style: none;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: var(--spacing-sm) 0;
+      border-bottom: 1px dotted var(--color-border);
+    }
+
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+
+    .menu-item-info h4 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .menu-item-desc {
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+    }
+
+    .menu-item-price {
+      color: var(--color-accent);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .menu-cta {
+      text-align: center;
+    }
+
+    /* About Section */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-xl);
+      align-items: center;
+    }
+
+    .about-text h2 {
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .about-text p {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .about-image {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .awards {
+      display: flex;
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+
+    .award {
+      background-color: var(--color-accent);
+      color: var(--color-secondary);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--border-radius);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Reservations Section */
+    .reservations {
+      background-color: var(--color-secondary);
+      color: var(--color-white);
+    }
+
+    .reservations .section-title {
+      color: var(--color-white);
+    }
+
+    .reservations .section-subtitle {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .reservation-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: var(--color-white);
+      padding: var(--spacing-lg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .form-group {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      font-family: var(--font-body);
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px rgba(139, 0, 0, 0.1);
+    }
+
+    /* Contact Section */
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-xl);
+    }
+
+    .contact-info h3 {
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .contact-item strong {
+      min-width: 100px;
+      color: var(--color-secondary);
+    }
+
+    .map-container {
+      background-color: var(--color-border);
+      border-radius: var(--border-radius);
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-light);
+    }
+
+    /* Gallery Section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-sm);
+    }
+
+    .gallery-item {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      display: flex;
+      align-items: flex-end;
+      padding: var(--spacing-sm);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-caption {
+      color: var(--color-white);
+      font-weight: 600;
+    }
+
+    /* Chef Story Section */
+    .chef-story {
+      background-color: var(--color-white);
+    }
+
+    .chef-content {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      gap: var(--spacing-xl);
+      align-items: center;
+    }
+
+    .chef-image {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .chef-image img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+    }
+
+    .chef-bio h2 {
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .chef-title {
+      color: var(--color-accent);
+      font-style: italic;
+      font-size: 1.25rem;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .chef-achievements {
+      background-color: var(--color-bg);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      margin-top: var(--spacing-md);
+    }
+
+    .chef-achievements h4 {
+      color: var(--color-secondary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .chef-achievements ul {
+      list-style: none;
+    }
+
+    .chef-achievements li {
+      padding: var(--spacing-xs) 0;
+      position: relative;
+      padding-left: var(--spacing-sm);
+    }
+
+    .chef-achievements li::before {
+      content: '★';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--color-secondary);
+      color: var(--color-white);
+      padding: var(--spacing-xl) 0 var(--spacing-md);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .footer-section h3 {
+      color: var(--color-accent);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .footer-section p,
+    .footer-section li {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-section a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: var(--spacing-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hours-badge {
+        position: static;
+        display: inline-block;
+        margin-top: var(--spacing-md);
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .about-content,
+      .contact-content,
+      .chef-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+      }
+
+      .chef-content {
+        grid-template-columns: 1fr;
+      }
+
+      .chef-image img {
+        height: 400px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-categories {
+        grid-template-columns: 1fr;
+      }
+
+      .awards {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      .section {
+        padding: var(--spacing-lg) 0;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav container">
+      <a href="#hero" class="logo">Saveur</a>
+      <ul class="nav-menu">
+        <li><a href="#hero" class="nav-link">Home</a></li>
+        <li><a href="#menu" class="nav-link">Menu</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#reservations" class="nav-link">Reservations</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="mobile-menu-btn">☰</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <h1>Saveur</h1>
+      <p class="hero-tagline">Where Culinary Art Meets Passion</p>
+      <p>Experience the finest farm-fresh cuisine in an atmosphere of warmth and sophistication. Our award-winning chef crafts each dish with locally-sourced ingredients and artisanal techniques.</p>
+      <div class="hero-cta">
+        <a href="#reservations" class="btn btn-primary">Reserve a Table</a>
+        <a href="#menu" class="btn btn-secondary">View Menu</a>
+      </div>
+    </div>
+    <div class="hours-badge">Now Open</div>
+  </section>
+
+  <!-- Menu Preview Section -->
+  <section id="menu" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Our Signature Menu</h2>
+        <p class="section-subtitle">Handcrafted dishes featuring seasonal ingredients and authentic flavors that celebrate the art of fine dining.</p>
+      </div>
+      
+      <div class="menu-categories">
+        <div class="menu-category">
+          <h3>Appetizers</h3>
+          <ul class="menu-items">
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <h4>Artisanal Cheese Board</h4>
+                <p class="menu-item-desc">Locally-sourced aged cheeses, seasonal fruits, honeycomb</p>
+              </div>
+              <span class="menu-item-price">$18</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <h4>Pan-Seared Scallops</h4>
+                <p class="menu-item-desc">Cauliflower purée, pancetta, micro greens</p>
+              </div>
+              <span class="menu-item-price">$24</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="menu-category">
+          <h3>Main Courses</h3>
+          <ul class="menu-items">
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <h4>Grass-Fed Ribeye</h4>
+                <p class="menu-item-desc">28-day aged, roasted vegetables, red wine reduction</p>
+              </div>
+              <span class="menu-item-price">$42</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <h4>Wild Salmon</h4>
+                <p class="menu-item-desc">Cedar plank grilled, quinoa pilaf, citrus beurre blanc</p>
+              </div>
+              <span class="menu-item-price">$36</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="menu-category">
+          <h3>Signature Dishes</h3>
+          <ul class="menu-items">
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <h4>Duck Confit</h4>
+                <p class="menu-item-desc">Cherry gastrique, duck fat potatoes, seasonal greens</p>
+              </div>
+              <span class="menu-item-price">$38</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <h4>Lobster Risotto</h4>
+                <p class="menu-item-desc">Maine lobster, arborio rice, truffle oil, parmigiano</p>
+              </div>
+              <span class="menu-item-price">$44</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="menu-category">
+          <h3>Desserts</h3>
+          <ul class="menu-items">
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <h4>Chocolate Soufflé</h4>
+                <p class="menu-item-desc">Valrhona chocolate, vanilla bean ice cream</p>
+              </div>
+              <span class="menu-item-price">$14</span>
+            </li>
+            <li class="menu-item">
+              <div class="menu-item-info">
+                <h4>Crème Brûlée</h4>
+                <p class="menu-item-desc">Madagascar vanilla, seasonal berry compote</p>
+              </div>
+              <span class="menu-item-price">$12</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="menu-cta">
+        <a href="#" class="btn btn-accent">View Full Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>Our Story</h2>
+          <p>Founded in 2015, Saveur began as a dream to create an authentic dining experience that celebrates both tradition and innovation. Our culinary philosophy centers on sourcing the finest seasonal ingredients from local farms and artisanal producers.</p>
+          <p>Every dish tells a story of passion, craftsmanship, and respect for the ingredients. We believe that exceptional dining is not just about the food—it's about creating memorable moments that bring people together.</p>
+          <p>Our commitment to sustainability and community has earned us recognition as one of the city's premier dining destinations, where farm-fresh meets sophisticated technique.</p>
+          
+          <div class="awards">
+            <span class="award">James Beard Nominated</span>
+            <span class="award">Wine Spectator Award</span>
+            <span class="award">Best Local Restaurant 2023</span>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&h=600&fit=crop&auto=format" alt="Restaurant interior">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chef Story Section -->
+  <section id="chef" class="section chef-story">
+    <div class="container">
+      <div class="chef-content">
+        <div class="chef-image">
+          <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&auto=format" alt="Chef Marcus Laurent">
+        </div>
+        <div class="chef-bio">
+          <h2>Chef Marcus Laurent</h2>
+          <p class="chef-title">Executive Chef & Owner</p>
+          <p>With over 15 years of culinary experience, Chef Marcus Laurent brings a unique blend of classical French technique and modern American innovation to every dish. Trained at Le Cordon Bleu and having worked in Michelin-starred kitchens across Europe, Marcus returned to his hometown to create Saveur.</p>
+          <p>His culinary philosophy emphasizes the natural flavors of premium ingredients, minimal manipulation, and maximum flavor. Marcus believes in building relationships with local farmers and producers to ensure every ingredient meets his exacting standards.</p>
+          
+          <div class="chef-achievements">
+            <h4>Culinary Achievements</h4>
+            <ul>
+              <li>James Beard Award Nominee - Best Chef Northeast</li>
+              <li>Featured in Food & Wine Magazine</li>
+              <li>Graduate of Le Cordon Bleu Paris</li>
+              <li>Former Sous Chef at Michelin 2-star Le Bernardin</li>
+              <li>Winner of Iron Chef America</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservations Section -->
+  <section id="reservations" class="section reservations">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Reserve Your Table</h2>
+        <p class="section-subtitle">Join us for an unforgettable dining experience. Reservations recommended for dinner service.</p>
+      </div>
+      
+      <form class="reservation-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <div class="form-group">
+            <label for="guests">Party Size</label>
+            <select id="guests" name="guests" required>
+              <option value="">Select guests</option>
+              <option value="1">1 Guest</option>
+              <option value="2">2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests

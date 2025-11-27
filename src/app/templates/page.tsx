@@ -95,19 +95,23 @@ export default function TemplatesPage() {
                                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60" />
                                 
                                 {/* Quick Actions Overlay */}
-                                <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40">
+                                <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40">
+                                    <Link
+                                        href={`/demo/${template.id}`}
+                                        className="px-4 py-2 bg-white text-gray-900 rounded-lg font-medium text-sm hover:bg-gray-100 transition-colors flex items-center gap-2"
+                                    >
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                        Live Demo
+                                    </Link>
                                     <button
                                         onClick={() => setSelectedTemplate(template)}
-                                        className="px-4 py-2 bg-white text-gray-900 rounded-lg font-medium text-sm hover:bg-gray-100 transition-colors"
+                                        className="px-4 py-2 bg-gray-800 text-white rounded-lg font-medium text-sm hover:bg-gray-700 transition-colors"
                                     >
-                                        Quick View
+                                        Details
                                     </button>
-                                    <Link
-                                        href="/contact"
-                                        className="px-4 py-2 bg-brand-purple text-white rounded-lg font-medium text-sm hover:bg-brand-purple-dark transition-colors"
-                                    >
-                                        Get This Template
-                                    </Link>
                                 </div>
                             </div>
 
@@ -244,17 +248,21 @@ export default function TemplatesPage() {
 
                             <div className="flex gap-4">
                                 <Link
+                                    href={`/demo/${selectedTemplate.id}`}
+                                    className="flex-1 py-4 bg-white text-gray-900 border-2 border-gray-200 rounded-xl font-semibold text-center hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+                                    Live Demo
+                                </Link>
+                                <Link
                                     href="/contact"
                                     className="flex-1 py-4 bg-brand-purple text-white rounded-xl font-semibold text-center hover:bg-brand-purple-dark transition-colors"
                                 >
                                     Get This Template
                                 </Link>
-                                <button
-                                    onClick={() => setSelectedTemplate(null)}
-                                    className="px-6 py-4 bg-gray-800 text-white rounded-xl font-semibold hover:bg-gray-700 transition-colors"
-                                >
-                                    Close
-                                </button>
                             </div>
                         </div>
                     </div>

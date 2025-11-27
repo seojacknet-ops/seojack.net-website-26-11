@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meridian Strategic Partners - Transform Your Business Future</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Variables */
+    :root {
+      --color-primary: #064E3B;
+      --color-accent: #3B82F6;
+      --color-bg: #FFFFFF;
+      --color-secondary: #065F46;
+      --color-text: #022C22;
+      --color-text-light: #6B7280;
+      --color-border: #E5E7EB;
+      --color-success: #10B981;
+      --color-light-bg: #F9FAFB;
+      
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Source Sans Pro', sans-serif;
+      
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 2rem;
+      --spacing-lg: 3rem;
+      --spacing-xl: 4rem;
+      --spacing-2xl: 6rem;
+      
+      --border-radius: 8px;
+      --border-radius-lg: 16px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      line-height: 1.6;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      overflow-x: hidden;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-primary);
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    h3 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    p {
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-text-light);
+      font-size: 1.1rem;
+    }
+
+    /* Layout Utilities */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-sm);
+    }
+
+    .section {
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .grid {
+      display: grid;
+      gap: var(--spacing-lg);
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: var(--border-radius);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--color-secondary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-accent {
+      background: var(--color-accent);
+      color: white;
+    }
+
+    .btn-accent:hover {
+      background: #2563EB;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    /* Images */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: var(--border-radius);
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-border);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-sm) 0;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: var(--spacing-lg);
+      list-style: none;
+    }
+
+    .nav a {
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav a:hover {
+      color: var(--color-accent);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      color: white;
+      padding: calc(var(--spacing-2xl) + 60px) 0 var(--spacing-2xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&h=1080&fit=crop&auto=format') center/cover;
+      opacity: 0.1;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-xl);
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text h1 {
+      color: white;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .hero-text p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.2rem;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: white;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Services Section */
+    .services {
+      background: var(--color-light-bg);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .section-subtitle {
+      color: var(--color-accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .service-card {
+      background: white;
+      padding: var(--spacing-lg);
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--color-accent);
+      transform: scaleX(0);
+      transition: var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--color-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--spacing-md);
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    /* Approach Section */
+    .approach-step {
+      display: flex;
+      gap: var(--spacing-md);
+      align-items: flex-start;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 50px;
+      height: 50px;
+      background: var(--color-accent);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .step-content h3 {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* Team Section */
+    .team {
+      background: var(--color-light-bg);
+    }
+
+    .team-member {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .member-photo {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .member-info {
+      padding: var(--spacing-md);
+    }
+
+    .member-name {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .member-title {
+      color: var(--color-accent);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .member-expertise {
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .linkedin-link {
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* Industries Section */
+    .industry-card {
+      background: white;
+      padding: var(--spacing-lg);
+      border-radius: var(--border-radius-lg);
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .industry-card:hover {
+      border-color: var(--color-accent);
+      transform: translateY(-5px);
+    }
+
+    .industry-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto var(--spacing-md);
+      border-radius: 50%;
+      background: var(--color-light-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    /* Insights Section */
+    .insights {
+      background: var(--color-light-bg);
+    }
+
+    .insight-card {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .insight-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .insight-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .insight-content {
+      padding: var(--spacing-md);
+    }
+
+    .insight-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-sm);
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+    }
+
+    .insight-title {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .insight-excerpt {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .read-more {
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    .contact h2 {
+      color: white;
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-xl);
+      align-items: start;
+    }
+
+    .contact-form {
+      background: white;
+      padding: var(--spacing-lg);
+      border-radius: var(--border-radius-lg);
+    }
+
+    .form-group {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid var(--color-border);
+      border-radius: var(--border-radius);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .contact-info h3 {
+      color: white;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .contact-info p {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--color-text);
+      color: white;
+      padding: var(--spacing-xl) 0 var(--spacing-md);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .footer-section h4 {
+      color: white;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: var(--spacing-md);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+      }
+
+      .contact-content {
+        grid-template-columns: 1fr;
+      }
+
+      .approach-step {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .section {
+        padding: var(--spacing-xl) 0;
+      }
+    }
+
+    /* Animation Classes */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Scroll Animations */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.6s ease;
+    }
+
+    .animate-on-scroll.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="#" class="logo">Meridian Strategic Partners</a>
+        <nav>
+          <ul class="nav">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#approach">Approach</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#industries">Industries</a></li>
+            <li><a href="#insights">Insights</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Transform Your Strategic Vision Into Measurable Results</h1>
+          <p>We accelerate business transformation through proven methodologies, strategic insights, and data-driven solutions that deliver sustainable competitive advantage.</p>
+          <a href="#contact" class="btn btn-accent">Schedule Consultation</a>
+          
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Projects Delivered</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">98%</span>
+              <span class="stat-label">Client Satisfaction</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">$2.5B</span>
+              <span class="stat-label">Value Created</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop&auto=format" alt="Strategic consulting team in action">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="section services">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">Our Expertise</div>
+        <h2>Strategic Solutions That Drive Results</h2>
+        <p>We deliver comprehensive consulting services that transform challenges into competitive advantages across all business functions.</p>
+      </div>
+      
+      <div class="grid grid-3">
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon">📊</div>
+          <h3>Strategic Planning</h3>
+          <p>Develop robust strategic frameworks that align vision with execution, ensuring sustainable growth and market leadership through data-driven insights.</p>
+        </div>
+        
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon">⚙️</div>
+          <h3>Operations Excellence</h3>
+          <p>Optimize processes, eliminate inefficiencies, and implement lean methodologies to accelerate performance and reduce operational costs.</p>
+        </div>
+        
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon">💻</div>
+          <h3>Technology Integration</h3>
+          <p>Leverage cutting-edge technology solutions to automate processes, enhance capabilities, and create digital competitive advantages.</p>
+        </div>
+        
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon">💰</div>
+          <h3>Financial Optimization</h3>
+          <p>Enhance financial performance through strategic cost management, revenue optimization, and investment portfolio analysis.</p>
+        </div>
+        
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon">👥</div>
+          <h3>Human Capital</h3>
+          <p>Build high-performance cultures, optimize talent management, and develop leadership capabilities that drive organizational success.</p>
+        </div>
+        
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon">📈</div>
+          <h3>Growth Marketing</h3>
+          <p>Accelerate market penetration through strategic marketing initiatives, brand positioning, and customer acquisition strategies.</p>
+        </div>
+        
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon">🔄</div>
+          <h3>Digital Transformation</h3>
+          <p>Navigate complex organizational change, implement new business models, and ensure successful adoption of strategic initiatives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach Section -->
+  <section id="approach" class="section approach">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">Our Methodology</div>
+        <h2>Proven Framework for Strategic Success</h2>
+        <p>Our systematic approach ensures comprehensive analysis, strategic alignment, and measurable outcomes that deliver lasting value.</p>
+      </div>
+      
+      <div class="approach-steps">
+        <div class="approach-step animate-on-scroll">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Strategic Discovery</h3>
+            <p>Deep-dive analysis of your business environment, competitive landscape, and organizational capabilities to identify key opportunities and challenges.</p>
+          </div>
+        </div>
+        
+        <div class="approach-step animate-on-scroll">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Data-Driven Analysis</h3>
+            <p>Comprehensive evaluation using advanced analytics, market research, and performance benchmarking to uncover actionable insights.</p>
+          </div>
+        </div>
+        
+        <div class="approach-step animate-on-scroll">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Strategic Design</h3>
+            <p>Develop customized strategies and implementation roadmaps aligned with your vision, resources, and market realities.</p>
+          </div>
+        </div>
+        
+        <div class="approach-step animate-on-scroll">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Execution Excellence</h3>
+            <p>Guide implementation with hands-on support, change management, and continuous optimization to ensure successful outcomes.</p>
+          </div>
+        </div>
+        
+        <div class="approach-step animate-on-scroll">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <h3>Performance Measurement</h3>
+            <p>Monitor progress through key performance indicators, regular assessments, and continuous improvement initiatives.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" class="section team">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">Leadership Team</div>
+        <h2>Strategic Expertise You Can Trust</h2>
+        <p>Our senior consultants bring decades of experience across industries, combining deep strategic knowledge with proven execution capabilities.</p>
+      </div>
+      
+      <div class="grid grid-3">
+        <div class="team-member animate-on-scroll">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&auto=format" alt="Michael Chen" class="member-photo">
+          <div class="member-info">
+            <h3 class="member-name">Michael Chen</h3>
+            <div class="member-title">Managing Partner & CEO</div>
+            <div class="member-expertise">Strategic Planning, M&A, Digital Transformation</div>
+            <p>Former McKinsey & Company Principal with 15+ years leading Fortune 500 transformations. MBA Harvard Business School.</p>
+            <a href="#" class="linkedin-link">View LinkedIn Profile →</a>
+          </div>
+        </div>
+        
+        <div class="team-member animate-on-scroll">
+          <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&auto=format" alt="Sarah Rodriguez" class="member-photo">
+          <div class="member-info">
+            <h3 class="member-name">Sarah Rodriguez</h3>
+            <div class="member-title">Senior Partner, Operations</div>
+            <div class="member-expertise">Operations Excellence, Process Optimization, Supply Chain</div>
+            <p>Ex-Bain & Company Manager specializing in operational transformation. Certified Six Sigma Black Belt, MIT Sloan MBA.</p>
+            <a href="#" class="linkedin-link">View LinkedIn Profile →</a>
+          </div>
+        </div>
+        
+        <div class="team-member animate-on-scroll">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&auto=format" alt="David Thompson" class="member-photo">
+          <div class="member-info">
+            <h3 class="member-name">David Thompson</h3>
+            <div class="member-title">Senior Partner, Technology</div>
+            <div class="member-expertise">Digital Strategy, Technology Integration, Innovation</div>
+            <p>Former BCG Principal with deep expertise in technology strategy and digital transformation. Stanford MBA, Computer Science background.</p>
+            <a href="#" class="linkedin-link">View LinkedIn Profile →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries Section -->
+  <section id="industries" class="section industries">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">Industry Expertise</div>
+        <h2>Deep Sector Knowledge Across Markets</h2>
+        <p>We bring specialized industry insights and proven methodologies tailored to the unique challenges and opportunities in your sector.</p>
+      </div>
+      
+      <div class="grid grid-3">
+        <div class="industry-card animate-on-scroll">
+          <div class="industry-icon">🏥</div>
+          <h3>Healthcare</h3>
+          <p>Navigate regulatory complexity, optimize care delivery, and accelerate digital health transformation.</p>
+        </div>
+        
+        <div class="industry-card animate-on-scroll">
+          <div class="industry-icon">🏦</div>
+          <h3>Financial Services</h3>
+          <p>Drive fintech innovation, ensure regulatory compliance, and enhance customer experience in digital banking.</p>
+        </div>
+        
+        <div class="industry-card animate-on-scroll">
+          <div class="industry-icon">💻</div>
+          <h3>Technology</h3>
+          <p>Scale operations, accelerate product development, and optimize go-to-market strategies for tech companies.</p>
+        </div>
+        
+        <div class="industry-card animate-on-scroll">
+          <div class="industry-icon">🏭</div>
+          <h3>Manufacturing</h3>
+          <p>Implement Industry 4.0 solutions, optimize supply chains, and drive operational excellence initiatives.</p>
+        </div>
+        
+        <div class="industry-card animate-on-scroll">
+          <div class="industry-icon">🛍️</div>
+          <h3>Retail</h3>
+          <p>Transform omnichannel experiences, optimize inventory management, and accelerate e-commerce growth.</p>
+        </div>
+        
+        <div class="industry-card animate-on-scroll">
+          <div class="industry-icon">⚡</div>
+          <h3>Energy</h3>
+          <p>Navigate

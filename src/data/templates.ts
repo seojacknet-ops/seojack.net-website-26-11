@@ -338,17 +338,6 @@ export const templates: Template[] = [
         price: 149,
     },
     {
-        id: 'tpl_TZRwcKM1c5SX',
-        name: 'PetPals Shop',
-        image: '/templates/pet-supplies/tpl_TZRwcKM1c5SX.png',
-        category: 'E-commerce',
-        niche: 'pet-supplies',
-        style: 'Playful Creative',
-        description: 'Fun pet supplies store with product categories and blog.',
-        features: ['Product Categories', 'Pet Blog', 'Loyalty Program', 'Reviews'],
-        price: 99,
-    },
-    {
         id: 'tpl_NkGeCCCdGvMK',
         name: 'Product Launch',
         image: '/templates/single-product/tpl_NkGeCCCdGvMK.png',

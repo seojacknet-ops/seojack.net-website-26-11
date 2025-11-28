@@ -13,6 +13,7 @@ export interface Template {
 
 export const categories = [
     'All',
+    'Showcase',
     'Home Services',
     'Food & Beverage',
     'Professional Services',
@@ -23,6 +24,50 @@ export const categories = [
 
 // Curated templates - ONE per niche, best picks only
 export const templates: Template[] = [
+    // ============ SHOWCASE TIERS (Homepage Hero) ============
+
+    // STANDARD TIER - Professional SMB websites
+    {
+        id: 'standard',
+        name: 'Standard Business',
+        image: '/templates/showcase/standard.svg',
+        category: 'Showcase',
+        niche: 'showcase',
+        style: 'Modern Professional',
+        description: 'Clean, professional website perfect for service businesses. Fast-loading with essential features.',
+        features: ['Hero Section', 'Service Cards', 'Trust Badges', 'Contact Form', 'Testimonials'],
+        price: 99,
+        featured: true,
+    },
+
+    // CREATIVE TIER - Rich animations for creatives
+    {
+        id: 'creative',
+        name: 'Creative Portfolio',
+        image: '/templates/showcase/creative.svg',
+        category: 'Showcase',
+        niche: 'showcase',
+        style: 'Creative & Animated',
+        description: 'Stunning scroll animations and interactive components for photographers, artists, and studios.',
+        features: ['Scroll Animations', 'Interactive Gallery', 'Parallax Effects', 'Mobile Optimized', 'Premium Visual Effects'],
+        price: 149,
+        featured: true,
+    },
+
+    // PRO TIER - Cutting-edge SaaS/AI websites
+    {
+        id: 'pro',
+        name: 'Pro SaaS',
+        image: '/templates/showcase/pro.svg',
+        category: 'Showcase',
+        niche: 'showcase',
+        style: 'Cutting-Edge Tech',
+        description: 'Next-level website with glassmorphism, aurora effects, and 3D interactions for SaaS & AI companies.',
+        features: ['3D Animations', 'Aurora Effects', 'Glassmorphism', 'Particle Systems', 'Dark Mode', 'Bento Grid'],
+        price: 249,
+        featured: true,
+    },
+
     // ============ FEATURED (Homepage) ============
     
     // 1. ProFlow Plumbing - Classic contractor, mainstream appeal
@@ -36,7 +81,7 @@ export const templates: Template[] = [
         description: 'Professional plumbing website with 24/7 service emphasis and trust badges.',
         features: ['Emergency Service Banner', 'Trust Badges', 'Service Areas', 'Contact Form'],
         price: 99,
-        featured: true,
+        featured: false,
     },
     
     // 2. Blackstone & Associates - Premium professional services
@@ -50,7 +95,7 @@ export const templates: Template[] = [
         description: 'Premium law firm design with trust-building elements and practice areas.',
         features: ['Practice Areas', 'Attorney Profiles', 'Case Results', 'Free Consultation CTA'],
         price: 149,
-        featured: true,
+        featured: false,
     },
     
     // 3. Saveur Restaurant - Elegant food & beverage
@@ -64,7 +109,7 @@ export const templates: Template[] = [
         description: 'Elegant restaurant website with menu display and reservation system.',
         features: ['Menu Display', 'Reservations', 'Gallery', 'Private Events'],
         price: 99,
-        featured: true,
+        featured: false,
     },
 
     // ============ HOME SERVICES ============

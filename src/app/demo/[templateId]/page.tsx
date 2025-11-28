@@ -2,6 +2,7 @@
 
 import { useParams, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { templates } from '@/data/templates';
 
@@ -11,8 +12,14 @@ export default function DemoPage() {
     const templateId = params.templateId as string;
     const [viewMode, setViewMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
     const [isFullscreen, setIsFullscreen] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     const template = templates.find(t => t.id === templateId);
+
+    // Ensure we're mounted before using portal
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // Get niche from template category for demo path
     const getNicheSlug = (category: string): string => {
@@ -53,30 +60,46 @@ export default function DemoPage() {
         );
     }
 
-    if (isFullscreen) {
-        return (
-            <div className="fixed inset-0 z-[9999] bg-white" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}>
-                <button
-                    onClick={() => setIsFullscreen(false)}
-                    className="fixed top-4 right-4 z-[10000] p-3 bg-gray-900/90 text-white rounded-full hover:bg-gray-800 transition-colors shadow-lg"
-                    title="Exit Fullscreen"
-                >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-                <iframe
-                    src={getDemoUrl()}
-                    className="w-full h-full border-0"
-                    title={`${template.name} Demo`}
-                    style={{ width: '100vw', height: '100vh' }}
-                />
-            </div>
-        );
-    }
+    // Fullscreen overlay using portal to escape stacking context
+    const fullscreenOverlay = isFullscreen && mounted ? createPortal(
+        <div 
+            className="fixed inset-0 bg-white"
+            style={{ 
+                position: 'fixed', 
+                top: 0, 
+                left: 0, 
+                right: 0, 
+                bottom: 0,
+                zIndex: 99999,
+                width: '100vw',
+                height: '100vh'
+            }}
+        >
+            <button
+                onClick={() => setIsFullscreen(false)}
+                className="fixed top-4 right-4 p-3 bg-gray-900/90 text-white rounded-full hover:bg-gray-800 transition-colors shadow-lg"
+                style={{ zIndex: 100000 }}
+                title="Exit Fullscreen"
+            >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <iframe
+                src={getDemoUrl()}
+                className="w-full h-full border-0"
+                title={`${template.name} Demo`}
+                style={{ width: '100vw', height: '100vh' }}
+            />
+        </div>,
+        document.body
+    ) : null;
 
     return (
         <div className="min-h-screen bg-gray-950 pt-20">
+            {/* Fullscreen Portal */}
+            {fullscreenOverlay}
+
             {/* Demo Header */}
             <div className="bg-gray-900 border-b border-gray-800 sticky top-16 z-40">
                 <div className="max-w-7xl mx-auto px-4 py-3">

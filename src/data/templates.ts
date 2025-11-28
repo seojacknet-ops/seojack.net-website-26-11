@@ -30,7 +30,7 @@ export const templates: Template[] = [
     {
         id: 'standard',
         name: 'Standard Business',
-        image: '/templates/showcase/standard.svg',
+        image: '/templates/showcase/standard.png',
         category: 'Showcase',
         niche: 'showcase',
         style: 'Modern Professional',
@@ -44,7 +44,7 @@ export const templates: Template[] = [
     {
         id: 'creative',
         name: 'Creative Portfolio',
-        image: '/templates/showcase/creative.svg',
+        image: '/templates/showcase/creative.png',
         category: 'Showcase',
         niche: 'showcase',
         style: 'Creative & Animated',
@@ -58,7 +58,7 @@ export const templates: Template[] = [
     {
         id: 'pro',
         name: 'Pro SaaS',
-        image: '/templates/showcase/pro.svg',
+        image: '/templates/showcase/pro.png',
         category: 'Showcase',
         niche: 'showcase',
         style: 'Cutting-Edge Tech',

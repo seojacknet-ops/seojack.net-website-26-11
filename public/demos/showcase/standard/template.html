@@ -324,6 +324,7 @@
       box-shadow: var(--shadow-xl);
     }
 
+
     .hero-float-card {
       position: absolute;
       background: white;
@@ -408,8 +409,14 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .service-card {
@@ -945,7 +952,7 @@
           </div>
         </div>
         <div class="hero-image">
-          <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&h=700&fit=crop" alt="Professional service" class="hero-img-main">
+          <img src="/proffesionals_at_work_hero_standard_template.webp" alt="Professional team collaborating on business strategy" class="hero-img-main">
           <div class="hero-float-card rating" style="display:none;">
             <div class="float-icon yellow">
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
@@ -1027,25 +1034,6 @@
           </div>
           <h3>Emergency Service</h3>
           <p>24/7 emergency response when you need us most. Fast arrival, rapid resolution.</p>
-          <a href="#" class="service-link">
-            Learn More
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
-        </div>
-        <div class="service-card fade-up">
-          <div class="service-icon">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
-              <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-              <path d="M21 21v-2a4 4 0 0 0-3-3.85"></path>
-            </svg>
-          </div>
-          <h3>Commercial Services</h3>
-          <p>Specialized solutions for businesses with flexible scheduling and competitive pricing.</p>
           <a href="#" class="service-link">
             Learn More
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">

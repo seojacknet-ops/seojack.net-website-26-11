@@ -7,22 +7,27 @@
   <meta name="description" content="Professional plumbing services available 24/7. Licensed, insured, and guaranteed. Emergency repairs, drain cleaning, water heaters, and more.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* CSS Variables */
+    /* CSS Variables - Refined Plumbing Color Palette */
     :root {
-      --color-primary: #1E40AF;
-      --color-accent: #F59E0B;
-      --color-bg: #FFFFFF;
-      --color-secondary: #3B82F6;
-      --color-text: #1F2937;
-      --color-text-light: #6B7280;
-      --color-border: #E5E7EB;
-      --color-success: #10B981;
-      --color-emergency: #EF4444;
+      --color-primary: #1a2634;
+      --color-primary-light: #2d3d4f;
+      --color-accent: #c9a66b;
+      --color-accent-dark: #a8834a;
+      --color-accent-light: #e5d4b8;
+      --color-bg: #faf9f7;
+      --color-bg-alt: #f0ede8;
+      --color-text: #1a2634;
+      --color-text-light: #5a6673;
+      --color-text-muted: #8a939d;
+      --color-border: #e2ddd5;
+      --color-success: #2d7d46;
+      --color-emergency: #c43c3c;
+      --color-white: #ffffff;
       
-      --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-heading: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       
       --spacing-xs: 0.5rem;
       --spacing-sm: 1rem;
@@ -30,20 +35,26 @@
       --spacing-lg: 2rem;
       --spacing-xl: 3rem;
       --spacing-2xl: 4rem;
+      --spacing-3xl: 6rem;
       
-      --radius-sm: 0.375rem;
-      --radius-md: 0.5rem;
-      --radius-lg: 0.75rem;
-      --radius-xl: 1rem;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 20px;
+      --radius-full: 9999px;
       
-      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+      --shadow-sm: 0 1px 3px rgba(26, 38, 52, 0.08);
+      --shadow-md: 0 4px 12px rgba(26, 38, 52, 0.1);
+      --shadow-lg: 0 12px 32px rgba(26, 38, 52, 0.12);
+      --shadow-xl: 0 24px 48px rgba(26, 38, 52, 0.16);
+      
+      --transition-fast: 0.15s ease;
+      --transition-base: 0.25s ease;
+      --transition-slow: 0.4s ease;
     }
 
     /* Reset & Base Styles */
-    * {
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -56,46 +67,51 @@
 
     body {
       font-family: var(--font-body);
-      line-height: 1.6;
+      font-weight: 400;
+      line-height: 1.7;
       color: var(--color-text);
       background-color: var(--color-bg);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
 
     /* Typography */
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4 {
       font-family: var(--font-heading);
-      font-weight: 700;
-      line-height: 1.2;
+      font-weight: 400;
+      line-height: 1.15;
       color: var(--color-text);
     }
 
     h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 800;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      letter-spacing: -0.02em;
     }
 
     h2 {
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.01em;
     }
 
     h3 {
-      font-size: clamp(1.25rem, 3vw, 1.75rem);
-      font-weight: 600;
+      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
     }
 
     p {
-      font-size: clamp(1rem, 2vw, 1.125rem);
+      font-size: clamp(1rem, 1.5vw, 1.125rem);
       color: var(--color-text-light);
     }
 
     /* Container */
     .container {
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 0 var(--spacing-sm);
+      padding: 0 var(--spacing-md);
+    }
+
+    .container-narrow {
+      max-width: 900px;
     }
 
     /* Buttons */
@@ -104,68 +120,88 @@
       align-items: center;
       justify-content: center;
       gap: var(--spacing-xs);
-      padding: var(--spacing-sm) var(--spacing-lg);
+      padding: 1rem 2rem;
       border: none;
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-full);
       font-family: var(--font-body);
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.95rem;
       text-decoration: none;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all var(--transition-base);
       white-space: nowrap;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
     }
 
     .btn-primary {
-      background-color: var(--color-primary);
-      color: white;
-      box-shadow: var(--shadow-md);
+      background: var(--color-primary);
+      color: var(--color-white);
+      box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255,255,255,0.1);
     }
 
     .btn-primary:hover {
-      background-color: #1E3A8A;
+      background: var(--color-primary-light);
       transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
     }
 
     .btn-accent {
-      background-color: var(--color-accent);
-      color: white;
+      background: var(--color-accent);
+      color: var(--color-primary);
       box-shadow: var(--shadow-md);
     }
 
     .btn-accent:hover {
-      background-color: #D97706;
+      background: var(--color-accent-dark);
       transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
     }
 
+    .btn-outline {
+      background: transparent;
+      color: var(--color-white);
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.5);
+    }
+
     .btn-emergency {
-      background-color: var(--color-emergency);
-      color: white;
-      box-shadow: var(--shadow-md);
-      animation: pulse 2s infinite;
+      background: var(--color-emergency);
+      color: var(--color-white);
+      box-shadow: var(--shadow-md), 0 0 0 0 rgba(196, 60, 60, 0.4);
+      animation: emergency-pulse 2s infinite;
     }
 
     .btn-emergency:hover {
-      background-color: #DC2626;
+      background: #d64545;
       animation: none;
+      transform: translateY(-2px);
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+    @keyframes emergency-pulse {
+      0%, 100% { box-shadow: var(--shadow-md), 0 0 0 0 rgba(196, 60, 60, 0.4); }
+      50% { box-shadow: var(--shadow-md), 0 0 0 12px rgba(196, 60, 60, 0); }
     }
 
     /* Header */
     .header {
-      background-color: var(--color-bg);
-      box-shadow: var(--shadow-sm);
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
+      background: rgba(250, 249, 247, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--color-border);
+      transition: all var(--transition-base);
+    }
+
+    .header.scrolled {
+      box-shadow: var(--shadow-md);
     }
 
     .header-content {
@@ -173,146 +209,392 @@
       align-items: center;
       justify-content: space-between;
       padding: var(--spacing-sm) 0;
+      min-height: 70px;
     }
 
     .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
       font-family: var(--font-heading);
       font-size: 1.5rem;
-      font-weight: 800;
       color: var(--color-primary);
       text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .logo:hover {
+      color: var(--color-accent-dark);
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--color-primary);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-accent);
+      font-size: 1.25rem;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xl);
+    }
+
+    .nav-links {
+      display: none;
+      gap: var(--spacing-lg);
+    }
+
+    @media (min-width: 900px) {
+      .nav-links {
+        display: flex;
+      }
+    }
+
+    .nav-link {
+      font-weight: 500;
+      color: var(--color-text-light);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color var(--transition-fast);
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: width var(--transition-base);
+    }
+
+    .nav-link:hover {
+      color: var(--color-text);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
     }
 
     .header-phone {
       display: flex;
       align-items: center;
       gap: var(--spacing-xs);
+      padding: 0.6rem 1.25rem;
+      background: var(--color-accent);
       color: var(--color-primary);
       text-decoration: none;
       font-weight: 600;
-      font-size: 1.125rem;
+      font-size: 1rem;
+      border-radius: var(--radius-full);
+      transition: all var(--transition-fast);
     }
 
     .header-phone:hover {
-      color: var(--color-secondary);
+      background: var(--color-accent-dark);
+      transform: scale(1.02);
     }
 
     /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-      color: white;
-      padding: calc(80px + var(--spacing-2xl)) 0 var(--spacing-2xl);
-      text-align: center;
       position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: calc(70px + var(--spacing-3xl)) 0 var(--spacing-3xl);
       overflow: hidden;
     }
 
-    .hero::before {
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+
+    .hero-bg::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
+      inset: 0;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 50%, #3d5a73 100%);
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(201, 166, 107, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(201, 166, 107, 0.1) 0%, transparent 40%);
+    }
+
+    .hero-image-wrapper {
+      position: absolute;
       right: 0;
+      top: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="white" stroke-width="1" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+      width: 55%;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      mask-image: linear-gradient(to right, transparent 0%, black 20%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%);
+      opacity: 0.6;
     }
 
     .hero-content {
       position: relative;
       z-index: 1;
+      max-width: 650px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-xs) var(--spacing-md);
+      background: rgba(201, 166, 107, 0.2);
+      border: 1px solid rgba(201, 166, 107, 0.3);
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--spacing-lg);
+      animation: fadeInUp 0.8s ease-out 0.1s both;
     }
 
     .hero h1 {
-      color: white;
-      margin-bottom: var(--spacing-md);
+      color: var(--color-white);
+      margin-bottom: var(--spacing-lg);
+      animation: fadeInUp 0.8s ease-out 0.2s both;
     }
 
     .hero-subtitle {
-      font-size: clamp(1.125rem, 3vw, 1.5rem);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: rgba(255, 255, 255, 0.85);
       margin-bottom: var(--spacing-xl);
-      opacity: 0.9;
+      max-width: 540px;
+      line-height: 1.6;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
     }
 
     .hero-badges {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: var(--spacing-sm);
       margin-bottom: var(--spacing-xl);
+      animation: fadeInUp 0.8s ease-out 0.4s both;
     }
 
-    .badge {
-      background-color: rgba(255, 255, 255, 0.2);
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
-      padding: var(--spacing-xs) var(--spacing-md);
-      border-radius: var(--radius-lg);
-      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-full);
+      font-weight: 500;
       font-size: 0.875rem;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .hero-badge-icon {
+      font-size: 1rem;
     }
 
     .hero-cta {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       align-items: center;
       gap: var(--spacing-md);
+      animation: fadeInUp 0.8s ease-out 0.5s both;
     }
 
-    .hero-phone {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      font-weight: 700;
-      margin-bottom: var(--spacing-sm);
+    .hero-phone-display {
+      display: flex;
+      flex-direction: column;
+      padding-left: var(--spacing-md);
+      border-left: 2px solid rgba(255,255,255,0.2);
     }
 
-    /* Services Section */
-    .services {
-      padding: var(--spacing-2xl) 0;
-      background-color: #F9FAFB;
+    .hero-phone-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 2px;
     }
 
-    .section-header {
-      text-align: center;
-      margin-bottom: var(--spacing-xl);
+    .hero-phone-number {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: color var(--transition-fast);
     }
 
-    .section-subtitle {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      color: var(--color-text-light);
-      margin-top: var(--spacing-sm);
+    .hero-phone-number:hover {
+      color: var(--color-accent-light);
     }
 
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--spacing-lg);
+    /* Trust Strip */
+    .trust-strip {
+      background: var(--color-white);
+      padding: var(--spacing-lg) 0;
+      border-bottom: 1px solid var(--color-border);
     }
 
-    .service-card {
-      background-color: white;
-      padding: var(--spacing-xl);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-md);
-      text-align: center;
-      transition: all 0.3s ease;
-      border: 1px solid var(--color-border);
+    .trust-strip-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: var(--spacing-xl);
     }
 
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-xl);
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
     }
 
-    .service-icon {
-      width: 60px;
-      height: 60px;
-      background-color: var(--color-primary);
+    .trust-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--color-bg-alt);
       border-radius: var(--radius-lg);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto var(--spacing-md);
-      color: white;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
+    }
+
+    .trust-text strong {
+      display: block;
+      font-size: 1.125rem;
+      color: var(--color-text);
+    }
+
+    .trust-text span {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Section Styles */
+    .section {
+      padding: var(--spacing-3xl) 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--spacing-2xl);
+    }
+
+    .section-label {
+      display: inline-block;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent-dark);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .section-subtitle {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--color-text-light);
+      max-width: 600px;
+      margin: var(--spacing-md) auto 0;
+    }
+
+    /* Services Section */
+    .services {
+      background: var(--color-bg);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-lg);
+    }
+
+    .service-card {
+      background: var(--color-white);
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border);
+      transition: all var(--transition-base);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--color-accent);
+      transform: scaleX(0);
+      transition: transform var(--transition-base);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-xl);
+      border-color: transparent;
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--spacing-md);
+      font-size: 1.75rem;
+      transition: transform var(--transition-base);
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1) rotate(-5deg);
     }
 
     .service-card h3 {
@@ -322,151 +604,112 @@
 
     .service-card p {
       font-size: 0.95rem;
-      line-height: 1.5;
+      line-height: 1.6;
+      margin-bottom: var(--spacing-md);
     }
 
-    /* Emergency CTA */
-    .emergency-cta {
-      background: linear-gradient(45deg, var(--color-emergency) 0%, #DC2626 100%);
-      color: white;
-      padding: var(--spacing-xl) 0;
-      text-align: center;
-      position: relative;
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--color-accent-dark);
+      text-decoration: none;
+      transition: gap var(--transition-fast);
+    }
+
+    .service-link:hover {
+      gap: 10px;
+    }
+
+    /* About Section with Image */
+    .about {
+      background: var(--color-white);
       overflow: hidden;
     }
 
-    .emergency-cta::before {
-      content: '🚨';
-      position: absolute;
-      left: 10%;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 3rem;
-      opacity: 0.3;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    .emergency-cta::after {
-      content: '🔧';
-      position: absolute;
-      right: 10%;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 3rem;
-      opacity: 0.3;
-      animation: float 3s ease-in-out infinite reverse;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(-50%) rotate(0deg); }
-      50% { transform: translateY(-60%) rotate(5deg); }
-    }
-
-    .emergency-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .emergency-cta h2 {
-      color: white;
-      margin-bottom: var(--spacing-sm);
-    }
-
-    .emergency-phone {
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      font-weight: 800;
-      margin: var(--spacing-md) 0;
-    }
-
-    .emergency-promise {
-      font-size: 1.125rem;
-      margin-bottom: var(--spacing-md);
-      opacity: 0.9;
-    }
-
-    /* Testimonials */
-    .testimonials {
-      padding: var(--spacing-2xl) 0;
-      background-color: white;
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: var(--spacing-lg);
-    }
-
-    .testimonial-card {
-      background-color: #F9FAFB;
-      padding: var(--spacing-xl);
-      border-radius: var(--radius-xl);
-      border-left: 4px solid var(--color-accent);
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
-    }
-
-    .testimonial-card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-    }
-
-    .stars {
-      display: flex;
-      gap: 2px;
-      margin-bottom: var(--spacing-md);
-    }
-
-    .star {
-      color: var(--color-accent);
-      font-size: 1.25rem;
-    }
-
-    .testimonial-text {
-      font-style: italic;
-      margin-bottom: var(--spacing-md);
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .testimonial-author {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.875rem;
-    }
-
-    .author-name {
-      font-weight: 600;
-      color: var(--color-text);
-    }
-
-    .author-location {
-      color: var(--color-text-light);
-    }
-
-    .service-type {
-      background-color: var(--color-primary);
-      color: white;
-      padding: 2px 8px;
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
-      font-weight: 500;
-    }
-
-    /* About Section */
-    .about {
-      padding: var(--spacing-2xl) 0;
-      background: linear-gradient(135deg, #F9FAFB 0%, white 100%);
-    }
-
-    .about-content {
+    .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--spacing-2xl);
+      gap: var(--spacing-3xl);
       align-items: center;
     }
 
-    .about-text p {
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-2xl);
+      }
+    }
+
+    .about-images {
+      position: relative;
+      height: 550px;
+    }
+
+    .about-image {
+      position: absolute;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-image-1 {
+      width: 70%;
+      height: 70%;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    .about-image-2 {
+      width: 55%;
+      height: 55%;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+      border: 6px solid var(--color-white);
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: 30%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      background: var(--color-accent);
+      color: var(--color-primary);
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .about-badge-number {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      line-height: 1;
+    }
+
+    .about-badge-text {
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .about-content h2 {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .about-content > p {
       margin-bottom: var(--spacing-md);
     }
 
@@ -474,128 +717,416 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: var(--spacing-md);
-      margin-top: var(--spacing-lg);
+      margin: var(--spacing-xl) 0;
     }
 
-    .feature {
+    .about-feature {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: var(--spacing-sm);
-      font-weight: 500;
     }
 
-    .feature-icon {
-      width: 24px;
-      height: 24px;
-      background-color: var(--color-success);
-      border-radius: 50%;
+    .about-feature-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--color-success);
+      border-radius: var(--radius-full);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      flex-shrink: 0;
+      color: var(--color-white);
+      font-size: 0.85rem;
+    }
+
+    .about-feature span {
+      font-weight: 500;
+      color: var(--color-text);
+    }
+
+    /* Emergency CTA */
+    .emergency-cta {
+      background: linear-gradient(135deg, var(--color-emergency) 0%, #d64545 100%);
+      padding: var(--spacing-2xl) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .emergency-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 10% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 90% 50%, rgba(0,0,0,0.1) 0%, transparent 50%);
+    }
+
+    .emergency-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--spacing-lg);
+    }
+
+    .emergency-text {
+      color: var(--color-white);
+    }
+
+    .emergency-text h2 {
+      color: var(--color-white);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .emergency-text p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.1rem;
+    }
+
+    .emergency-action {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--spacing-lg);
+    }
+
+    .emergency-phone {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      color: var(--color-white);
+      text-decoration: none;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: var(--color-bg-alt);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: var(--spacing-lg);
+    }
+
+    .testimonial-card {
+      background: var(--color-white);
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-base);
+      position: relative;
+    }
+
+    .testimonial-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+
+    .testimonial-quote {
+      position: absolute;
+      top: var(--spacing-md);
+      right: var(--spacing-lg);
+      font-family: var(--font-heading);
+      font-size: 4rem;
+      color: var(--color-accent-light);
+      line-height: 1;
+      opacity: 0.5;
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .testimonial-star {
+      color: var(--color-accent);
+      font-size: 1.1rem;
+    }
+
+    .testimonial-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--color-text);
+      margin-bottom: var(--spacing-lg);
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: var(--spacing-md);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .testimonial-author-info {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      background: var(--color-primary);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-accent);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .testimonial-location {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+    }
+
+    .testimonial-service {
+      background: var(--color-bg-alt);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
       font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Gallery Section */
+    .gallery {
+      background: var(--color-white);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--spacing-md);
+    }
+
+    @media (max-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 1;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26, 38, 52, 0.6) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    .gallery-item-label {
+      position: absolute;
+      bottom: var(--spacing-md);
+      left: var(--spacing-md);
+      color: var(--color-white);
+      font-weight: 600;
+      font-size: 0.9rem;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all var(--transition-base);
+    }
+
+    .gallery-item:hover .gallery-item-label {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* Service Areas */
     .service-areas {
-      padding: var(--spacing-2xl) 0;
-      background-color: white;
+      background: var(--color-bg);
     }
 
     .areas-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: var(--spacing-md);
     }
 
-    .area-item {
-      background-color: #F9FAFB;
+    .area-card {
+      background: var(--color-white);
       padding: var(--spacing-md);
       border-radius: var(--radius-lg);
       text-align: center;
       border: 1px solid var(--color-border);
-      transition: all 0.2s ease;
+      transition: all var(--transition-base);
+      cursor: default;
     }
 
-    .area-item:hover {
-      background-color: var(--color-primary);
-      color: white;
-      transform: translateY(-2px);
+    .area-card:hover {
+      border-color: var(--color-accent);
+      background: var(--color-primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
     }
 
-    .area-item h4 {
+    .area-card h4 {
+      font-family: var(--font-body);
+      font-weight: 600;
       font-size: 1rem;
-      margin-bottom: var(--spacing-xs);
+      margin-bottom: 4px;
+      transition: color var(--transition-fast);
     }
 
-    .zip-codes {
-      font-size: 0.875rem;
-      color: var(--color-text-light);
+    .area-card:hover h4 {
+      color: var(--color-white);
     }
 
-    .area-item:hover .zip-codes {
-      color: rgba(255, 255, 255, 0.8);
+    .area-zip {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      transition: color var(--transition-fast);
+    }
+
+    .area-card:hover .area-zip {
+      color: rgba(255,255,255,0.7);
     }
 
     /* Contact Section */
     .contact {
-      padding: var(--spacing-2xl) 0;
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-      color: white;
+      background: var(--color-primary);
+      color: var(--color-white);
+      position: relative;
+      overflow: hidden;
     }
 
-    .contact-content {
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201, 166, 107, 0.1) 0%, transparent 70%);
+    }
+
+    .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--spacing-2xl);
-      align-items: start;
+      gap: var(--spacing-3xl);
+      position: relative;
+      z-index: 1;
     }
 
-    .contact h2 {
-      color: white;
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-2xl);
+      }
+    }
+
+    .contact-info h2 {
+      color: var(--color-white);
       margin-bottom: var(--spacing-md);
     }
 
-    .contact-info {
+    .contact-info > p {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .contact-methods {
       display: flex;
       flex-direction: column;
       gap: var(--spacing-lg);
     }
 
-    .contact-item {
+    .contact-method {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: var(--spacing-md);
     }
 
-    .contact-icon {
-      width: 50px;
-      height: 50px;
-      background-color: rgba(255, 255, 255, 0.2);
+    .contact-method-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(201, 166, 107, 0.2);
       border-radius: var(--radius-lg);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
+      font-size: 1.5rem;
+      flex-shrink: 0;
     }
 
-    .contact-details h4 {
-      color: white;
-      font-size: 1.125rem;
-      margin-bottom: var(--spacing-xs);
+    .contact-method h4 {
+      color: var(--color-white);
+      font-family: var(--font-body);
+      font-weight: 600;
+      margin-bottom: 4px;
     }
 
-    .contact-details p {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 1rem;
+    .contact-method p,
+    .contact-method a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 1.05rem;
     }
 
+    .contact-method a:hover {
+      color: var(--color-accent);
+    }
+
+    /* Contact Form */
     .contact-form {
-      background-color: rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.05);
       backdrop-filter: blur(10px);
-      padding: var(--spacing-xl);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: var(--radius-xl);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: var(--spacing-xl);
+    }
+
+    .contact-form h3 {
+      color: var(--color-white);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-md);
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
     }
 
     .form-group {
@@ -604,31 +1135,33 @@
 
     .form-group label {
       display: block;
-      margin-bottom: var(--spacing-xs);
       font-weight: 500;
-      color: white;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: var(--spacing-xs);
     }
 
     .form-control {
       width: 100%;
-      padding: var(--spacing-sm);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 0.9rem 1rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
       border-radius: var(--radius-md);
-      background-color: rgba(255, 255, 255, 0.1);
-      color: white;
+      color: var(--color-white);
+      font-family: var(--font-body);
       font-size: 1rem;
-      transition: all 0.2s ease;
+      transition: all var(--transition-fast);
     }
 
     .form-control::placeholder {
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255,255,255,0.5);
     }
 
     .form-control:focus {
       outline: none;
       border-color: var(--color-accent);
-      background-color: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+      background: rgba(255,255,255,0.12);
+      box-shadow: 0 0 0 3px rgba(201, 166, 107, 0.2);
     }
 
     textarea.form-control {
@@ -636,144 +1169,256 @@
       min-height: 120px;
     }
 
+    select.form-control {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+    }
+
+    .form-submit {
+      margin-top: var(--spacing-md);
+    }
+
+    .form-submit .btn {
+      width: 100%;
+    }
+
     /* Footer */
     .footer {
-      background-color: var(--color-text);
-      color: white;
-      padding: var(--spacing-xl) 0 var(--spacing-md);
-      text-align: center;
+      background: #0f171f;
+      color: var(--color-white);
+      padding: var(--spacing-2xl) 0 var(--spacing-md);
     }
 
-    .footer-content {
+    .footer-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: var(--spacing-lg);
-      margin-bottom: var(--spacing-lg);
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: var(--spacing-2xl);
+      padding-bottom: var(--spacing-2xl);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
-    .footer-section h4 {
-      color: white;
+    @media (max-width: 900px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-xl);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .footer-brand .logo {
+      color: var(--color-white);
       margin-bottom: var(--spacing-md);
     }
 
-    .footer-section p,
-    .footer-section a {
-      color: #D1D5DB;
-      text-decoration: none;
-      line-height: 1.8;
+    .footer-brand > p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.95rem;
+      margin-bottom: var(--spacing-lg);
     }
 
-    .footer-section a:hover {
+    .footer-social {
+      display: flex;
+      gap: var(--spacing-sm);
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all var(--transition-fast);
+    }
+
+    .footer-social a:hover {
+      background: var(--color-accent);
+      color: var(--color-primary);
+    }
+
+    .footer-column h4 {
+      color: var(--color-white);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
       color: var(--color-accent);
     }
 
     .footer-bottom {
-      border-top: 1px solid #374151;
-      padding-top: var(--spacing-md);
-      font-size: 0.875rem;
-      color: #9CA3AF;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding-top: var(--spacing-lg);
     }
 
-    /* Responsive Design */
+    .footer-copyright {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: var(--spacing-lg);
+    }
+
+    .footer-legal a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-legal a:hover {
+      color: var(--color-accent);
+    }
+
+    /* Skip Link */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: var(--spacing-sm) var(--spacing-md);
+      text-decoration: none;
+      border-radius: var(--radius-md);
+      z-index: 9999;
+      transition: top var(--transition-fast);
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    /* Animations on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive adjustments */
     @media (max-width: 768px) {
-      .container {
-        padding: 0 var(--spacing-md);
+      .hero-image-wrapper {
+        display: none;
       }
 
-      .header-content {
-        flex-direction: column;
-        gap: var(--spacing-sm);
+      .hero {
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: 100%;
+      }
+
+      .hero-subtitle {
+        max-width: 100%;
+      }
+
+      .hero-badges {
+        justify-content: center;
       }
 
       .hero-cta {
         flex-direction: column;
+        align-items: center;
       }
 
-      .about-content,
-      .contact-content {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
+      .hero-phone-display {
+        border-left: none;
+        padding-left: 0;
+        text-align: center;
+      }
+
+      .about-images {
+        height: 400px;
       }
 
       .about-features {
         grid-template-columns: 1fr;
       }
 
-      .hero-badges {
+      .emergency-content {
         flex-direction: column;
-        align-items: center;
+        text-align: center;
       }
 
-      .emergency-cta::before,
-      .emergency-cta::after {
-        display: none;
-      }
-    }
-
-    @media (max-width: 480px) {
-      :root {
-        --spacing-xl: 2rem;
-        --spacing-2xl: 3rem;
-      }
-
-      .services-grid,
-      .testimonials-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .areas-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .emergency-action {
+        flex-direction: column;
       }
     }
 
-    /* Accessibility */
     @media (prefers-reduced-motion: reduce) {
-      * {
+      *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
-
       html {
         scroll-behavior: auto;
       }
-    }
-
-    /* Focus styles */
-    .btn:focus,
-    .form-control:focus {
-      outline: 2px solid var(--color-accent);
-      outline-offset: 2px;
-    }
-
-    /* Skip link for screen readers */
-    .skip-link {
-      position: absolute;
-      top: -40px;
-      left: 6px;
-      background: var(--color-primary);
-      color: white;
-      padding: 8px;
-      text-decoration: none;
-      border-radius: 4px;
-      z-index: 100;
-    }
-
-    .skip-link:focus {
-      top: 6px;
     }
   </style>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
+  <!-- Header -->
   <header class="header">
     <div class="container">
       <div class="header-content">
-        <a href="#" class="logo">🔧 ProFlow Plumbing</a>
-        <a href="tel:555-PLUMBER" class="header-phone">
-          📞 (555) PLUMBER
+        <a href="#" class="logo">
+          <div class="logo-icon">🔧</div>
+          <span>ProFlow Plumbing</span>
         </a>
+        <nav class="header-nav">
+          <div class="nav-links">
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#testimonials" class="nav-link">Reviews</a>
+            <a href="#contact" class="nav-link">Contact</a>
+          </div>
+          <a href="tel:555-758-6237" class="header-phone">
+            📞 (555) PLUMBER
+          </a>
+        </nav>
       </div>
     </div>
   </header>
@@ -781,81 +1426,197 @@
   <main id="main-content">
     <!-- Hero Section -->
     <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-image-wrapper">
+        <img 
+          src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+          alt="Professional plumber fixing kitchen sink" 
+          class="hero-image"
+        >
+      </div>
       <div class="container">
         <div class="hero-content">
-          <h1>Fast, Reliable Plumbing Service Available 24/7</h1>
-          <p class="hero-subtitle">Licensed & insured professionals ready to solve your plumbing emergencies. Same-day service guaranteed!</p>
-          
-          <div class="hero-badges">
-            <span class="badge">🛡️ Licensed & Insured</span>
-            <span class="badge">⚡ 24/7 Emergency Service</span>
-            <span class="badge">✅ Same-Day Service</span>
-            <span class="badge">💯 100% Satisfaction Guaranteed</span>
+          <div class="hero-label">
+            <span>⚡</span> Available 24/7 for Emergencies
           </div>
-
+          <h1>Expert Plumbing Services You Can Trust</h1>
+          <p class="hero-subtitle">
+            From leaky faucets to major repairs, our licensed professionals deliver fast, reliable plumbing solutions with guaranteed satisfaction.
+          </p>
+          <div class="hero-badges">
+            <span class="hero-badge">
+              <span class="hero-badge-icon">🛡️</span> Licensed & Insured
+            </span>
+            <span class="hero-badge">
+              <span class="hero-badge-icon">✓</span> Same-Day Service
+            </span>
+            <span class="hero-badge">
+              <span class="hero-badge-icon">💯</span> Satisfaction Guaranteed
+            </span>
+          </div>
           <div class="hero-cta">
-            <div class="hero-phone">(555) PLUMBER</div>
-            <a href="#contact" class="btn btn-accent">Get Your Free Quote</a>
+            <a href="#contact" class="btn btn-accent">Get Free Estimate</a>
+            <a href="#contact" class="btn btn-outline">Schedule Service</a>
+            <div class="hero-phone-display">
+              <span class="hero-phone-label">Call anytime</span>
+              <a href="tel:555-758-6237" class="hero-phone-number">(555) PLUMBER</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Strip -->
+    <section class="trust-strip">
+      <div class="container">
+        <div class="trust-strip-content">
+          <div class="trust-item">
+            <div class="trust-icon">🏆</div>
+            <div class="trust-text">
+              <strong>15+ Years</strong>
+              <span>Industry Experience</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">⭐</div>
+            <div class="trust-text">
+              <strong>5,000+</strong>
+              <span>Happy Customers</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">🔧</div>
+            <div class="trust-text">
+              <strong>Same Day</strong>
+              <span>Service Available</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">✅</div>
+            <div class="trust-text">
+              <strong>100%</strong>
+              <span>Satisfaction Rate</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services" id="services">
+    <section class="services section" id="services">
       <div class="container">
         <div class="section-header">
+          <span class="section-label">What We Do</span>
           <h2>Professional Plumbing Services</h2>
-          <p class="section-subtitle">From routine maintenance to emergency repairs, we handle all your plumbing needs with expertise and care.</p>
+          <p class="section-subtitle">
+            Comprehensive plumbing solutions for residential and commercial properties, backed by our workmanship guarantee.
+          </p>
         </div>
 
         <div class="services-grid">
           <div class="service-card">
             <div class="service-icon">🚿</div>
             <h3>Drain Cleaning</h3>
-            <p>Professional drain cleaning using advanced equipment to remove clogs and restore proper flow to your pipes.</p>
+            <p>Advanced hydro-jetting and snake services to clear stubborn clogs and restore proper drainage throughout your home.</p>
+            <a href="#contact" class="service-link">Learn more →</a>
           </div>
 
           <div class="service-card">
             <div class="service-icon">🔧</div>
-            <h3>Pipe Repair</h3>
-            <p>Expert pipe repair and replacement services for burst, leaking, or damaged pipes throughout your property.</p>
+            <h3>Pipe Repair & Replacement</h3>
+            <p>Expert diagnosis and repair of burst, corroded, or leaking pipes using modern trenchless technology when possible.</p>
+            <a href="#contact" class="service-link">Learn more →</a>
           </div>
 
           <div class="service-card">
             <div class="service-icon">🔥</div>
             <h3>Water Heater Service</h3>
-            <p>Installation, repair, and maintenance of traditional and tankless water heaters for reliable hot water supply.</p>
+            <p>Installation, repair, and maintenance of tank and tankless water heaters for reliable hot water all year round.</p>
+            <a href="#contact" class="service-link">Learn more →</a>
           </div>
 
           <div class="service-card">
             <div class="service-icon">💧</div>
             <h3>Leak Detection</h3>
-            <p>Advanced leak detection technology to locate hidden leaks and prevent costly water damage to your home.</p>
+            <p>State-of-the-art electronic leak detection to locate hidden leaks and prevent costly water damage to your property.</p>
+            <a href="#contact" class="service-link">Learn more →</a>
           </div>
 
           <div class="service-card">
             <div class="service-icon">🛁</div>
             <h3>Bathroom Plumbing</h3>
-            <p>Complete bathroom plumbing services including toilet repair, faucet installation, and shower maintenance.</p>
+            <p>Complete bathroom services including fixture installation, toilet repair, and shower/tub plumbing solutions.</p>
+            <a href="#contact" class="service-link">Learn more →</a>
           </div>
 
           <div class="service-card">
             <div class="service-icon">🍽️</div>
             <h3>Kitchen Plumbing</h3>
-            <p>Kitchen sink repair, garbage disposal installation, and dishwasher hookup services for your culinary needs.</p>
+            <p>Kitchen sink installation, garbage disposal service, dishwasher hookups, and faucet repairs done right.</p>
+            <a href="#contact" class="service-link">Learn more →</a>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="service-card">
-            <div class="service-icon">🏠</div>
-            <h3>Sewer Line Service</h3>
-            <p>Sewer line cleaning, repair, and replacement using camera inspection and trenchless technology.</p>
+    <!-- About Section with Images -->
+    <section class="about section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-images">
+            <div class="about-image about-image-1">
+              <img 
+                src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Plumber working under bathroom sink"
+              >
+            </div>
+            <div class="about-image about-image-2">
+              <img 
+                src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Professional plumber repairing kitchen faucet"
+              >
+            </div>
+            <div class="about-badge">
+              <div class="about-badge-number">15+</div>
+              <div class="about-badge-text">Years Experience</div>
+            </div>
           </div>
-
-          <div class="service-card">
-            <div class="service-icon">🚨</div>
-            <h3>Emergency Service</h3>
-            <p>24/7 emergency plumbing service for urgent issues that can't wait until regular business hours.</p>
+          <div class="about-content">
+            <span class="section-label">Why Choose Us</span>
+            <h2>Your Trusted Local Plumbing Experts</h2>
+            <p>
+              Since 2008, ProFlow Plumbing has been the go-to choice for homeowners and businesses throughout the metro area. Our team of licensed, insured professionals brings expertise, integrity, and a commitment to excellence to every job.
+            </p>
+            <p>
+              We understand that plumbing emergencies don't wait, which is why we offer 24/7 service with fast response times. Whether it's a midnight pipe burst or a routine installation, you can count on us to get the job done right.
+            </p>
+            <div class="about-features">
+              <div class="about-feature">
+                <span class="about-feature-icon">✓</span>
+                <span>Licensed & Insured</span>
+              </div>
+              <div class="about-feature">
+                <span class="about-feature-icon">✓</span>
+                <span>Upfront Pricing</span>
+              </div>
+              <div class="about-feature">
+                <span class="about-feature-icon">✓</span>
+                <span>24/7 Availability</span>
+              </div>
+              <div class="about-feature">
+                <span class="about-feature-icon">✓</span>
+                <span>Clean & Professional</span>
+              </div>
+              <div class="about-feature">
+                <span class="about-feature-icon">✓</span>
+                <span>Satisfaction Guaranteed</span>
+              </div>
+              <div class="about-feature">
+                <span class="about-feature-icon">✓</span>
+                <span>Free Estimates</span>
+              </div>
+            </div>
+            <a href="#contact" class="btn btn-primary">Get Your Free Quote</a>
           </div>
         </div>
       </div>
@@ -865,48 +1626,368 @@
     <section class="emergency-cta">
       <div class="container">
         <div class="emergency-content">
-          <h2>Plumbing Emergency?</h2>
-          <p class="emergency-promise">We respond within 30 minutes - Available 24/7</p>
-          <div class="emergency-phone">(555) PLUMBER</div>
-          <a href="tel:555-PLUMBER" class="btn btn-emergency">Call Now for Emergency Service</a>
+          <div class="emergency-text">
+            <h2>🚨 Plumbing Emergency?</h2>
+            <p>We respond within 30 minutes — day or night, 365 days a year</p>
+          </div>
+          <div class="emergency-action">
+            <a href="tel:555-758-6237" class="emergency-phone">(555) PLUMBER</a>
+            <a href="tel:555-758-6237" class="btn btn-emergency">Call Now — Available 24/7</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Our Work</span>
+          <h2>Recent Projects</h2>
+          <p class="section-subtitle">
+            See examples of our professional plumbing work across kitchens, bathrooms, and more.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img 
+              src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+              alt="Modern bathroom renovation"
+            >
+            <span class="gallery-item-label">Bathroom Renovation</span>
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+              alt="Kitchen sink installation"
+            >
+            <span class="gallery-item-label">Kitchen Installation</span>
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+              alt="Water heater service"
+            >
+            <span class="gallery-item-label">Water Heater Service</span>
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="https://images.unsplash.com/photo-1620626011761-996317b8d101?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+              alt="Pipe repair work"
+            >
+            <span class="gallery-item-label">Pipe Repair</span>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
+    <section class="testimonials section" id="testimonials">
       <div class="container">
         <div class="section-header">
+          <span class="section-label">Customer Reviews</span>
           <h2>What Our Customers Say</h2>
-          <p class="section-subtitle">Don't just take our word for it - hear from satisfied customers across the metro area.</p>
+          <p class="section-subtitle">
+            Don't just take our word for it — hear from satisfied customers across the metro area.
+          </p>
         </div>
 
         <div class="testimonials-grid">
           <div class="testimonial-card">
-            <div class="stars">
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
+            <span class="testimonial-quote">"</span>
+            <div class="testimonial-stars">
+              <span class="testimonial-star">★</span>
+              <span class="testimonial-star">★</span>
+              <span class="testimonial-star">★</span>
+              <span class="testimonial-star">★</span>
+              <span class="testimonial-star">★</span>
             </div>
-            <p class="testimonial-text">"ProFlow Plumbing saved the day! Our water heater failed on a Sunday morning, and they had someone here within an hour. Professional, courteous, and reasonably priced. Highly recommended!"</p>
+            <p class="testimonial-text">
+              "ProFlow Plumbing saved the day! Our water heater failed on a Sunday morning, and they had someone here within an hour. Professional, courteous, and reasonably priced. Highly recommended!"
+            </p>
             <div class="testimonial-author">
-              <div>
-                <div class="author-name">Sarah Mitchell</div>
-                <div class="author-location">Downtown District</div>
+              <div class="testimonial-author-info">
+                <div class="testimonial-avatar">SM</div>
+                <div>
+                  <div class="testimonial-name">Sarah Mitchell</div>
+                  <div class="testimonial-location">Downtown District</div>
+                </div>
               </div>
-              <span class="service-type">Water Heater</span>
+              <span class="testimonial-service">Water Heater</span>
             </div>
           </div>
 
           <div class="testimonial-card">
-            <div class="stars">
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
+            <span class="testimonial-quote">"</span>
+            <div class="testimonial-stars">
+              <span class="testimonial-star">★</span>
+              <span class="testimonial-star">★</span>
+              <span class="testimonial-star">★</span>
+              <span class="testimonial-star">★</span>
+              <span class="testimonial-star">★</span>
             </div>
-            <p class="testimonial-text">"Excellent service from start to finish. They diagnosed our persistent drain issues quickly and provided a permanent solution. The technician was knowledgeable and explained everything clearly."</p>
-            <div class="testimonial-author
+            <p class="testimonial-text">
+              "Excellent service from start to finish. They diagnosed our persistent drain issues quickly and provided a permanent solution. The technician was knowledgeable and explained everything clearly."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <div class="testimonial-avatar">MJ</div>
+                <div>
+                  <div class="testimonial-name">Michael Johnson</div>
+                  <div class="testimonial-location">Riverside Heights</div>
+                </div>
+              </div>
+              <span class="testimonial-service">Drain Cleaning</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <span class="testimonial-quote">"</span>
+            <div class="testimonial-stars">
+              <span class="testimonial-star">★</span>
+              <span class="testimonial-star">★</span>
+              <span class="testimonial-star">★</span>
+              <span class="testimonial-star">★</span>
+              <span class="testimonial-star">★</span>
+            </div>
+            <p class="testimonial-text">
+              "I've used ProFlow for both my home and rental properties. They're always responsive, fair with pricing, and do quality work. My go-to plumber for over 5 years now."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <div class="testimonial-avatar">RL</div>
+                <div>
+                  <div class="testimonial-name">Robert Lee</div>
+                  <div class="testimonial-location">Oak Park</div>
+                </div>
+              </div>
+              <span class="testimonial-service">General Plumbing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service Areas -->
+    <section class="service-areas section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Coverage Area</span>
+          <h2>Areas We Serve</h2>
+          <p class="section-subtitle">
+            Providing professional plumbing services throughout the greater metro area and surrounding communities.
+          </p>
+        </div>
+
+        <div class="areas-grid">
+          <div class="area-card">
+            <h4>Downtown</h4>
+            <span class="area-zip">10001-10010</span>
+          </div>
+          <div class="area-card">
+            <h4>Riverside</h4>
+            <span class="area-zip">10011-10020</span>
+          </div>
+          <div class="area-card">
+            <h4>Oak Park</h4>
+            <span class="area-zip">10021-10030</span>
+          </div>
+          <div class="area-card">
+            <h4>Westside</h4>
+            <span class="area-zip">10031-10040</span>
+          </div>
+          <div class="area-card">
+            <h4>North Hills</h4>
+            <span class="area-zip">10041-10050</span>
+          </div>
+          <div class="area-card">
+            <h4>Lakewood</h4>
+            <span class="area-zip">10051-10060</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <span class="section-label" style="color: var(--color-accent);">Get In Touch</span>
+            <h2>Request a Free Quote</h2>
+            <p>
+              Ready to solve your plumbing problems? Contact us today for a free, no-obligation estimate. We'll get back to you within 2 hours during business hours.
+            </p>
+
+            <div class="contact-methods">
+              <div class="contact-method">
+                <div class="contact-method-icon">📞</div>
+                <div>
+                  <h4>Phone</h4>
+                  <a href="tel:555-758-6237">(555) PLUMBER</a>
+                </div>
+              </div>
+              <div class="contact-method">
+                <div class="contact-method-icon">✉️</div>
+                <div>
+                  <h4>Email</h4>
+                  <a href="mailto:service@proflowplumbing.com">service@proflowplumbing.com</a>
+                </div>
+              </div>
+              <div class="contact-method">
+                <div class="contact-method-icon">📍</div>
+                <div>
+                  <h4>Office</h4>
+                  <p>123 Main Street, Suite 100<br>Metro City, ST 10001</p>
+                </div>
+              </div>
+              <div class="contact-method">
+                <div class="contact-method-icon">🕐</div>
+                <div>
+                  <h4>Hours</h4>
+                  <p>24/7 Emergency Service<br>Office: Mon-Fri 8am-6pm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            <form action="#" method="POST">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Full Name</label>
+                  <input type="text" id="name" name="name" class="form-control" placeholder="John Smith" required>
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" class="form-control" placeholder="(555) 123-4567" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="john@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="service">Service Needed</label>
+                <select id="service" name="service" class="form-control" required>
+                  <option value="">Select a service...</option>
+                  <option value="drain-cleaning">Drain Cleaning</option>
+                  <option value="pipe-repair">Pipe Repair</option>
+                  <option value="water-heater">Water Heater Service</option>
+                  <option value="leak-detection">Leak Detection</option>
+                  <option value="bathroom">Bathroom Plumbing</option>
+                  <option value="kitchen">Kitchen Plumbing</option>
+                  <option value="emergency">Emergency Service</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" class="form-control" placeholder="Describe your plumbing issue or request..."></textarea>
+              </div>
+              <div class="form-submit">
+                <button type="submit" class="btn btn-accent">Send Request</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <div class="logo-icon">🔧</div>
+            <span>ProFlow Plumbing</span>
+          </a>
+          <p>
+            Your trusted local plumbing experts. Licensed, insured, and committed to delivering exceptional service with every call.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Google">🔍</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Drain Cleaning</a></li>
+            <li><a href="#services">Pipe Repair</a></li>
+            <li><a href="#services">Water Heaters</a></li>
+            <li><a href="#services">Leak Detection</a></li>
+            <li><a href="#services">Emergency Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#">Service Areas</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Contact</h4>
+          <ul class="footer-links">
+            <li><a href="tel:555-758-6237">(555) PLUMBER</a></li>
+            <li><a href="mailto:service@proflowplumbing.com">service@proflowplumbing.com</a></li>
+            <li>123 Main Street</li>
+            <li>Metro City, ST 10001</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2024 ProFlow Plumbing. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Simple reveal on scroll animation
+    const revealElements = document.querySelectorAll('.service-card, .testimonial-card, .area-card');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, index * 100);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    revealElements.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.6s ease-out';
+      revealObserver.observe(el);
+    });
+  </script>
+</body>
+</html>
